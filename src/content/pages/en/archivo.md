@@ -1,9 +1,6 @@
 ---
-title: "Nautas - Archive"
-description: "Content archive"
-hero_title: "Archive"
-hero_subtitle: "Previous content"
-hero_image: "/images/hero-archivo.jpg"
+title: "Nautas — Archive"
+description: "Complete archive of all NAUTAS productions and projects. Filter by pillar, format, and status."
+hero_title: "Celestial Archive"
+hero_subtitle: "Explore all our productions and projects. Filter by pillar, format, and development status."
 ---
-
-Archive content...

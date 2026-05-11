@@ -1,9 +1,16 @@
 ---
-title: "Nautas - Contacto"
-description: "Ponete en contacto con nosotros"
-hero_title: "Contacto"
-hero_subtitle: "Escribinos"
-hero_image: "/images/hero-contacto.jpg"
+title: "Nautas — Contacto"
+description: "Contactá a NAUTAS. Escribinos para consultas, colaboraciones, prensa o sumarte al equipo."
+hero_title: "Escribinos."
+contact_tagline: "Cada nave necesita tripulación."
+email_label: "Correo Electrónico"
+email: "contacto@nautas.org"
+youtube_label: "YouTube"
+youtube_url: "https://youtube.com/@Nautas"
+youtube_display: "youtube.com/@Nautas"
+location_label: "Ubicación"
+location: "Buenos Aires, Argentina"
+response_label: "Tiempo de Respuesta"
+response_time: "3 a 5 días hábiles"
+form_title: "Enviá tu mensaje"
 ---
-
-Formulario de contacto...

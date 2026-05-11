@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroSection from '../../components/HeroSection.astro';
 import CelestialLine from '../../components/CelestialLine.astro';
@@ -7,29 +7,20 @@ import GlassPanel from '../../components/GlassPanel.astro';
 import TeamCard from '../../components/TeamCard.astro';
 
 const locale = Astro.currentLocale || 'es';
-const t = (es: string, en: string) => (locale === 'en' ? en : es);
+const pageSlug = locale === 'en' ? 'en/institucional' : 'institucional';
+const page = await getEntry('pages', pageSlug);
+const d = page?.data;
 
 const team = await getCollection('team');
 team.sort((a, b) => a.data.order - b.data.order);
-
-const pageMeta = {
-  title: t('Institucional', 'About'),
-  description: t(
-    'NAUTAS es una entidad civil, de bien público, sin fines de lucro, dedicada a la promoción y difusión del arte, la ciencia y la consciencia humana.',
-    'NAUTAS is a civil, public-benefit, non-profit entity dedicated to the promotion and dissemination of art, science, and human consciousness.'
-  ),
-};
 ---
 
-<BaseLayout title={pageMeta.title} description={pageMeta.description} locale={locale}>
+<BaseLayout title={d?.title ?? ''} description={d?.description ?? ''} locale={locale}>
   <!-- Hero -->
   <HeroSection
     variant="centered"
-    title={t('Una nave compartida, un mismo destino.', 'A shared vessel, a common destiny.')}
-    subtitle={t(
-      'NAUTAS es una asociación argentina sin fines de lucro dedicada a la producción audiovisual y la investigación cultural en la intersección del arte, la ciencia y la consciencia.',
-      'NAUTAS is a non-profit Argentine association dedicated to audiovisual production and cultural research at the intersection of art, science, and consciousness.'
-    )}
+    title={d?.hero_title ?? ''}
+    subtitle={d?.hero_subtitle}
   />
 
   <CelestialLine />
@@ -39,14 +30,14 @@ const pageMeta = {
     <div class="grid md:grid-cols-12 gap-12">
       <div class="md:col-span-5">
         <h2 class="font-headline text-4xl md:text-5xl mb-8 md:sticky md:top-32">
-          {t('Nuestro Propósito', 'Our Purpose')}
+          {d?.mission_title ?? ''}
         </h2>
         <div class="aspect-square rounded-full border border-primary/20 p-8 relative flex items-center justify-center">
           <div class="absolute inset-0 bg-primary/5 rounded-full animate-pulse"></div>
           <div class="text-center relative z-10">
             <span class="material-symbols-outlined text-primary text-6xl mb-4">auto_awesome</span>
             <p class="font-label text-xs uppercase tracking-[0.3em] text-tertiary">
-              {t('Evolución Cultural', 'Cultural Evolution')}
+              {locale === 'en' ? 'Cultural Evolution' : 'Evolución Cultural'}
             </p>
           </div>
         </div>
@@ -54,42 +45,16 @@ const pageMeta = {
       <div class="md:col-span-7 space-y-8">
         <GlassPanel>
           <div class="space-y-6 text-on-surface-variant leading-relaxed">
-            <p class="text-xl text-on-surface leading-relaxed mb-8 font-headline italic">
-              {t(
-                'NAUTAS es una entidad civil, de bien público, sin fines de lucro, cuya finalidad social es la promoción y difusión de contenidos que responden a tres áreas principales: arte, ciencia e investigaciones acerca del espíritu y la consciencia humana.',
-                'NAUTAS is a civil, public-benefit, non-profit entity whose social purpose is the promotion and dissemination of content across three main areas: art, science, and research on the human spirit and consciousness.'
-              )}
-            </p>
-            <p>
-              {t(
-                'La vocación de sus integrantes es propiciar la comunicación de ideas y el desarrollo de actividades que favorezcan la interacción social y la integración de una gran diversidad cultural.',
-                'The vocation of its members is to foster the communication of ideas and the development of activities that promote social interaction and the integration of vast cultural diversity.'
-              )}
-            </p>
-            <p>
-              {t(
-                'Incluye entre sus premisas fundacionales el estudio y la aplicación de diferentes conocimientos que contemplen la búsqueda de una convivencia armoniosa y la mejor utilización de los recursos naturales. Esto implica la transmisión de conocimientos y prácticas concretas adecuadas a la realidad social de nuestro tiempo.',
-                'Its founding premises include the study and application of different forms of knowledge aimed at harmonious coexistence and the best use of natural resources. This implies the transmission of knowledge and concrete practices suited to the social reality of our time.'
-              )}
-            </p>
-            <p>
-              {t(
-                'Para el desarrollo de estas actividades se dedica a la producción de eventos, conferencias, cursos, talleres, contenidos audiovisuales e intervenciones artísticas de distinta índole, asociados a mensajes y personalidades mundialmente reconocidas por su intento de consolidación de nuevos paradigmas, edificadores de un mundo culturalmente más evolucionado, más consciente y en armonía con la naturaleza.',
-                'To develop these activities, it is dedicated to producing events, conferences, courses, workshops, audiovisual content, and artistic interventions of various kinds, associated with messages and personalities recognized worldwide for their attempt to consolidate new paradigms — builders of a culturally more evolved, more conscious world in harmony with nature.'
-              )}
-            </p>
-            <p>
-              {t(
-                'Nautas promueve, asimismo, el desarrollo de nuevas expresiones que sirvan para incrementar la salud de la sociedad, del medio ambiente, la comunicación, las relaciones personales y las artes a través del continente y del mundo, difundiendo su conocimiento en forma educativa y lúdica, estimulando la cooperación y la creatividad.',
-                'Nautas also promotes the development of new expressions that serve to enhance the health of society, the environment, communication, personal relationships, and the arts across the continent and the world, disseminating knowledge in an educational and playful way, stimulating cooperation and creativity.'
-              )}
-            </p>
-            <p class="text-primary font-bold">
-              {t(
-                'Los invitamos a participar activa y comprometidamente con nuestras propuestas.',
-                'We invite you to participate actively and wholeheartedly in our proposals.'
-              )}
-            </p>
+            {d?.mission_p1 && (
+              <p class="text-xl text-on-surface leading-relaxed mb-8 font-headline italic">{d.mission_p1}</p>
+            )}
+            {d?.mission_p2 && <p>{d.mission_p2}</p>}
+            {d?.mission_p3 && <p>{d.mission_p3}</p>}
+            {d?.mission_p4 && <p>{d.mission_p4}</p>}
+            {d?.mission_p5 && <p>{d.mission_p5}</p>}
+            {d?.mission_cta && (
+              <p class="text-primary font-bold">{d.mission_cta}</p>
+            )}
           </div>
         </GlassPanel>
       </div>
@@ -104,52 +69,26 @@ const pageMeta = {
       <div class="grid md:grid-cols-2">
         <div class="p-8 md:p-16 lg:p-20 flex flex-col justify-center">
           <h2 class="font-headline text-4xl md:text-5xl mb-10">
-            {t('Visión Participativa', 'Participatory Vision')}
+            {d?.vision_title ?? ''}
           </h2>
           <div class="space-y-6 text-on-surface-variant leading-relaxed text-base md:text-lg">
-            <p>
-              {t(
-                'El propósito de Nautas no está "definido", no es algo a alcanzar sino algo a construir entre todos conjuntamente. Porque un nuevo paradigma ha de emerger precisamente como algo nuevo, diferente de lo hasta ahora conocido.',
-                'The purpose of Nautas is not "defined" — it is not something to reach but something to build together. For a new paradigm must emerge precisely as something new, different from what has been known so far.'
-              )}
-            </p>
-            <p>
-              {t(
-                'En este sentido, el propósito que nos aúna es el de crear, como si compusiéramos una obra, una visión multi-participativa, en varios planos o dimensiones creativas, que pueda reflejar la vitalidad y la inteligencia que surgen cuando somos capaces de conectar con la verdad del corazón y movernos en el mundo desde allí.',
-                'In this sense, the purpose that unites us is to create, as if composing a work of art, a multi-participatory vision across several planes or creative dimensions — one that can reflect the vitality and intelligence that arise when we connect with the truth of the heart and move through the world from there.'
-              )}
-            </p>
-            <p>
-              {t(
-                'Más que instruir o enseñar, lo que nos convoca es poner a disposición del público hispanoparlante herramientas que posibiliten la participación y la comunicación libre e interactiva para crear una forma verdaderamente nueva de relacionarnos.',
-                'More than instructing or teaching, what calls us is to make available to the Spanish-speaking public tools that enable participation and free, interactive communication to create a truly new way of relating to one another.'
-              )}
-            </p>
+            {d?.vision_p1 && <p>{d.vision_p1}</p>}
+            {d?.vision_p2 && <p>{d.vision_p2}</p>}
+            {d?.vision_p3 && <p>{d.vision_p3}</p>}
           </div>
         </div>
         <div class="relative bg-surface-container-high flex flex-col items-center justify-center p-8 md:p-16 lg:p-20 text-center border-l border-outline-variant/10">
           <div class="mb-10">
             <span class="material-symbols-outlined text-primary text-5xl mb-6">public</span>
-            <blockquote class="font-headline text-2xl md:text-3xl italic text-on-surface mb-6">
-              {t(
-                '"Navegamos a bordo de una misma nave: el planeta Tierra. Nuestro destino está ligado al designio de su Espíritu."',
-                '"We sail aboard the same vessel: planet Earth. Our destiny is linked to the design of its Spirit."'
-              )}
-            </blockquote>
+            {d?.vision_blockquote && (
+              <blockquote class="font-headline text-2xl md:text-3xl italic text-on-surface mb-6">
+                {d.vision_blockquote}
+              </blockquote>
+            )}
           </div>
           <div class="space-y-6 text-sm text-on-surface-variant leading-relaxed text-left">
-            <p>
-              {t(
-                'El planeta está dando señales de un movimiento que incumbe a todos sus habitantes. Existen varias formas posibles en que podemos responder a este movimiento y eso no significa que debamos "hacer" algo sino tal vez estar más receptivos y disponibles para responder al cambio que se está evidenciando a todo nuestro alrededor.',
-                'The planet is signaling a movement that concerns all its inhabitants. There are several possible ways we can respond to this movement, and that does not mean we must "do" something but perhaps be more receptive and available to respond to the change that is becoming evident all around us.'
-              )}
-            </p>
-            <p>
-              {t(
-                'No hay manual de instrucciones para quienes se adentren en las profundidades de un viaje de consciencia colectivo, pero hay algunas variables que pueden hacer de nuestro viaje una pesadilla o una aventura conjunta en la cual descubrimos lo mejor que cada uno puede darse a sí mismo y a los compañeros de ruta.',
-                'There is no instruction manual for those venturing into the depths of a collective consciousness journey, but there are some variables that can make our journey a nightmare or a joint adventure in which we discover the best each one can give to themselves and their fellow travelers.'
-              )}
-            </p>
+            {d?.vision_p4 && <p>{d.vision_p4}</p>}
+            {d?.vision_p5 && <p>{d.vision_p5}</p>}
           </div>
         </div>
       </div>
@@ -163,13 +102,10 @@ const pageMeta = {
     <div class="flex flex-col md:flex-row justify-between items-end mb-14">
       <div class="max-w-xl">
         <h2 class="font-headline text-4xl md:text-5xl mb-4">
-          {t('Nuestro Equipo', 'Our Team')}
+          {d?.team_title ?? ''}
         </h2>
         <p class="text-on-surface-variant text-lg">
-          {t(
-            'Una tripulación multidisciplinaria unida por la misma órbita.',
-            'A multidisciplinary crew united by the same orbit.'
-          )}
+          {d?.team_subtitle ?? ''}
         </p>
       </div>
     </div>
@@ -177,9 +113,9 @@ const pageMeta = {
       {team.map((member) => (
         <TeamCard
           name={member.data.name}
-          role={t(member.data.role.es, member.data.role.en)}
+          role={locale === 'en' ? member.data.role.en : member.data.role.es}
           photo={member.data.photo}
-          bio={member.data.bio ? t(member.data.bio.es, member.data.bio.en) : undefined}
+          bio={member.data.bio ? (locale === 'en' ? member.data.bio.en : member.data.bio.es) : undefined}
         />
       ))}
     </div>
@@ -191,26 +127,23 @@ const pageMeta = {
   <section class="max-w-[1200px] mx-auto px-6 md:px-12 mb-20 text-center py-24 md:py-32 bg-nebula rounded-3xl relative overflow-hidden">
     <div class="relative z-10">
       <h2 class="font-headline text-4xl md:text-5xl mb-8">
-        {t('¿Querés acompañar el rumbo?', 'Ready to chart the course?')}
+        {d?.cta_title ?? ''}
       </h2>
       <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-10">
-        {t(
-          'Escribinos, sumate al equipo o explorá nuestros proyectos.',
-          'Write to us, join the team, or explore our projects.'
-        )}
+        {d?.cta_subtitle ?? ''}
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a
           href={`/${locale === 'en' ? 'en/' : ''}contacto`}
           class="bg-primary text-on-primary px-8 py-3 rounded font-label text-xs uppercase tracking-[0.2em] hover:brightness-110 transition-all"
         >
-          {t('Contactanos', 'Contact Us')}
+          {locale === 'en' ? 'Contact Us' : 'Contactanos'}
         </a>
         <a
           href={`/${locale === 'en' ? 'en/' : ''}proyectos`}
           class="border border-primary/30 text-primary px-8 py-3 rounded font-label text-xs uppercase tracking-[0.2em] hover:bg-primary/10 transition-all"
         >
-          {t('Ver Proyectos', 'View Projects')}
+          {locale === 'en' ? 'View Projects' : 'Ver Proyectos'}
         </a>
       </div>
     </div>

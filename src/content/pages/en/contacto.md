@@ -1,9 +1,16 @@
 ---
-title: "Nautas - Contact"
-description: "Get in touch with us"
-hero_title: "Contact"
-hero_subtitle: "Write to us"
-hero_image: "/images/hero-contacto.jpg"
+title: "Nautas — Contact"
+description: "Contact NAUTAS. Write to us for inquiries, collaborations, press, or joining the team."
+hero_title: "Write to Us."
+contact_tagline: "Every vessel needs a crew."
+email_label: "Email"
+email: "contacto@nautas.org"
+youtube_label: "YouTube"
+youtube_url: "https://youtube.com/@Nautas"
+youtube_display: "youtube.com/@Nautas"
+location_label: "Location"
+location: "Buenos Aires, Argentina"
+response_label: "Response Time"
+response_time: "3-5 business days"
+form_title: "Send your message"
 ---
-
-Contact form...

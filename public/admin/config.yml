@@ -3,25 +3,199 @@ backend:
   repo: santos480/nautas
   branch: main
   auth_type: implicit
-  app_id: ""
+  # PASO REQUERIDO: Creá un GitHub OAuth App en https://github.com/settings/applications/new
+  # - Homepage URL: https://project-43ure.vercel.app
+  # - Authorization callback URL: https://project-43ure.vercel.app/
+  # Copiá el Client ID y pegalo abajo:
+  app_id: Ov23linoBnGUKNDCaul0
 
 media_folder: public/images
 public_folder: /images
 
 collections:
-  - name: "pages"
-    label: "Páginas"
-    folder: "src/content/pages"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - {label: "Título", name: "title", widget: "string"}
-      - {label: "Descripción SEO", name: "description", widget: "text"}
-      - {label: "Hero Título", name: "hero_title", widget: "string"}
-      - {label: "Hero Subtítulo", name: "hero_subtitle", widget: "string"}
-      - {label: "Hero Imagen", name: "hero_image", widget: "image", required: false}
-      - {label: "Contenido", name: "body", widget: "markdown"}
+  # ─── PÁGINAS EN ESPAÑOL ────────────────────────────────────────────────────
+  - name: "pages_es"
+    label: "Páginas (ES)"
+    files:
+      - name: "inicio"
+        label: "Inicio"
+        file: "src/content/pages/inicio.md"
+        fields:
+          - {label: "Título (SEO)", name: "title", widget: "string"}
+          - {label: "Descripción (SEO)", name: "description", widget: "text"}
+          - {label: "Hero Eyebrow", name: "hero_eyebrow", widget: "string", required: false}
+          - {label: "Hero Título", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtítulo", name: "hero_subtitle", widget: "text"}
+          - {label: "Pilares — Título Sección", name: "pillars_title", widget: "string", required: false}
+          - {label: "Arte — Título", name: "pillar_arte_title", widget: "string", required: false}
+          - {label: "Arte — Descripción", name: "pillar_arte_desc", widget: "text", required: false}
+          - {label: "Ciencia — Título", name: "pillar_ciencia_title", widget: "string", required: false}
+          - {label: "Ciencia — Descripción", name: "pillar_ciencia_desc", widget: "text", required: false}
+          - {label: "Consciencia — Título", name: "pillar_consciencia_title", widget: "string", required: false}
+          - {label: "Consciencia — Descripción", name: "pillar_consciencia_desc", widget: "text", required: false}
+          - {label: "Cita de Visión", name: "vision_quote", widget: "string", required: false}
+          - {label: "Newsletter — Título", name: "newsletter_title", widget: "string", required: false}
+          - {label: "Newsletter — Subtítulo", name: "newsletter_subtitle", widget: "text", required: false}
 
+      - name: "institucional"
+        label: "Institucional"
+        file: "src/content/pages/institucional.md"
+        fields:
+          - {label: "Título (SEO)", name: "title", widget: "string"}
+          - {label: "Descripción (SEO)", name: "description", widget: "text"}
+          - {label: "Hero Título", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtítulo", name: "hero_subtitle", widget: "text", required: false}
+          - {label: "Misión — Título Sección", name: "mission_title", widget: "string", required: false}
+          - {label: "Misión — Párrafo 1", name: "mission_p1", widget: "text", required: false}
+          - {label: "Misión — Párrafo 2", name: "mission_p2", widget: "text", required: false}
+          - {label: "Misión — Párrafo 3", name: "mission_p3", widget: "text", required: false}
+          - {label: "Misión — Párrafo 4", name: "mission_p4", widget: "text", required: false}
+          - {label: "Misión — Párrafo 5", name: "mission_p5", widget: "text", required: false}
+          - {label: "Misión — CTA", name: "mission_cta", widget: "string", required: false}
+          - {label: "Visión — Título Sección", name: "vision_title", widget: "string", required: false}
+          - {label: "Visión — Párrafo 1", name: "vision_p1", widget: "text", required: false}
+          - {label: "Visión — Párrafo 2", name: "vision_p2", widget: "text", required: false}
+          - {label: "Visión — Párrafo 3", name: "vision_p3", widget: "text", required: false}
+          - {label: "Visión — Cita", name: "vision_blockquote", widget: "string", required: false}
+          - {label: "Visión — Párrafo 4", name: "vision_p4", widget: "text", required: false}
+          - {label: "Visión — Párrafo 5", name: "vision_p5", widget: "text", required: false}
+          - {label: "Equipo — Título", name: "team_title", widget: "string", required: false}
+          - {label: "Equipo — Subtítulo", name: "team_subtitle", widget: "string", required: false}
+          - {label: "CTA — Título", name: "cta_title", widget: "string", required: false}
+          - {label: "CTA — Subtítulo", name: "cta_subtitle", widget: "string", required: false}
+
+      - name: "proyectos_page"
+        label: "Proyectos (página)"
+        file: "src/content/pages/proyectos.md"
+        fields:
+          - {label: "Título (SEO)", name: "title", widget: "string"}
+          - {label: "Descripción (SEO)", name: "description", widget: "text"}
+          - {label: "Hero Eyebrow", name: "hero_eyebrow", widget: "string", required: false}
+          - {label: "Hero Título", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtítulo", name: "hero_subtitle", widget: "text", required: false}
+          - {label: "Título Producciones", name: "completed_title", widget: "string", required: false}
+          - {label: "Título En Desarrollo", name: "in_dev_title", widget: "string", required: false}
+
+      - name: "contacto_page"
+        label: "Contacto (página)"
+        file: "src/content/pages/contacto.md"
+        fields:
+          - {label: "Título (SEO)", name: "title", widget: "string"}
+          - {label: "Descripción (SEO)", name: "description", widget: "text"}
+          - {label: "Título Principal", name: "hero_title", widget: "string"}
+          - {label: "Tagline", name: "contact_tagline", widget: "string", required: false}
+          - {label: "Label Email", name: "email_label", widget: "string", required: false}
+          - {label: "Email", name: "email", widget: "string", required: false}
+          - {label: "Label YouTube", name: "youtube_label", widget: "string", required: false}
+          - {label: "URL YouTube", name: "youtube_url", widget: "string", required: false}
+          - {label: "Texto YouTube", name: "youtube_display", widget: "string", required: false}
+          - {label: "Label Ubicación", name: "location_label", widget: "string", required: false}
+          - {label: "Ubicación", name: "location", widget: "string", required: false}
+          - {label: "Label Tiempo Respuesta", name: "response_label", widget: "string", required: false}
+          - {label: "Tiempo de Respuesta", name: "response_time", widget: "string", required: false}
+          - {label: "Título Formulario", name: "form_title", widget: "string", required: false}
+
+      - name: "archivo_page"
+        label: "Archivo (página)"
+        file: "src/content/pages/archivo.md"
+        fields:
+          - {label: "Título (SEO)", name: "title", widget: "string"}
+          - {label: "Descripción (SEO)", name: "description", widget: "text"}
+          - {label: "Hero Título", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtítulo", name: "hero_subtitle", widget: "text", required: false}
+
+  # ─── PAGES IN ENGLISH ──────────────────────────────────────────────────────
+  - name: "pages_en"
+    label: "Pages (EN)"
+    files:
+      - name: "inicio_en"
+        label: "Home"
+        file: "src/content/pages/en/inicio.md"
+        fields:
+          - {label: "Title (SEO)", name: "title", widget: "string"}
+          - {label: "Description (SEO)", name: "description", widget: "text"}
+          - {label: "Hero Eyebrow", name: "hero_eyebrow", widget: "string", required: false}
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "text"}
+          - {label: "Pillars — Section Title", name: "pillars_title", widget: "string", required: false}
+          - {label: "Art — Title", name: "pillar_arte_title", widget: "string", required: false}
+          - {label: "Art — Description", name: "pillar_arte_desc", widget: "text", required: false}
+          - {label: "Science — Title", name: "pillar_ciencia_title", widget: "string", required: false}
+          - {label: "Science — Description", name: "pillar_ciencia_desc", widget: "text", required: false}
+          - {label: "Consciousness — Title", name: "pillar_consciencia_title", widget: "string", required: false}
+          - {label: "Consciousness — Description", name: "pillar_consciencia_desc", widget: "text", required: false}
+          - {label: "Vision Quote", name: "vision_quote", widget: "string", required: false}
+          - {label: "Newsletter — Title", name: "newsletter_title", widget: "string", required: false}
+          - {label: "Newsletter — Subtitle", name: "newsletter_subtitle", widget: "text", required: false}
+
+      - name: "institucional_en"
+        label: "About"
+        file: "src/content/pages/en/institucional.md"
+        fields:
+          - {label: "Title (SEO)", name: "title", widget: "string"}
+          - {label: "Description (SEO)", name: "description", widget: "text"}
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "text", required: false}
+          - {label: "Mission — Section Title", name: "mission_title", widget: "string", required: false}
+          - {label: "Mission — Paragraph 1", name: "mission_p1", widget: "text", required: false}
+          - {label: "Mission — Paragraph 2", name: "mission_p2", widget: "text", required: false}
+          - {label: "Mission — Paragraph 3", name: "mission_p3", widget: "text", required: false}
+          - {label: "Mission — Paragraph 4", name: "mission_p4", widget: "text", required: false}
+          - {label: "Mission — Paragraph 5", name: "mission_p5", widget: "text", required: false}
+          - {label: "Mission — CTA", name: "mission_cta", widget: "string", required: false}
+          - {label: "Vision — Section Title", name: "vision_title", widget: "string", required: false}
+          - {label: "Vision — Paragraph 1", name: "vision_p1", widget: "text", required: false}
+          - {label: "Vision — Paragraph 2", name: "vision_p2", widget: "text", required: false}
+          - {label: "Vision — Paragraph 3", name: "vision_p3", widget: "text", required: false}
+          - {label: "Vision — Quote", name: "vision_blockquote", widget: "string", required: false}
+          - {label: "Vision — Paragraph 4", name: "vision_p4", widget: "text", required: false}
+          - {label: "Vision — Paragraph 5", name: "vision_p5", widget: "text", required: false}
+          - {label: "Team — Title", name: "team_title", widget: "string", required: false}
+          - {label: "Team — Subtitle", name: "team_subtitle", widget: "string", required: false}
+          - {label: "CTA — Title", name: "cta_title", widget: "string", required: false}
+          - {label: "CTA — Subtitle", name: "cta_subtitle", widget: "string", required: false}
+
+      - name: "proyectos_en"
+        label: "Projects (page)"
+        file: "src/content/pages/en/proyectos.md"
+        fields:
+          - {label: "Title (SEO)", name: "title", widget: "string"}
+          - {label: "Description (SEO)", name: "description", widget: "text"}
+          - {label: "Hero Eyebrow", name: "hero_eyebrow", widget: "string", required: false}
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "text", required: false}
+          - {label: "Productions Title", name: "completed_title", widget: "string", required: false}
+          - {label: "In Development Title", name: "in_dev_title", widget: "string", required: false}
+
+      - name: "contacto_en"
+        label: "Contact (page)"
+        file: "src/content/pages/en/contacto.md"
+        fields:
+          - {label: "Title (SEO)", name: "title", widget: "string"}
+          - {label: "Description (SEO)", name: "description", widget: "text"}
+          - {label: "Main Title", name: "hero_title", widget: "string"}
+          - {label: "Tagline", name: "contact_tagline", widget: "string", required: false}
+          - {label: "Email Label", name: "email_label", widget: "string", required: false}
+          - {label: "Email", name: "email", widget: "string", required: false}
+          - {label: "YouTube Label", name: "youtube_label", widget: "string", required: false}
+          - {label: "YouTube URL", name: "youtube_url", widget: "string", required: false}
+          - {label: "YouTube Display Text", name: "youtube_display", widget: "string", required: false}
+          - {label: "Location Label", name: "location_label", widget: "string", required: false}
+          - {label: "Location", name: "location", widget: "string", required: false}
+          - {label: "Response Time Label", name: "response_label", widget: "string", required: false}
+          - {label: "Response Time", name: "response_time", widget: "string", required: false}
+          - {label: "Form Title", name: "form_title", widget: "string", required: false}
+
+      - name: "archivo_en"
+        label: "Archive (page)"
+        file: "src/content/pages/en/archivo.md"
+        fields:
+          - {label: "Title (SEO)", name: "title", widget: "string"}
+          - {label: "Description (SEO)", name: "description", widget: "text"}
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Subtitle", name: "hero_subtitle", widget: "text", required: false}
+
+  # ─── PROYECTOS ─────────────────────────────────────────────────────────────
   - name: "projects"
     label: "Proyectos"
     folder: "src/content/projects"
@@ -124,6 +298,7 @@ collections:
           - {label: "English", name: "en", widget: "string"}
       - {label: "CTA Link", name: "ctaLink", widget: "string", required: false}
 
+  # ─── EQUIPO ────────────────────────────────────────────────────────────────
   - name: "team"
     label: "Equipo"
     folder: "src/content/team"

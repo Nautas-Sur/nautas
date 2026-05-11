@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import HeroSection from '../components/HeroSection.astro';
 import CelestialLine from '../components/CelestialLine.astro';
@@ -8,7 +8,9 @@ import ProjectCard from '../components/ProjectCard.astro';
 import PillarBadge from '../components/PillarBadge.astro';
 
 const locale = Astro.currentLocale || 'es';
-const t = (es: string, en: string) => (locale === 'en' ? en : es);
+const pageSlug = locale === 'en' ? 'en/inicio' : 'inicio';
+const page = await getEntry('pages', pageSlug);
+const d = page?.data;
 
 const projects = await getCollection('projects');
 const completed = projects.filter((p) => p.data.status === 'completed');
@@ -18,64 +20,49 @@ const featured = completed.find((p) => p.data.featured);
 const pillars = [
   {
     icon: 'palette',
-    title: t('Arte', 'Art'),
-    desc: t(
-      'Expresiones creativas que amplían los límites de la percepción y conectan con la belleza esencial de la existencia.',
-      'Creative expressions that expand the boundaries of perception and connect with the essential beauty of existence.'
-    ),
+    title: d?.pillar_arte_title ?? (locale === 'en' ? 'Art' : 'Arte'),
+    desc: d?.pillar_arte_desc ?? '',
     key: 'arte' as const,
   },
   {
     icon: 'science',
-    title: t('Ciencia', 'Science'),
-    desc: t(
-      'Investigación rigurosa que ilumina los misterios del cosmos y nuestra posición en la trama de la vida.',
-      'Rigorous research that illuminates the mysteries of the cosmos and our place within the web of life.'
-    ),
+    title: d?.pillar_ciencia_title ?? (locale === 'en' ? 'Science' : 'Ciencia'),
+    desc: d?.pillar_ciencia_desc ?? '',
     key: 'ciencia' as const,
   },
   {
     icon: 'psychology',
-    title: t('Consciencia', 'Consciousness'),
-    desc: t(
-      'Exploración del espíritu humano y el despertar colectivo hacia una nueva forma de habitar el planeta.',
-      'Exploration of the human spirit and collective awakening toward a new way of inhabiting the planet.'
-    ),
+    title: d?.pillar_consciencia_title ?? (locale === 'en' ? 'Consciousness' : 'Consciencia'),
+    desc: d?.pillar_consciencia_desc ?? '',
     key: 'consciencia' as const,
   },
 ];
 ---
 
 <BaseLayout
-  title={t('Inicio', 'Home')}
-  description={t(
-    'Nautas — Asociación argentina dedicada a la integración del arte, la ciencia y la consciencia humana.',
-    'Nautas — Argentine association dedicated to the integration of art, science, and human consciousness.'
-  )}
+  title={d?.title ?? (locale === 'en' ? 'Home' : 'Inicio')}
+  description={d?.description ?? ''}
   locale={locale}
 >
   <!-- Hero -->
   <HeroSection
     variant="split"
-    eyebrow={t('La Asociación Argentina', 'The Argentine Association')}
-    title={`${t('Navegando el ', 'Navigating the ')}<em>${t('Cosmos', 'Cosmos')}</em>${t(' de la Ciencia Consciente.', ' of Conscious Science.')}`}
-    subtitle={t(
-      'Nautas es una asociación argentina dedicada a cerrar la brecha entre la exploración científica, la expresión artística y la conciencia humana.',
-      'Nautas is an Argentine association dedicated to bridging the gap between scientific exploration, artistic expression, and human consciousness.'
-    )}
+    eyebrow={d?.hero_eyebrow}
+    title={d?.hero_title ?? ''}
+    subtitle={d?.hero_subtitle}
   >
     <div class="flex gap-4 pt-4">
       <a
         href={`/${locale === 'en' ? 'en/' : ''}proyectos`}
         class="bg-primary text-on-primary px-6 py-3 rounded font-label text-xs uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all"
       >
-        {t('Ver Proyectos', 'View Projects')}
+        {locale === 'en' ? 'View Projects' : 'Ver Proyectos'}
       </a>
       <a
         href={`/${locale === 'en' ? 'en/' : ''}institucional`}
         class="border border-primary/30 text-primary px-6 py-3 rounded font-label text-xs uppercase tracking-widest hover:bg-primary/10 transition-all"
       >
-        {t('Quiénes Somos', 'About Us')}
+        {locale === 'en' ? 'About Us' : 'Quiénes Somos'}
       </a>
     </div>
   </HeroSection>
@@ -85,7 +72,7 @@ const pillars = [
   <!-- Three Pillars -->
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
     <h2 class="font-headline text-4xl md:text-5xl text-center mb-16">
-      {t('Tres Pilares, Un Universo', 'Three Pillars, One Universe')}
+      {d?.pillars_title ?? (locale === 'en' ? 'Three Pillars, One Universe' : 'Tres Pilares, Un Universo')}
     </h2>
     <div class="grid md:grid-cols-3 gap-8">
       {pillars.map((p) => (
@@ -104,7 +91,7 @@ const pillars = [
   {featured && (
     <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
       <h2 class="font-headline text-4xl md:text-5xl mb-12">
-        {t('Producción Destacada', 'Featured Production')}
+        {locale === 'en' ? 'Featured Production' : 'Producción Destacada'}
       </h2>
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="aspect-video rounded-xl overflow-hidden bg-surface-container-lowest relative">
@@ -129,13 +116,13 @@ const pillars = [
             <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant">{featured.data.kind}</span>
           </div>
           <h3 class="font-headline text-4xl md:text-5xl">{featured.data.title}</h3>
-          <p class="text-lg text-on-surface-variant leading-relaxed">{t(featured.data.tagline.es, featured.data.tagline.en)}</p>
-          <p class="text-on-surface-variant/70 leading-relaxed line-clamp-3">{t(featured.data.description.es, featured.data.description.en)}</p>
+          <p class="text-lg text-on-surface-variant leading-relaxed">{locale === 'en' ? featured.data.tagline.en : featured.data.tagline.es}</p>
+          <p class="text-on-surface-variant/70 leading-relaxed line-clamp-3">{locale === 'en' ? featured.data.description.en : featured.data.description.es}</p>
           <a
             href={`/${locale === 'en' ? 'en/' : ''}proyectos/${featured.id}`}
             class="inline-flex items-center gap-2 text-primary font-label text-xs uppercase tracking-widest hover:gap-3 transition-all"
           >
-            {t('Ver Proyecto', 'View Project')}
+            {locale === 'en' ? 'View Project' : 'Ver Proyecto'}
             <span class="material-symbols-outlined text-sm">arrow_forward</span>
           </a>
         </div>
@@ -143,10 +130,10 @@ const pillars = [
     </section>
   )}
 
-  {/* Completed Productions Grid */}
+  <!-- Completed Productions Grid -->
   {completed.length > 0 && (
     <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
-      <h2 class="font-headline text-4xl md:text-5xl mb-12">{t('Producciones', 'Productions')}</h2>
+      <h2 class="font-headline text-4xl md:text-5xl mb-12">{locale === 'en' ? 'Productions' : 'Producciones'}</h2>
       <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {completed.map((p) => (
           <ProjectCard
@@ -154,7 +141,7 @@ const pillars = [
             slug={p.id}
             kind={p.data.kind}
             pillar={p.data.pillar}
-            tagline={t(p.data.tagline.es, p.data.tagline.en)}
+            tagline={locale === 'en' ? p.data.tagline.en : p.data.tagline.es}
             year={p.data.year}
             episodeCount={p.data.episodes?.length}
             image={p.data.heroImage}
@@ -166,10 +153,10 @@ const pillars = [
     </section>
   )}
 
-  {/* In Development */}
+  <!-- In Development -->
   {inDev.length > 0 && (
     <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
-      <h2 class="font-headline text-4xl md:text-5xl mb-12">{t('En Desarrollo', 'In Development')}</h2>
+      <h2 class="font-headline text-4xl md:text-5xl mb-12">{locale === 'en' ? 'In Development' : 'En Desarrollo'}</h2>
       <div class="grid md:grid-cols-2 gap-6">
         {inDev.map((p) => (
           <ProjectCard
@@ -177,7 +164,7 @@ const pillars = [
             slug={p.id}
             kind={p.data.kind}
             pillar={p.data.pillar}
-            tagline={t(p.data.tagline.es, p.data.tagline.en)}
+            tagline={locale === 'en' ? p.data.tagline.en : p.data.tagline.es}
             status="in_development"
             locale={locale}
             variant="horizontal"
@@ -187,16 +174,13 @@ const pillars = [
     </section>
   )}
 
-  {/* Vision Quote */}
+  <!-- Vision Quote -->
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-20">
     <GlassPanel padding="xl">
       <div class="text-center max-w-3xl mx-auto">
         <span class="material-symbols-outlined text-primary text-5xl mb-8 block">format_quote</span>
         <blockquote class="font-headline text-2xl md:text-3xl italic text-on-surface leading-relaxed mb-8">
-          {t(
-            '"Observar es participar. Somos el universo experimentándose a sí mismo a través del lente de la ciencia y el alma."',
-            '"To observe is to participate. We are the universe experiencing itself through the lens of science and the soul."'
-          )}
+          {d?.vision_quote ?? ''}
         </blockquote>
         <div class="celestial-line max-w-xs mx-auto"></div>
       </div>
@@ -213,22 +197,19 @@ const pillars = [
     </div>
     <div class="relative z-10">
       <h2 class="font-headline text-4xl md:text-5xl mb-8">
-        {t('¿Listo para mapear lo desconocido?', 'Ready to map the unknown?')}
+        {d?.newsletter_title ?? ''}
       </h2>
       <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-10">
-        {t(
-          'Suscríbete a nuestro boletín para recibir bitácoras celestiales mensuales, avances científicos e invitaciones a eventos exclusivos.',
-          'Subscribe to our newsletter for monthly celestial logs, scientific breakthroughs, and invitations to exclusive events.'
-        )}
+        {d?.newsletter_subtitle ?? ''}
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto">
         <input
           class="bg-transparent border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface py-3 px-4 outline-none transition-all flex-grow placeholder:text-on-surface/30"
-          placeholder={t('estelar@navegante.com', 'stellar@navigator.com')}
+          placeholder={locale === 'en' ? 'stellar@navigator.com' : 'estelar@navegante.com'}
           type="email"
         />
         <button class="bg-primary text-on-primary px-8 py-3 rounded font-label text-xs uppercase tracking-[0.2em] whitespace-nowrap hover:brightness-110 transition-all">
-          {t('Suscribirse', 'Subscribe')}
+          {locale === 'en' ? 'Subscribe' : 'Suscribirse'}
         </button>
       </div>
     </div>

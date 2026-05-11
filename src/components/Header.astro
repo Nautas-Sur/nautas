@@ -27,8 +27,8 @@ const label = (es: string, en: string) => (locale === 'en' ? en : es);
 <header class="fixed top-0 w-full z-50 bg-[#11131d]/60 backdrop-blur-xl transition-all duration-500" id="header">
   <nav class="flex justify-between items-center px-6 md:px-12 py-5 max-w-[1440px] mx-auto">
     <!-- Logo -->
-    <a href={locale === 'en' ? '/en' : '/'} class="text-xl md:text-2xl font-headline italic text-primary tracking-wide shrink-0">
-      NAUTAS
+    <a href={locale === 'en' ? '/en' : '/'} class="shrink-0">
+      <img src="/images/logo-nautas_transparencia.png" alt="NAUTAS" class="h-10 md:h-12 w-auto" />
     </a>
 
     <!-- Desktop Nav -->

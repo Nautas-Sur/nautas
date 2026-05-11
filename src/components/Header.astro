@@ -36,7 +36,7 @@ const label = (es: string, en: string) => (locale === 'en' ? en : es);
       {
         navLinks.map((link) => (
           <a
-            href={`${locale === 'en' ? '/en' : ''}${link.href === '/' ? '' : link.href}`}
+            href={locale === 'en' ? (link.href === '/' ? '/en' : `/en${link.href}`) : link.href}
             class={`font-headline text-base lg:text-lg tracking-wide transition-all duration-300 hover:text-primary hover:bg-white/5 rounded px-2 py-1 ${
               isActive(link.href)
                 ? 'text-primary border-b border-primary/30 pb-1'
@@ -84,7 +84,7 @@ const label = (es: string, en: string) => (locale === 'en' ? en : es);
     {
       navLinks.map((link) => (
         <a
-          href={`${locale === 'en' ? '/en' : ''}${link.href === '/' ? '' : link.href}`}
+          href={locale === 'en' ? (link.href === '/' ? '/en' : `/en${link.href}`) : link.href}
           class={`block font-headline text-lg tracking-wide transition-colors ${
             isActive(link.href) ? 'text-primary' : 'text-on-surface/70'
           }`}

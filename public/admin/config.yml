@@ -2,7 +2,7 @@ backend:
   name: github
   repo: nautas-org/nautas-web
   branch: master
-  base_url: https://nautas.org
+  base_url: https://project-43ure.vercel.app
   auth_endpoint: /api/auth
 
 media_folder: public/images

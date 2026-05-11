@@ -2,11 +2,7 @@ backend:
   name: github
   repo: santos480/nautas
   branch: main
-  auth_type: implicit
-  # PASO REQUERIDO: Creá un GitHub OAuth App en https://github.com/settings/applications/new
-  # - Homepage URL: https://project-43ure.vercel.app
-  # - Authorization callback URL: https://project-43ure.vercel.app/
-  # Copiá el Client ID y pegalo abajo:
+  auth_type: pkce
   app_id: Ov23linoBnGUKNDCaul0
 
 media_folder: public/images

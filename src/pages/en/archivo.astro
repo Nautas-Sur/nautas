@@ -1,0 +1,53 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import FilterBar from '../../components/FilterBar.astro';
+
+const locale = Astro.currentLocale || 'es';
+const t = (es: string, en: string) => (locale === 'en' ? en : es);
+
+const projects = await getCollection('projects');
+---
+
+<BaseLayout
+  title={t('Archivo', 'Archive')}
+  description={t(
+    'Archivo completo de todas las producciones y proyectos de NAUTAS. Filtrá por pilar, formato y estado.',
+    'Complete archive of all NAUTAS productions and projects. Filter by pillar, format, and status.'
+  )}
+  locale={locale}
+>
+  <HeroSection
+    variant="default"
+    title={t('Archivo Celestial', 'Celestial Archive')}
+    subtitle={t(
+      'Explorá todas nuestras producciones y proyectos. Filtralos por pilar, formato y estado de desarrollo.',
+      'Explore all our productions and projects. Filter by pillar, format, and development status.'
+    )}
+  />
+
+  <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-20">
+    <FilterBar locale={locale} />
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {projects.map((p) => (
+        <div data-pillar={p.data.pillar} data-status={p.data.status}>
+          <ProjectCard
+            title={p.data.title}
+            slug={p.id}
+            kind={p.data.kind}
+            pillar={p.data.pillar}
+            tagline={t(p.data.tagline.es, p.data.tagline.en)}
+            year={p.data.year}
+            episodeCount={p.data.episodes?.length}
+            image={p.data.heroImage}
+            status={p.data.status}
+            locale={locale}
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

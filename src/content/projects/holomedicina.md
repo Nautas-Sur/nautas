@@ -1,0 +1,70 @@
+---
+title: "Holomedicina"
+kind: "Programa de Salud"
+pillar: "consciencia"
+status: "in_development"
+featured: false
+tagline:
+  es: "Módulos de capacitación e integración diseñados para profesionales de la salud y público en general."
+  en: "Training and integration modules designed for health professionals and the general public."
+description:
+  es: |
+    Holomedicina es un programa de capacitación basado en modelos internacionales de eficacia comprobada en Europa y Estados Unidos, adaptado a las necesidades de la región.
+
+    Los módulos abarcan desde los fundamentos de la medicina integrativa hasta la práctica interdisciplinaria, promoviendo una visión holística de la salud que integra cuerpo, mente y espíritu.
+
+    El programa está dirigido a profesionales de la salud, acompañantes terapéuticos y público en general interesado en ampliar su comprensión del bienestar humano.
+  en: |
+    Holomedicina is a training program based on internationally proven models with demonstrated efficacy in Europe and the United States, adapted to regional needs.
+
+    The modules range from the foundations of integrative medicine to interdisciplinary practice, promoting a holistic vision of health that integrates body, mind, and spirit.
+
+    The program is aimed at health professionals, therapeutic companions, and the general public interested in expanding their understanding of human well-being.
+phases:
+  - letter: "A"
+    title:
+      es: "Fase Inicial: Fundamentos"
+      en: "Initial Phase: Foundations"
+    description:
+      es: "Introducción a las bases de la medicina integrativa y los paradigmas de salud holística."
+      en: "Introduction to the foundations of integrative medicine and holistic health paradigms."
+  - letter: "B"
+    title:
+      es: "Fase Clínica: Práctica Interdisciplinaria"
+      en: "Clinical Phase: Interdisciplinary Practice"
+    description:
+      es: "Casos de estudio, protocolos validados en Europa y Estados Unidos."
+      en: "Case studies, validated protocols from Europe and the United States."
+  - letter: "C"
+    title:
+      es: "Fase Evolutiva: Horizontes de Salud"
+      en: "Evolutionary Phase: Health Horizons"
+    description:
+      es: "Adaptación internacional al contexto local, nuevas fronteras de la medicina."
+      en: "International adaptation to the local context, new frontiers of medicine."
+featureCards:
+  - icon: "biotech"
+    title:
+      es: "Actualización Integrativa"
+      en: "Integrative Update"
+    description:
+      es: "Fases de actualización con seminarios activos y charlas introductorias de vanguardia."
+      en: "Update phases with active seminars and cutting-edge introductory talks."
+  - icon: "school"
+    title:
+      es: "Capacitación Profesional"
+      en: "Professional Training"
+    description:
+      es: "Dirigido a profesionales de la salud y propuestas internacionales de excelencia."
+      en: "Aimed at health professionals with international proposals of excellence."
+  - icon: "groups"
+    title:
+      es: "Integración Participativa"
+      en: "Participatory Integration"
+    description:
+      es: "Actividades creativas y participativas que complementan la formación técnica."
+      en: "Creative and participatory activities that complement technical training."
+ctaText:
+  es: "Inscribirse en Seminario"
+  en: "Enroll in Seminar"
+---

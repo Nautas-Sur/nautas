@@ -1,0 +1,10 @@
+---
+name: "Curaduría Editorial"
+role:
+  es: "Investigación y Contenidos"
+  en: "Research and Content"
+bio:
+  es: "Selección de pensadores, artistas y científicos. Desarrollo de líneas temáticas y contenidos editoriales."
+  en: "Selection of thinkers, artists, and scientists. Development of thematic lines and editorial content."
+order: 2
+---

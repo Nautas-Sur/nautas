@@ -1,0 +1,87 @@
+---
+import PillarBadge from './PillarBadge.astro';
+
+export interface Props {
+  title: string;
+  slug: string;
+  kind: string;
+  pillar: 'arte' | 'ciencia' | 'consciencia';
+  tagline?: string;
+  year?: string;
+  episodeCount?: number;
+  image?: string;
+  imageAlt?: string;
+  status: 'completed' | 'in_development';
+  locale?: string;
+  variant?: 'card' | 'horizontal';
+}
+
+const {
+  title,
+  slug,
+  kind,
+  pillar,
+  tagline,
+  year,
+  episodeCount,
+  image,
+  imageAlt = '',
+  status,
+  locale = 'es',
+  variant = 'card',
+} = Astro.props;
+
+const href = `/${locale === 'en' ? 'en/' : ''}proyectos/${slug}`;
+---
+
+{
+  variant === 'horizontal' ? (
+    <a href={href} class="group flex gap-6 p-6 bg-surface-container-low rounded-xl border border-outline-variant/10 hover:bg-surface-container-high transition-all duration-300">
+      <div class="w-32 h-32 shrink-0 rounded-lg overflow-hidden bg-surface-container-high">
+        {image ? (
+          <img src={image} alt={imageAlt} class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy" />
+        ) : (
+          <div class="w-full h-full flex items-center justify-center text-primary/20">
+            <span class="material-symbols-outlined text-4xl">movie</span>
+          </div>
+        )}
+      </div>
+      <div class="flex flex-col justify-center gap-2">
+        <div class="flex items-center gap-2">
+          <PillarBadge pillar={pillar} locale={locale} />
+          <span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">{kind}</span>
+        </div>
+        <h3 class="font-headline text-xl group-hover:text-primary transition-colors">{title}</h3>
+        {tagline && <p class="text-sm text-on-surface-variant line-clamp-2">{tagline}</p>}
+        <div class="flex gap-4 text-xs text-on-surface-variant mt-1">
+          {episodeCount && <span>{episodeCount} {locale === 'en' ? 'episodes' : 'episodios'}</span>}
+          {year && <span>{year}</span>}
+        </div>
+      </div>
+    </a>
+  ) : (
+    <a href={href} class="group block">
+      <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4 relative bg-surface-container-low">
+        {image ? (
+          <img src={image} alt={imageAlt} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-70 group-hover:opacity-100" loading="lazy" />
+        ) : (
+          <div class="w-full h-full flex items-center justify-center text-primary/20">
+            <span class="material-symbols-outlined text-6xl">movie</span>
+          </div>
+        )}
+        <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+      </div>
+      <div class="space-y-1">
+        <div class="flex items-center gap-2 mb-1">
+          <PillarBadge pillar={pillar} locale={locale} />
+        </div>
+        <h3 class="font-headline text-xl group-hover:text-primary transition-colors">{title}</h3>
+        <p class="font-label text-xs uppercase tracking-widest text-tertiary">{kind}</p>
+        {tagline && <p class="text-sm text-on-surface-variant mt-2 line-clamp-2">{tagline}</p>}
+        {status === 'completed' && episodeCount && (
+          <p class="text-xs text-on-surface-variant mt-1">{episodeCount} {locale === 'en' ? 'episodes' : 'episodios'} {year && `· ${year}`}</p>
+        )}
+      </div>
+    </a>
+  )
+}

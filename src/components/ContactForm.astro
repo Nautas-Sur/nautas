@@ -1,0 +1,130 @@
+---
+export interface Props {
+  locale?: string;
+}
+
+const { locale = 'es' } = Astro.props;
+const t = (es: string, en: string) => (locale === 'en' ? en : es);
+
+const subjectOptions = [
+  { es: 'Consulta general', en: 'General inquiry', value: 'general' },
+  { es: 'Sumarme al equipo', en: 'Join the team', value: 'join' },
+  { es: 'Colaboración / aliados', en: 'Collaboration / partners', value: 'collab' },
+  { es: 'Prensa & medios', en: 'Press & media', value: 'press' },
+  { es: 'Distribución y exhibición', en: 'Distribution & exhibition', value: 'distribution' },
+];
+---
+
+<form id="contact-form" class="space-y-6" method="POST" action="https://api.web3forms.com/submit">
+  <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_KEY" />
+  <input type="hidden" name="subject" value="Nuevo mensaje desde nautas.org" />
+  <input type="hidden" name="from_name" value="NAUTAS Contact Form" />
+  <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
+
+  <div>
+    <label for="name" class="font-label text-xs uppercase tracking-widest text-on-surface-variant block mb-2">
+      {t('Nombre', 'Name')}
+    </label>
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      class="w-full bg-transparent border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface py-3 px-0 outline-none transition-all placeholder:text-on-surface/30"
+      placeholder={t('Tu nombre completo', 'Your full name')}
+    />
+  </div>
+
+  <div>
+    <label for="email" class="font-label text-xs uppercase tracking-widest text-on-surface-variant block mb-2">
+      {t('Email', 'Email')}
+    </label>
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      class="w-full bg-transparent border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface py-3 px-0 outline-none transition-all placeholder:text-on-surface/30"
+      placeholder={t('tu@email.com', 'you@email.com')}
+    />
+  </div>
+
+  <div>
+    <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant block mb-3">
+      {t('Asunto', 'Subject')}
+    </span>
+    <div class="flex flex-wrap gap-2">
+      {subjectOptions.map((opt) => (
+        <label class="cursor-pointer">
+          <input type="radio" name="category" value={opt.value} class="hidden peer" />
+          <span class="inline-block px-4 py-2 rounded-full text-xs font-label uppercase tracking-widest border border-outline-variant/20 text-on-surface-variant peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary-container/50 hover:border-outline transition-all">
+            {t(opt.es, opt.en)}
+          </span>
+        </label>
+      ))}
+    </div>
+  </div>
+
+  <div>
+    <label for="message" class="font-label text-xs uppercase tracking-widest text-on-surface-variant block mb-2">
+      {t('Mensaje', 'Message')}
+    </label>
+    <textarea
+      id="message"
+      name="message"
+      rows={5}
+      required
+      class="w-full bg-transparent border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface py-3 px-0 outline-none transition-all resize-none placeholder:text-on-surface/30"
+      placeholder={t('Escribí tu mensaje acá...', 'Write your message here...')}
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="bg-primary text-on-primary px-8 py-3 rounded font-label text-xs uppercase tracking-[0.2em] hover:brightness-110 active:scale-95 transition-all duration-200"
+  >
+    {t('Enviar Mensaje', 'Send Message')}
+  </button>
+
+  <div id="form-success" class="hidden p-4 bg-primary-container text-primary rounded-lg text-sm">
+    {t('¡Mensaje enviado! Te responderemos pronto.', 'Message sent! We\'ll get back to you soon.')}
+  </div>
+  <div id="form-error" class="hidden p-4 bg-error-container text-error rounded-lg text-sm">
+    {t('Hubo un error. Por favor intentá de nuevo.', 'Something went wrong. Please try again.')}
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const success = document.getElementById('form-success');
+  const errorEl = document.getElementById('form-error');
+  const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (success) success.classList.add('hidden');
+    if (errorEl) errorEl.classList.add('hidden');
+    if (submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.textContent = '...';
+    }
+
+    try {
+      const data = new FormData(form);
+      const res = await fetch(form.action, { method: 'POST', body: data });
+      if (res.ok) {
+        form.reset();
+        success?.classList.remove('hidden');
+      } else {
+        errorEl?.classList.remove('hidden');
+      }
+    } catch {
+      errorEl?.classList.remove('hidden');
+    } finally {
+      if (submitBtn) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = form.getAttribute('data-submit-text') || 'Enviar Mensaje';
+      }
+    }
+  });
+</script>

@@ -1,0 +1,70 @@
+---
+title: "Sustento Gaia"
+kind: "Educación Ambiental"
+pillar: "ciencia"
+status: "in_development"
+featured: false
+tagline:
+  es: "Programa de educación y acción ambiental para la regeneración de ecosistemas y comunidades."
+  en: "Environmental education and action program for ecosystem and community regeneration."
+description:
+  es: |
+    Sustento Gaia es un programa integral de educación ambiental que combina el conocimiento científico con prácticas regenerativas para restaurar el equilibrio entre las comunidades humanas y los ecosistemas que habitan.
+
+    A través de fases progresivas, el programa lleva a los participantes desde la sensibilización hasta la acción concreta, promoviendo una nueva relación con el entorno natural.
+
+    El objetivo es formar agentes de cambio que puedan implementar soluciones de regeneración ambiental en sus propias comunidades.
+  en: |
+    Sustento Gaia is a comprehensive environmental education program that combines scientific knowledge with regenerative practices to restore balance between human communities and the ecosystems they inhabit.
+
+    Through progressive phases, the program guides participants from awareness to concrete action, promoting a new relationship with the natural environment.
+
+    The goal is to train change agents who can implement environmental regeneration solutions in their own communities.
+phases:
+  - letter: "A"
+    title:
+      es: "Conciencia Ecológica"
+      en: "Ecological Awareness"
+    description:
+      es: "Introducción a los principios de la ecología profunda y la interdependencia planetaria."
+      en: "Introduction to the principles of deep ecology and planetary interdependence."
+  - letter: "B"
+    title:
+      es: "Diagnóstico Territorial"
+      en: "Territorial Diagnosis"
+    description:
+      es: "Herramientas para evaluar el estado de los ecosistemas locales y sus necesidades."
+      en: "Tools to assess the state of local ecosystems and their needs."
+  - letter: "C"
+    title:
+      es: "Prácticas Regenerativas"
+      en: "Regenerative Practices"
+    description:
+      es: "Técnicas de agricultura regenerativa, permacultura y restauración de suelos."
+      en: "Techniques in regenerative agriculture, permaculture, and soil restoration."
+  - letter: "D"
+    title:
+      es: "Acción Comunitaria"
+      en: "Community Action"
+    description:
+      es: "Implementación de proyectos locales de regeneración con participación colectiva."
+      en: "Implementation of local regeneration projects with collective participation."
+featureCards:
+  - icon: "nature"
+    title:
+      es: "Biodiversidad"
+      en: "Biodiversity"
+    description:
+      es: "Protección y regeneración de la diversidad biológica como base de la vida."
+      en: "Protection and regeneration of biological diversity as the foundation of life."
+  - icon: "water_drop"
+    title:
+      es: "Recursos Naturales"
+      en: "Natural Resources"
+    description:
+      es: "Gestión consciente y sustentable del agua, el suelo y la energía."
+      en: "Conscious and sustainable management of water, soil, and energy."
+ctaText:
+  es: "Sumarse al Programa"
+  en: "Join the Program"
+---

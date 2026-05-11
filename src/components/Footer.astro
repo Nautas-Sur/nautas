@@ -1,0 +1,76 @@
+---
+interface Props {
+  locale: string;
+}
+
+const { locale } = Astro.props;
+
+const label = (es: string, en: string) => (locale === 'en' ? en : es);
+
+const socialLinks = [
+  { name: 'Instagram', href: 'https://instagram.com/nautas' },
+  { name: 'Facebook', href: 'https://facebook.com/nautas' },
+  { name: 'YouTube', href: 'https://youtube.com/@Nautas' },
+];
+
+const legalLinks = [
+  { es: 'Política de Privacidad', en: 'Privacy Policy', href: '#' },
+  { es: 'Términos de Servicio', en: 'Terms of Service', href: '#' },
+];
+---
+
+<footer class="w-full py-16 px-6 md:px-12 mt-20 bg-gradient-to-t from-surface-container-low to-transparent border-t border-primary/10">
+  <div class="flex flex-col md:flex-row justify-between items-start gap-10 max-w-[1440px] mx-auto">
+    <!-- Brand -->
+    <div class="space-y-4 max-w-xs">
+      <div class="text-xl font-headline text-on-surface">NAUTAS</div>
+      <p class="text-on-surface/40 font-body text-sm leading-relaxed">
+        {label(
+          'Dedicados a la integración de la verdad científica y la conciencia humana.',
+          'Dedicated to the integration of scientific truth and human consciousness.'
+        )}
+      </p>
+    </div>
+
+    <!-- Links -->
+    <div class="flex flex-col sm:flex-row gap-10">
+      <!-- Social -->
+      <div class="flex flex-col gap-3">
+        <span class="font-label text-xs tracking-widest text-tertiary uppercase">
+          {label('Conectar', 'Connect')}
+        </span>
+        {socialLinks.map((link) => (
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="font-label text-sm uppercase tracking-widest text-on-surface/40 hover:text-primary transition-colors"
+          >
+            {link.name}
+          </a>
+        ))}
+      </div>
+
+      <!-- Legal -->
+      <div class="flex flex-col gap-3">
+        <span class="font-label text-xs tracking-widest text-tertiary uppercase">
+          {label('Legal', 'Legal')}
+        </span>
+        {legalLinks.map((link) => (
+          <a
+            href={link.href}
+            class="font-label text-sm uppercase tracking-widest text-on-surface/40 hover:text-primary transition-colors"
+          >
+            {label(link.es, link.en)}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <div class="max-w-[1440px] mx-auto mt-14 pt-8 border-t border-outline-variant/10">
+    <p class="text-center font-label text-xs uppercase tracking-[0.3em] text-on-surface/40">
+      {label('© 2024 ONG NAUTAS. El Observador Celestial.', '© 2024 NAUTAS NGO. The Celestial Observer.')}
+    </p>
+  </div>
+</footer>

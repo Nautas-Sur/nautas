@@ -1,0 +1,70 @@
+---
+title: "EduCare"
+kind: "Programa Educativo"
+pillar: "arte"
+status: "in_development"
+featured: false
+tagline:
+  es: "Jornadas de capacitación e integración diseñadas para profesionales de la educación."
+  en: "Training and integration workshops designed for education professionals."
+description:
+  es: |
+    EduCare es un programa de jornadas de capacitación e integración diseñadas para profesionales de la educación, basadas en programas internacionales de eficacia comprobada a través de años de experimentación e innovación.
+
+    Las jornadas consisten en ciclos de 1, 2 o más días de duración, con una continuidad cada 2 o 3 meses, permitiendo una verdadera transformación del entorno educativo.
+
+    A través de metodologías innovadoras y dinámicas participativas, EduCare busca impulsar la integración en las instituciones educativas.
+  en: |
+    EduCare is a program of training and integration workshops designed for education professionals, based on international programs proven effective through years of experimentation and innovation.
+
+    The workshops consist of 1, 2, or more day cycles, with continuity every 2 to 3 months, enabling a true transformation of the educational environment.
+
+    Through innovative methodologies and participatory dynamics, EduCare seeks to promote integration in educational institutions.
+phases:
+  - letter: "A"
+    title:
+      es: "Charlas Introductorias"
+      en: "Introductory Talks"
+    description:
+      es: "Sesiones de encuadre y sensibilización para abrir el espacio de transformación."
+      en: "Framing and awareness sessions to open the space for transformation."
+  - letter: "B"
+    title:
+      es: "Propuestas Innovadoras"
+      en: "Innovative Proposals"
+    description:
+      es: "Actualización en metodologías disruptivas que amplían el horizonte pedagógico."
+      en: "Update on disruptive methodologies that expand the pedagogical horizon."
+  - letter: "C"
+    title:
+      es: "Capacitación Trascendente"
+      en: "Transcendent Training"
+    description:
+      es: "Formación técnica en propuestas consolidadas a nivel internacional."
+      en: "Technical training in internationally consolidated proposals."
+  - letter: "D"
+    title:
+      es: "Acciones de Integración"
+      en: "Integration Actions"
+    description:
+      es: "Creación colectiva participativa a través de la meditación, el canto, el movimiento y el juego."
+      en: "Collective participatory creation through meditation, singing, movement, and play."
+featureCards:
+  - icon: "auto_awesome"
+    title:
+      es: "Dinámicas Flexibles"
+      en: "Flexible Dynamics"
+    description:
+      es: "Etapas adaptables según el perfil de los asistentes y el contexto institucional."
+      en: "Adaptable stages according to attendee profiles and institutional context."
+  - icon: "groups"
+    title:
+      es: "Creación Colectiva"
+      en: "Collective Creation"
+    description:
+      es: "Variantes creativas que fomentan la espontaneidad y la participación grupal."
+      en: "Creative variants that encourage spontaneity and group participation."
+ctaText:
+  es: "Solicitar Capacitación"
+  en: "Request Training"
+---

@@ -1,0 +1,146 @@
+@import 'tailwindcss';
+
+/* ── Celestial Observer Design Tokens ── */
+@theme {
+  /* Colors — Celestial palette */
+  --color-background: #11131d;
+  --color-surface: #11131d;
+  --color-surface-dim: #11131d;
+  --color-surface-container-lowest: #0c0e18;
+  --color-surface-container-low: #191b26;
+  --color-surface-container: #1d1f2a;
+  --color-surface-container-high: #282934;
+  --color-surface-container-highest: #32343f;
+  --color-surface-bright: #373844;
+  --color-surface-variant: #32343f;
+  --color-on-surface: #e1e1f0;
+  --color-on-surface-variant: #c4c6cc;
+  --color-on-background: #e1e1f0;
+  --color-outline: #8e9196;
+  --color-outline-variant: #44474c;
+  --color-surface-tint: #a3cce9;
+
+  /* Primary (Celestial Blue) */
+  --color-primary: #a3cce9;
+  --color-on-primary: #00344c;
+  --color-primary-container: #001d2c;
+  --color-on-primary-container: #6087a2;
+  --color-primary-fixed: #c7e7ff;
+  --color-primary-fixed-dim: #a3cce9;
+  --color-on-primary-fixed: #001e2e;
+  --color-on-primary-fixed-variant: #204b63;
+  --color-inverse-primary: #3a637c;
+
+  /* Secondary */
+  --color-secondary: #c6c7c3;
+  --color-on-secondary: #2f312e;
+  --color-secondary-container: #4a4c49;
+  --color-on-secondary-container: #bbbcb8;
+  --color-secondary-fixed: #e2e3df;
+  --color-secondary-fixed-dim: #c6c7c3;
+  --color-on-secondary-fixed: #1a1c1a;
+  --color-on-secondary-fixed-variant: #454745;
+
+  /* Tertiary */
+  --color-tertiary: #afc9ea;
+  --color-on-tertiary: #17324d;
+  --color-tertiary-container: #001b33;
+  --color-on-tertiary-container: #6b85a4;
+  --color-tertiary-fixed: #d1e4ff;
+  --color-tertiary-fixed-dim: #afc9ea;
+  --color-on-tertiary-fixed: #001d36;
+  --color-on-tertiary-fixed-variant: #2f4865;
+
+  /* Error */
+  --color-error: #ffb4ab;
+  --color-on-error: #690005;
+  --color-error-container: #93000a;
+  --color-on-error-container: #ffdad6;
+
+  /* Inverse */
+  --color-inverse-surface: #e1e1f0;
+  --color-inverse-on-surface: #2e303b;
+
+  /* Typography */
+  --font-headline: 'Noto Serif', Georgia, serif;
+  --font-body: 'Manrope', system-ui, sans-serif;
+  --font-label: 'Manrope', system-ui, sans-serif;
+
+  /* Border radius */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+}
+
+/* ── Base Styles ── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: rgb(163 204 233 / 0.3);
+    color: var(--color-primary);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-headline);
+  }
+}
+
+/* ── Celestial Utilities ── */
+@utility bg-nebula {
+  background: radial-gradient(circle at 50% 50%, #001d2c 0%, #11131d 70%);
+}
+
+@utility celestial-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #a3cce9 50%, transparent 100%);
+  opacity: 0.2;
+}
+
+@utility glass-panel {
+  background: rgb(29 31 42 / 0.4);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgb(163 204 233 / 0.1);
+}
+
+@utility glass-card {
+  background: rgb(50 52 63 / 0.4);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgb(142 145 150 / 0.15);
+}
+
+@utility tonal-shift {
+  background: linear-gradient(180deg, #11131d 0%, #191b26 100%);
+}
+
+@utility nebula-glow {
+  background: radial-gradient(circle at center, #001d2c 0%, #11131d 100%);
+}
+
+@utility celestial-glow {
+  box-shadow: 0 0 40px 6px rgb(163 204 233 / 0.06);
+}
+
+@utility ghost-border {
+  border-bottom: 1px solid rgb(142 145 150 / 0.3);
+}
+
+@utility text-glow {
+  text-shadow: 0 0 20px rgb(163 204 233 / 0.3);
+}
+
+@utility divider-gradient {
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, #44474c 50%, transparent 100%);
+}

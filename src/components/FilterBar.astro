@@ -1,0 +1,103 @@
+---
+export interface Props {
+  locale?: string;
+}
+
+const { locale = 'es' } = Astro.props;
+
+const pillars = [
+  { key: 'all', es: 'Todos', en: 'All' },
+  { key: 'arte', es: 'Arte', en: 'Art' },
+  { key: 'ciencia', es: 'Ciencia', en: 'Science' },
+  { key: 'consciencia', es: 'Consciencia', en: 'Consciousness' },
+];
+
+const statuses = [
+  { key: 'all', es: 'Todos', en: 'All' },
+  { key: 'completed', es: 'Emitido', en: 'Released' },
+  { key: 'in_development', es: 'En desarrollo', en: 'In development' },
+];
+
+const t = (es: string, en: string) => (locale === 'en' ? en : es);
+---
+
+<div id="filter-bar" class="flex flex-wrap gap-3 md:gap-5 items-center mb-12" data-locale={locale}>
+  <!-- Pillar filter -->
+  <span class="font-label text-xs uppercase tracking-widest text-tertiary">{t('Pilar', 'Pillar')}</span>
+  {pillars.map((p, i) => (
+    <button
+      data-filter="pillar"
+      data-key={p.key}
+      class={`filter-btn font-label text-xs uppercase tracking-widest px-3 py-1.5 rounded-full border transition-all ${
+        i === 0 ? 'border-primary text-primary bg-primary-container/30' : 'border-outline-variant/20 text-on-surface-variant hover:border-outline'
+      }`}
+    >
+      {t(p.es, p.en)}
+    </button>
+  ))}
+  <span class="w-px h-4 bg-outline-variant/20 hidden md:block"></span>
+  <!-- Status filter -->
+  <span class="font-label text-xs uppercase tracking-widest text-tertiary">{t('Estado', 'Status')}</span>
+  {statuses.map((s, i) => (
+    <button
+      data-filter="status"
+      data-key={s.key}
+      class={`filter-btn font-label text-xs uppercase tracking-widest px-3 py-1.5 rounded-full border transition-all ${
+        i === 0 ? 'border-primary text-primary bg-primary-container/30' : 'border-outline-variant/20 text-on-surface-variant hover:border-outline'
+      }`}
+    >
+      {t(s.es, s.en)}
+    </button>
+  ))}
+  <!-- Count -->
+  <span id="filter-count" class="ml-auto font-label text-xs text-on-surface-variant uppercase tracking-widest"></span>
+</div>
+
+<script>
+  function initFilters() {
+    const cards = document.querySelectorAll<HTMLElement>('[data-pillar][data-status]');
+    const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
+    const countEl = document.getElementById('filter-count');
+
+    let activePillar = 'all';
+    let activeStatus = 'all';
+
+    function updateBtnStyles() {
+      btns.forEach((b) => {
+        const filter = b.dataset.filter;
+        const key = b.dataset.key;
+        const isActive = (filter === 'pillar' && key === activePillar) || (filter === 'status' && key === activeStatus);
+        b.className = `filter-btn font-label text-xs uppercase tracking-widest px-3 py-1.5 rounded-full border transition-all ${
+          isActive ? 'border-primary text-primary bg-primary-container/30' : 'border-outline-variant/20 text-on-surface-variant hover:border-outline'
+        }`;
+      });
+    }
+
+    function filterCards() {
+      let visible = 0;
+      cards.forEach((card) => {
+        const pillar = card.dataset.pillar;
+        const status = card.dataset.status;
+        const match = (activePillar === 'all' || pillar === activePillar) && (activeStatus === 'all' || status === activeStatus);
+        card.style.display = match ? '' : 'none';
+        if (match) visible++;
+      });
+      if (countEl) countEl.textContent = `${visible} resultados`;
+    }
+
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        const key = btn.dataset.key!;
+        if (filter === 'pillar') activePillar = key;
+        if (filter === 'status') activeStatus = key;
+        updateBtnStyles();
+        filterCards();
+      });
+    });
+
+    filterCards();
+  }
+
+  initFilters();
+</script>

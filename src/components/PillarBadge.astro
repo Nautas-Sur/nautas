@@ -1,0 +1,28 @@
+---
+export interface Props {
+  pillar: 'arte' | 'ciencia' | 'consciencia';
+  locale?: string;
+}
+
+const { pillar, locale = 'es' } = Astro.props;
+const icons: Record<string, string> = {
+  arte: 'palette',
+  ciencia: 'science',
+  consciencia: 'psychology',
+};
+const labels: Record<string, { es: string; en: string }> = {
+  arte: { es: 'Arte', en: 'Art' },
+  ciencia: { es: 'Ciencia', en: 'Science' },
+  consciencia: { es: 'Consciencia', en: 'Consciousness' },
+};
+const colors: Record<string, string> = {
+  arte: 'bg-primary-container text-primary border-primary/20',
+  ciencia: 'bg-tertiary-container text-tertiary border-tertiary/20',
+  consciencia: 'bg-surface-container-high text-on-surface-variant border-outline/20',
+};
+---
+
+<span class={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-label uppercase tracking-widest border ${colors[pillar]}`}>
+  <span class="material-symbols-outlined text-sm">{icons[pillar]}</span>
+  {locale === 'en' ? labels[pillar].en : labels[pillar].es}
+</span>

@@ -1,0 +1,32 @@
+---
+export interface Props {
+  name: string;
+  role: string;
+  photo?: string;
+  photoAlt?: string;
+  bio?: string;
+}
+
+const { name, role, photo, photoAlt = '', bio } = Astro.props;
+---
+
+<div class="group">
+  <div class="aspect-[3/4] overflow-hidden rounded-lg mb-5 relative bg-surface-container-low">
+    {photo ? (
+      <img
+        src={photo}
+        alt={photoAlt || name}
+        class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+        loading="lazy"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center text-primary/20">
+        <span class="material-symbols-outlined text-6xl">person</span>
+      </div>
+    )}
+    <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+  </div>
+  <h4 class="font-headline text-lg mb-1">{name}</h4>
+  <p class="font-label text-xs uppercase tracking-widest text-tertiary">{role}</p>
+  {bio && <p class="text-sm text-on-surface-variant mt-3 leading-relaxed">{bio}</p>}
+</div>

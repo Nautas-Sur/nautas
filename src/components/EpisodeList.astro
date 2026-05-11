@@ -1,0 +1,49 @@
+---
+export interface Episode {
+  number: number;
+  title: string;
+  description?: string;
+  active?: boolean;
+}
+
+export interface Props {
+  episodes: Episode[];
+  title?: string;
+  countLabel?: string;
+  locale?: string;
+}
+
+const { episodes, title, countLabel, locale = 'es' } = Astro.props;
+---
+
+<div class="space-y-4">
+  {(title || countLabel) && (
+    <div class="flex items-center justify-between">
+      {title && <h2 class="font-headline text-2xl">{title}</h2>}
+      {countLabel && (
+        <span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">{countLabel}</span>
+      )}
+    </div>
+  )}
+  <div class="space-y-2 max-h-[600px] overflow-y-auto pr-1">
+    {episodes.map((ep) => (
+      <div class={`group p-4 md:p-5 rounded-lg transition-all cursor-pointer ${
+        ep.active
+          ? 'bg-surface-container-high border-l-2 border-primary'
+          : 'bg-surface-container-low border-l-2 border-transparent hover:border-outline hover:bg-surface-container-high'
+      }`}>
+        <div class="flex justify-between items-start mb-2">
+          <span class={`font-label text-[10px] tracking-widest uppercase ${ep.active ? 'text-primary' : 'text-on-surface-variant'}`}>
+            {locale === 'en' ? 'Episode' : 'Episodio'} {String(ep.number).padStart(2, '0')}
+          </span>
+        </div>
+        <h3 class={`font-headline text-base mb-1 group-hover:text-primary transition-colors ${ep.active ? 'text-primary' : ''}`}>
+          {ep.title}
+        </h3>
+        {ep.description && (
+          <p class="text-xs text-on-surface-variant line-clamp-2 font-light">{ep.description}</p>
+        )}
+      </div>
+    ))}
+  </div>
+</div>

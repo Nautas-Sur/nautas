@@ -1,0 +1,81 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../../components/HeroSection.astro';
+import CelestialLine from '../../components/CelestialLine.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+
+const locale = Astro.currentLocale || 'es';
+const t = (es: string, en: string) => (locale === 'en' ? en : es);
+
+const projects = await getCollection('projects');
+const completed = projects.filter((p) => p.data.status === 'completed');
+const inDev = projects.filter((p) => p.data.status === 'in_development');
+---
+
+<BaseLayout
+  title={t('Proyectos', 'Projects')}
+  description={t(
+    'Producciones audiovisuales y proyectos en desarrollo de NAUTAS: series documentales, podcasts, programas educativos y de salud.',
+    'Audiovisual productions and projects in development by NAUTAS: documentary series, podcasts, educational and health programs.'
+  )}
+  locale={locale}
+>
+  <HeroSection
+    variant="default"
+    eyebrow={t('Explorá nuestras', 'Explore our')}
+    title={t('Expediciones y Producciones', 'Expeditions & Productions')}
+    subtitle={t(
+      'Desde series documentales hasta programas educativos, cada proyecto es una invitación a expandir la mirada.',
+      'From documentary series to educational programs, each project is an invitation to expand your perspective.'
+    )}
+  />
+
+  <CelestialLine />
+
+  <!-- Completed -->
+  {completed.length > 0 && (
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
+      <h2 class="font-headline text-4xl md:text-5xl mb-12">{t('Producciones', 'Productions')}</h2>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {completed.map((p) => (
+          <ProjectCard
+            title={p.data.title}
+            slug={p.id}
+            kind={p.data.kind}
+            pillar={p.data.pillar}
+            tagline={t(p.data.tagline.es, p.data.tagline.en)}
+            year={p.data.year}
+            episodeCount={p.data.episodes?.length}
+            image={p.data.heroImage}
+            status="completed"
+            locale={locale}
+          />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <CelestialLine />
+
+  <!-- In Development -->
+  {inDev.length > 0 && (
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-20">
+      <h2 class="font-headline text-4xl md:text-5xl mb-12">{t('En Desarrollo', 'In Development')}</h2>
+      <div class="grid md:grid-cols-2 gap-6">
+        {inDev.map((p) => (
+          <ProjectCard
+            title={p.data.title}
+            slug={p.id}
+            kind={p.data.kind}
+            pillar={p.data.pillar}
+            tagline={t(p.data.tagline.es, p.data.tagline.en)}
+            status="in_development"
+            locale={locale}
+            variant="horizontal"
+          />
+        ))}
+      </div>
+    </section>
+  )}
+</BaseLayout>

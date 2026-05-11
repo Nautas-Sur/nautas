@@ -1,0 +1,10 @@
+---
+name: "Vinculación Comunitaria"
+role:
+  es: "Redes y Alianzas"
+  en: "Networks and Alliances"
+bio:
+  es: "Construcción de vínculos con comunidades, organizaciones aliadas y difusión de las producciones."
+  en: "Building connections with communities, partner organizations, and dissemination of productions."
+order: 4
+---

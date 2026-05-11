@@ -1,0 +1,78 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  locale?: string;
+  noIndex?: boolean;
+}
+
+const {
+  title,
+  description = 'Nautas — Asociación argentina dedicada a la integración del arte, la ciencia y la consciencia humana.',
+  image = '/images/og-default.jpg',
+  locale = 'es',
+  noIndex = false,
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const canonicalPath = currentPath.replace(/^\/(en|es)(\/|$)/, '$2') || '/';
+const enPath = `/en${canonicalPath}`.replace(/\/$/, '') || '/en';
+const esPath = canonicalPath.replace(/\/$/, '') || '/';
+const canonical = locale === 'es' ? esPath : enPath;
+---
+
+<!doctype html>
+<html lang={locale} class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title} — NAUTAS</title>
+    <meta name="description" content={description} />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={`${title} — NAUTAS`} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content={image} />
+    <meta property="og:site_name" content="NAUTAS" />
+    <meta property="og:locale" content={locale === 'es' ? 'es_AR' : 'en_US'} />
+
+    <!-- Canonical + alternates -->
+    <link rel="canonical" href={new URL(canonical, Astro.site).href} />
+    <link rel="alternate" hreflang="es" href={new URL(esPath, Astro.site).href} />
+    <link rel="alternate" hreflang="en" href={new URL(enPath, Astro.site).href} />
+    <link rel="alternate" hreflang="x-default" href={new URL(esPath, Astro.site).href} />
+
+    {noIndex && <meta name="robots" content="noindex" />}
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Manrope:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Styles -->
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary">
+    <Header currentPath={currentPath} locale={locale} enPath={enPath} esPath={esPath} />
+    <main>
+      <slot />
+    </main>
+    <Footer locale={locale} />
+  </body>
+</html>

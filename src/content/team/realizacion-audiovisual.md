@@ -1,0 +1,10 @@
+---
+name: "Realización Audiovisual"
+role:
+  es: "Producción y Post-producción"
+  en: "Production and Post-production"
+bio:
+  es: "Dirección de fotografía, sonido, montaje y post-producción de todas las series y documentales."
+  en: "Direction of photography, sound, editing, and post-production of all series and documentaries."
+order: 3
+---

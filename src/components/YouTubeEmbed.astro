@@ -1,0 +1,19 @@
+---
+export interface Props {
+  playlistId: string;
+  title?: string;
+}
+
+const { playlistId, title = 'YouTube playlist' } = Astro.props;
+---
+
+<div class="relative aspect-video rounded-xl overflow-hidden bg-surface-container-lowest">
+  <iframe
+    src={`https://www.youtube.com/embed/videoseries?list=${playlistId}`}
+    title={title}
+    class="absolute inset-0 w-full h-full"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    loading="lazy"
+  ></iframe>
+</div>

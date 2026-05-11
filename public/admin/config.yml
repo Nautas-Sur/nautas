@@ -1,172 +1,149 @@
 backend:
   name: github
-  repo: nautas-org/nautas-web
-  branch: master
-  base_url: https://project-43ure.vercel.app
-  auth_endpoint: /api/auth
+  repo: santos480/nautas
+  branch: main
+  auth_type: implicit
+  app_id: ""
 
 media_folder: public/images
 public_folder: /images
 
-i18n:
-  structure: single_file
-  locales: [es, en]
-  default_locale: es
-
 collections:
-  - name: projects
-    label: "🚀 Proyectos"
-    folder: src/content/projects
+  - name: "pages"
+    label: "Páginas"
+    folder: "src/content/pages"
     create: true
     slug: "{{slug}}"
-    identifier_field: title
     fields:
-      - { label: "Título", name: title, widget: string, i18n: false }
-      - { label: "Slug", name: slug, widget: string, required: false, hint: "Se genera automáticamente del título si se deja vacío" }
-      - label: "Tipo de Producción"
-        name: kind
-        widget: select
-        options:
-          - "Serie Documental"
-          - "Micro-serie"
-          - "Podcast"
-          - "Programa Educativo"
-          - "Educación Ambiental"
-          - "Programa de Salud"
-          - "Hermandad Continental"
-        i18n: false
-      - label: "Pilar"
-        name: pillar
-        widget: select
-        options:
-          - { label: "Arte", value: arte }
-          - { label: "Ciencia", value: ciencia }
-          - { label: "Consciencia", value: consciencia }
-        i18n: false
-      - label: "Estado"
-        name: status
-        widget: select
-        options:
-          - { label: "Completado", value: completed }
-          - { label: "En Desarrollo", value: in_development }
-        i18n: false
-      - { label: "Destacado", name: featured, widget: boolean, default: false, i18n: false }
-      - { label: "Año", name: year, widget: string, required: false, i18n: false }
-      - label: "Tagline"
-        name: tagline
-        widget: object
-        i18n: true
-        fields:
-          - { label: "Español", name: es, widget: string }
-          - { label: "English", name: en, widget: string }
-      - label: "Descripción"
-        name: description
-        widget: object
-        i18n: true
-        fields:
-          - { label: "Español", name: es, widget: markdown }
-          - { label: "English", name: en, widget: markdown }
-      - { label: "Imagen Principal", name: heroImage, widget: image, required: false, i18n: false }
-      - { label: "Texto Alternativo de Imagen", name: heroAlt, widget: string, required: false, i18n: false }
-      - { label: "YouTube Playlist ID", name: playlistId, widget: string, required: false, i18n: false }
-      - label: "Episodios"
-        name: episodes
-        widget: list
-        required: false
-        i18n: false
-        fields:
-          - { label: "Número", name: number, widget: number }
-          - label: "Título"
-            name: title
-            widget: object
-            i18n: true
-            fields:
-              - { label: "Español", name: es, widget: string }
-              - { label: "English", name: en, widget: string }
-          - label: "Descripción"
-            name: description
-            widget: object
-            required: false
-            i18n: true
-            fields:
-              - { label: "Español", name: es, widget: string }
-              - { label: "English", name: en, widget: string }
-      - label: "Fases"
-        name: phases
-        widget: list
-        required: false
-        i18n: false
-        fields:
-          - { label: "Letra", name: letter, widget: string }
-          - label: "Título"
-            name: title
-            widget: object
-            i18n: true
-            fields:
-              - { label: "Español", name: es, widget: string }
-              - { label: "English", name: en, widget: string }
-          - label: "Descripción"
-            name: description
-            widget: object
-            i18n: true
-            fields:
-              - { label: "Español", name: es, widget: text }
-              - { label: "English", name: en, widget: text }
-      - label: "Tarjetas Destacadas"
-        name: featureCards
-        widget: list
-        required: false
-        i18n: false
-        fields:
-          - { label: "Ícono", name: icon, widget: string, hint: "Nombre de Material Symbol (ej: diversity_3)" }
-          - label: "Título"
-            name: title
-            widget: object
-            i18n: true
-            fields:
-              - { label: "Español", name: es, widget: string }
-              - { label: "English", name: en, widget: string }
-          - label: "Descripción"
-            name: description
-            widget: object
-            i18n: true
-            fields:
-              - { label: "Español", name: es, widget: text }
-              - { label: "English", name: en, widget: text }
-      - { label: "Voces Destacadas", name: voices, widget: list, required: false, i18n: false, fields: [{ label: "Nombre", name: name, widget: string }] }
-      - label: "Texto del CTA"
-        name: ctaText
-        widget: object
-        required: false
-        i18n: true
-        fields:
-          - { label: "Español", name: es, widget: string }
-          - { label: "English", name: en, widget: string }
-      - { label: "Link del CTA", name: ctaLink, widget: string, required: false, i18n: false }
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Descripción SEO", name: "description", widget: "text"}
+      - {label: "Hero Título", name: "hero_title", widget: "string"}
+      - {label: "Hero Subtítulo", name: "hero_subtitle", widget: "string"}
+      - {label: "Hero Imagen", name: "hero_image", widget: "image", required: false}
+      - {label: "Contenido", name: "body", widget: "markdown"}
 
-  - name: team
-    label: "👥 Equipo"
-    folder: src/content/team
+  - name: "projects"
+    label: "Proyectos"
+    folder: "src/content/projects"
     create: true
     slug: "{{slug}}"
-    identifier_field: name
     fields:
-      - { label: "Nombre", name: name, widget: string, i18n: false }
-      - label: "Rol"
-        name: role
-        widget: object
-        i18n: true
+      - {label: "Título", name: "title", widget: "string"}
+      - {label: "Tipo", name: "kind", widget: "string"}
+      - label: "Pilar"
+        name: "pillar"
+        widget: "select"
+        options: ["arte", "ciencia", "consciencia"]
+      - label: "Estado"
+        name: "status"
+        widget: "select"
+        options: ["completed", "in_development"]
+      - {label: "Destacado", name: "featured", widget: "boolean", default: false}
+      - {label: "Año", name: "year", widget: "string", required: false}
+      - label: "Tagline (ES/EN)"
+        name: "tagline"
+        widget: "object"
         fields:
-          - { label: "Español", name: es, widget: string }
-          - { label: "English", name: en, widget: string }
-      - label: "Bio"
-        name: bio
-        widget: object
+          - {label: "Español", name: "es", widget: "string"}
+          - {label: "English", name: "en", widget: "string"}
+      - label: "Descripción (ES/EN)"
+        name: "description"
+        widget: "object"
+        fields:
+          - {label: "Español", name: "es", widget: "text"}
+          - {label: "English", name: "en", widget: "text"}
+      - {label: "Imagen Hero", name: "heroImage", widget: "image", required: false}
+      - {label: "Alt Hero", name: "heroAlt", widget: "string", required: false}
+      - {label: "Playlist ID", name: "playlistId", widget: "string", required: false}
+      - label: "Episodios"
+        name: "episodes"
+        widget: "list"
         required: false
-        i18n: true
         fields:
-          - { label: "Español", name: es, widget: text }
-          - { label: "English", name: en, widget: text }
-      - { label: "Foto", name: photo, widget: image, required: false, i18n: false }
-      - { label: "Texto Alternativo de Foto", name: photoAlt, widget: string, required: false, i18n: false }
-      - { label: "Orden", name: order, widget: number, default: 0, i18n: false }
+          - {label: "Número", name: "number", widget: "number"}
+          - label: "Título"
+            name: "title"
+            widget: "object"
+            fields:
+              - {label: "Español", name: "es", widget: "string"}
+              - {label: "English", name: "en", widget: "string"}
+          - label: "Descripción"
+            name: "description"
+            widget: "object"
+            required: false
+            fields:
+              - {label: "Español", name: "es", widget: "text"}
+              - {label: "English", name: "en", widget: "text"}
+      - label: "Fases"
+        name: "phases"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Letra", name: "letter", widget: "string"}
+          - label: "Título"
+            name: "title"
+            widget: "object"
+            fields:
+              - {label: "Español", name: "es", widget: "string"}
+              - {label: "English", name: "en", widget: "string"}
+          - label: "Descripción"
+            name: "description"
+            widget: "object"
+            fields:
+              - {label: "Español", name: "es", widget: "text"}
+              - {label: "English", name: "en", widget: "text"}
+      - label: "Feature Cards"
+        name: "featureCards"
+        widget: "list"
+        required: false
+        fields:
+          - {label: "Icono", name: "icon", widget: "string"}
+          - label: "Título"
+            name: "title"
+            widget: "object"
+            fields:
+              - {label: "Español", name: "es", widget: "string"}
+              - {label: "English", name: "en", widget: "string"}
+          - label: "Descripción"
+            name: "description"
+            widget: "object"
+            fields:
+              - {label: "Español", name: "es", widget: "text"}
+              - {label: "English", name: "en", widget: "text"}
+      - label: "Voces"
+        name: "voices"
+        widget: "list"
+        required: false
+        field: {label: "Nombre", name: "name", widget: "string"}
+      - label: "CTA Texto"
+        name: "ctaText"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Español", name: "es", widget: "string"}
+          - {label: "English", name: "en", widget: "string"}
+      - {label: "CTA Link", name: "ctaLink", widget: "string", required: false}
+
+  - name: "team"
+    label: "Equipo"
+    folder: "src/content/team"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - {label: "Nombre", name: "name", widget: "string"}
+      - label: "Rol"
+        name: "role"
+        widget: "object"
+        fields:
+          - {label: "Español", name: "es", widget: "string"}
+          - {label: "English", name: "en", widget: "string"}
+      - label: "Bio"
+        name: "bio"
+        widget: "object"
+        required: false
+        fields:
+          - {label: "Español", name: "es", widget: "text"}
+          - {label: "English", name: "en", widget: "text"}
+      - {label: "Foto", name: "photo", widget: "image", required: false}
+      - {label: "Alt Foto", name: "photoAlt", widget: "string", required: false}
+      - {label: "Orden", name: "order", widget: "number", default: 0}

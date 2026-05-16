@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: santos480/nautas
+  repo: Nautas-Sur/nautas
   branch: main
   base_url: https://project-43ure.vercel.app
   auth_endpoint: api/auth

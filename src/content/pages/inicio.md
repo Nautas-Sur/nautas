@@ -3,7 +3,7 @@ title: Nautas — Inicio
 description: Nautas — Asociación argentina dedicada a la integración del arte,
   la ciencia y la consciencia humana.
 hero_eyebrow: Asociación civil sin fines de lucro
-hero_title: Arte, Ciencia y PRUEBA
+hero_title: Arte, Ciencia y Care
 hero_subtitle: Nautas es una asociación argentina dedicada a cerrar la brecha
   entre la exploración científica, la expresión artística y la conciencia
   humana. Producimos contenido audiovisual e investigaciones que aúnan voces de

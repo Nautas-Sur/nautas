@@ -4,35 +4,52 @@ kind: Serie Documental
 pillar: consciencia
 status: completed
 featured: true
-year: 2021-2024
+year: ""
 tagline:
-  es: Reuniendo la sabiduría de culturas ancestrales, tradiciones espirituales y
-    la ciencia contemporánea.
-  en: Gathering the wisdom of ancestral cultures, spiritual traditions, and
-    contemporary science.
+  es: Reuniendo la sabiduría de los mensajeros de la Tierra
+  en: Gathering the wisdom of the messengers of the Earth
 description:
   es: >
-    Voces de la Tierra es una serie documental que reúne la sabiduría de
-    culturas ancestrales, tradiciones espirituales y ciencia contemporánea para
-    ofrecer una visión integral del despertar planetario.
+    El propósito de esta serie documental es dar voz al planeta Tierra a través
+    de sus mensajeros: mujeres y hombres que, desde diferentes perspectivas,
+    condiciones y transmisión de conocimiento, han explorado y accionado para
+    propiciar el desenvolvimiento de una civilización más equilibrada y
+    sensible. Todos ellos son o han sido activistas de cambios reales en los
+    campos de la educación, la salud, el medio ambiente, el arte, la ciencia y
+    la tecnología, y también la espiritualidad o la investigación de la
+    conciencia. Estos ejemplos pueden inspirarnos a reunir la sabiduría para
+    hacer que la transformación de las condiciones humanas y sus vínculos con el
+    ecosistema sean una prioridad, dando lugar a un coraje renovado para vivir
+    una existencia plena de significado y una experiencia individual y colectiva
+    más digna y armoniosa. Las voces de estos mensajeros pueden ayudarnos a
+    escuchar claramente el llamado de la Tierra.
 
 
     El proyecto busca aunar las voces de todos los rincones del planeta que están transmitiendo el legado humano más esencial: nuestra interconexión con todo lo vivo.
 
 
-    A través de entrevistas con pensadores, científicos, artistas y líderes espirituales de renombre mundial, Voces de la Tierra da voz al planeta por medio de sus mensajeros, activistas de cambios reales que anuncian una inteligencia más vasta y una forma más consciente de habitar el mundo.
+    A través de entrevistas con pensadores, científicos, artistas y líderes espirituales de renombre mundial, Voces de la Tierra da voz al planeta por medio de sus mensajeros, visionarios y activistas que anuncian una inteligencia más vasta y una forma más consciente de habitar el mundo.
   en: >
-    Voces de la Tierra is a documentary series that brings together the wisdom
-    of ancestral cultures, spiritual traditions, and contemporary science to
-    offer a comprehensive vision of planetary awakening.
+    The purpose of this documentary series is to give voice to planet Earth
+    through its messengers: women and men who, from different perspectives,
+    circumstances, and knowledge transfer traditions, have explored and taken
+    action to foster the development of a more balanced and sensitive
+    civilization. All of them are, or have been, activists for real change in
+    the fields of education, health, the environment, art, science and
+    technology, and also spirituality and consciousness research. These examples
+    can inspire us to gather the wisdom to make the transformation of human
+    conditions and our connection to the ecosystem a priority, giving rise to
+    renewed courage to live a meaningful existence and a more dignified and
+    harmonious individual and collective experience. The voices of these
+    messengers can help us clearly hear the Earth's call.
 
 
-    The project seeks to unite voices from all corners of the planet that are transmitting the most essential human legacy: our interconnection with all living things.
+    The project seeks to unite the voices from all corners of the planet that are transmitting the most essential human legacy: our interconnectedness with all living things.
 
 
-    Through interviews with world-renowned thinkers, scientists, artists, and spiritual leaders, Voces de la Tierra gives voice to the planet through its messengers — activists of real change who herald a vaster intelligence and a more conscious way of inhabiting the world.
-heroImage: ""
-playlistId: PLxKjsdwjZB4zA4FKqUwXz8txyR4E4m1bw
+    Through interviews with world-renowned thinkers, scientists, artists, and spiritual leaders, Voices of the Earth gives voice to the planet through its messengers, visionaries, and activists who herald a greater intelligence and a more conscious way of inhabiting the world.
+heroImage: /images/voces-de-la-tierra-12-.jpeg
+playlistId: https://www.youtube.com/watch?v=Ba7YKF9SZsU
 episodes:
   - number: 1
     title:

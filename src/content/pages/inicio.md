@@ -8,7 +8,7 @@ hero_subtitle: Nautas es una asociación civil argentina dedicada a sobrevolar l
   posibilidad evolutiva de la consciencia humana. Producimos contenido
   audiovisual e investigaciones que aúnan voces de todos los rincones del
   planeta.
-pillars_title: Tres Pilares, Un Universo.
+pillars_title: Diferentes Dimensiones, un mismo Multiverso.
 pillar_arte_title: Arte
 pillar_arte_desc: Expresiones creativas que amplían los límites de la percepción
   y conectan con la belleza esencial de la existencia.

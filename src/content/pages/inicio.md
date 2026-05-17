@@ -5,7 +5,7 @@ hero_eyebrow: Asociación civil sin fines de lucro
 hero_title: Arte, Ciencia y Consciencia
 hero_subtitle: Nautas es una asociación civil argentina dedicada a sobrevolar la
   brecha entre la exploración científica, la expresión artística y la
-  posibilidad evolutiva de la conciencia humana. Producimos contenido
+  posibilidad evolutiva de la consciencia humana. Producimos contenido
   audiovisual e investigaciones que aúnan voces de todos los rincones del
   planeta.
 pillars_title: Tres Pilares, Un Universo.
@@ -17,7 +17,7 @@ pillar_ciencia_desc: Investigación rigurosa que ilumina los misterios del cosmo
   y nuestra posición en la trama de la vida.
 pillar_consciencia_title: Consciencia
 pillar_consciencia_desc: Exploración del espíritu humano y el despertar
-  colectivo hacia una nueva forma de relacionarnos con el cosmos.
+  colectivo hacia una nueva forma de relacionarnos.
 vision_quote: '"Observar es participar. Somos el universo experimentándose a sí mismo."'
 newsletter_title: ¿Listo para mapear lo desconocido?
 newsletter_subtitle: Suscríbete a nuestro boletín para recibir bitácoras de

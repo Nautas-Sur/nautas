@@ -29,7 +29,7 @@ pillars_title: Diferentes Dimensiones, una misma Fuente. Puentes y tránsitos de
   doble mano entre Arte, Ciencia y Conciencia.
 pillar_arte_title: Arte
 pillar_arte_desc: >
-  Arte como inspiración. Expresiones creativas que amplían los límites de la
+  Arte: inspiración. Expresiones creativas que amplían los límites de la
   percepción y conectan con la belleza esencial de la existencia.
 
   En Nautas encontrarán un espacio abierto a todas las expresiones que nacen de un corazón en transformación. Un llamado a quienes están en posición de combinar sus talentos con una conciencia profunda: quienes están en vías al desasimiento, que no están obsesionados consigo mismos, que tienen la mirada hacia adelante sin distracciones, que evitan la autocomplacencia y el capricho de los artistas consentidos.

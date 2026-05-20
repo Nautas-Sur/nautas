@@ -35,7 +35,7 @@ pillars_title: Different Dimensions, One Source. Two-way bridges and passages
   between Art, Science, and Consciousness.
 pillar_arte_title: Art
 pillar_arte_desc: >-
-  Art as inspiration. Creative expressions that expand the limits of perception
+  Art: inspiration. Creative expressions that expand the limits of perception
   and connect with the essential beauty of existence.
 
   At Nautas, you will find a space open to all expressions born from a heart in transformation. A call to those who are in a position to combine their talents with a profound awareness: those on the path to detachment, who are not obsessed with themselves, who look ahead without distractions, who avoid self-indulgence and the whims of pampered artists.
@@ -52,8 +52,18 @@ pillar_ciencia_desc: >-
 
   Nautas conceives of science as serving consciousness. It addresses all sciences—social, natural, and abstract—applied to the evolution of consciousness on Earth: sciences as metamorphosis, as a cognitive link, that inquire into life, the nature of the mind, the psyche, and the spirit. As an intuition of other orders of knowledge and other orders of reality. As a respectful approach to nature. As a spiritual practice. Sciences of the environment, biodiversity, and the biosphere.
 pillar_consciencia_title: Consciousness
-pillar_consciencia_desc: Exploration of the human spirit and collective
-  awakening toward a new way of inhabiting the planet.
+pillar_consciencia_desc: >-
+  Consciousness: Essential Foundation. An exploration of the "consciousness of
+  being" and the collective awakening toward a new way of relating.
+
+
+  Consciousness as the irreducible substrate of all cognitive processes: not individual self-awareness, but the fundamental substance that is the origin and foundation of all phenomena. We propose this concept as the counterpart to unconsciousness or ignorance of Being.
+
+
+  Consciousness does not need to advance, progress, or evolve. It is a perpetual movement united with the entire universe: it does not move within it, but with it. In this unalterable space, human consciousness finds itself on the intermediate path between animal consciousness and pure consciousness or the Absolute, like layers of an onion, each layer corresponding to a unique morphic field for each species on this planet.
+
+
+  At the core of the perishable resides the spark of eternity. Embedded in the nucleus of all our mortal cells is the impersonal essence, immortality at the heart of matter. Physical body, energy, and consciousness constitute an absolutely interdependent alchemical triad. Nautas conceives of consciousness as an ocean, largely unknown, and as a field of exploration that can be approached scientifically—that is, step by step, uncovering one layer after another, recognizing one corner after another of the human universe, and something beyond. He approaches it as the substrate of intuitive wisdom and living intelligence in all beings; as the foundation of scientific, philosophical, ethical, metaphysical, and religious inquiry, including the sciences of meditation and research on physical vitality, the energy field, health, and individual and collective dysfunction.
 vision_quote: '"To observe is to participate. We are the universe experiencing
   itself through the lens of science and the soul."'
 newsletter_title: Ready to map the unknown?

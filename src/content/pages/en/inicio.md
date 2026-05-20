@@ -31,13 +31,26 @@ hero_subtitle: >-
 
 
   • The third enigma: of the Heart of Art—primarily expressed through creativity.
-pillars_title: ""
+pillars_title: Different Dimensions, One Source. Two-way bridges and passages
+  between Art, Science, and Consciousness.
 pillar_arte_title: Art
-pillar_arte_desc: Creative expressions that expand the boundaries of perception
+pillar_arte_desc: >-
+  Art as inspiration. Creative expressions that expand the limits of perception
   and connect with the essential beauty of existence.
+
+  At Nautas, you will find a space open to all expressions born from a heart in transformation. A call to those who are in a position to combine their talents with a profound awareness: those on the path to detachment, who are not obsessed with themselves, who look ahead without distractions, who avoid self-indulgence and the whims of pampered artists.
+
+  Nautas aspires to recognize in the works and actions of artists the inspiration they receive from the universal will, from unconditional love, and which they can share through their creations as conscious beings.
+
+  We approach art as creative fulfillment, as medicine for physical and emotional healing, as a spiritual path, as a way of knowing our light and shadow, as a bridge to conscious sensitivity.
 pillar_ciencia_title: Science
-pillar_ciencia_desc: Rigorous research that illuminates the mysteries of the
-  cosmos and our place within the web of life.
+pillar_ciencia_desc: >-
+  Science: the end of the age of reason. Rigorous research that illuminates the
+  mysteries of the cosmos and our place in the web of life.
+
+  Without disregarding the solidity of the earth as our foundation, we embark on an essential, shared flight toward the heavens—spirit and consciousness. We begin with rational knowledge, knowing that a new perspective exists. We delve into each subject without becoming obsessive. We recognize a state in which we can transcend the traps of thought to reach that impersonal center which is universal consciousness.
+
+  Nautas conceives of science as serving consciousness. It addresses all sciences—social, natural, and abstract—applied to the evolution of consciousness on Earth: sciences as metamorphosis, as a cognitive link, that inquire into life, the nature of the mind, the psyche, and the spirit. As an intuition of other orders of knowledge and other orders of reality. As a respectful approach to nature. As a spiritual practice. Sciences of the environment, biodiversity, and the biosphere.
 pillar_consciencia_title: Consciousness
 pillar_consciencia_desc: Exploration of the human spirit and collective
   awakening toward a new way of inhabiting the planet.

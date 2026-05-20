@@ -48,8 +48,8 @@ description:
 
 
     Through interviews with world-renowned thinkers, scientists, artists, and spiritual leaders, Voices of the Earth gives voice to the planet through its messengers, visionaries, and activists who herald a greater intelligence and a more conscious way of inhabiting the world.
-heroImage: /images/voces-de-la-tierra-12-.jpeg
-playlistId: https://www.youtube.com/watch?v=Ba7YKF9SZsU
+heroImage: https://www.youtube.com/watch?v=Ba7YKF9SZsU
+playlistId: https://www.youtube.com/playlist?list=PLxKjsdwjZB4zA4FKqUwXz8txyR4E4m1bw
 episodes:
   - number: 1
     title:

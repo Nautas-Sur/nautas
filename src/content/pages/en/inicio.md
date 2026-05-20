@@ -3,9 +3,35 @@ title: Nautas — Home
 description: Nautas — Navigators on the thresholds of transformation.
 hero_eyebrow: Argentine non-profit civil association
 hero_title: Arts, Sciences and Consciousness
-hero_subtitle: Nautas is an Argentine association dedicated to bridging the gap
-  between scientific exploration, artistic expression, and human consciousness.
-pillars_title: Three Pillars, One Universe
+hero_subtitle: >-
+  Nautas is an Argentine civil association dedicated to bridging the gap between
+  scientific exploration, artistic expression, and inquiry into human
+  consciousness. We produce audiovisual content and research that brings
+  together voices from all corners of the planet.
+
+
+  We chose the word "Nautas" to name all those who explore: not only the skies, the land, and the oceans, but also the explorers of human consciousness, as if it were an essential substance, like water or air. Nautas, then, names those who can be considered navigators of existence and the mystery of Being.
+
+  In this sense, Nautas points to the condition of equality within our differences: we are all experiencers of existence, we have been since the beginning of time. The quality of being a nauta names this fundamental parity before the event we all share: finding ourselves, time and again, facing immensity and the unknown.
+
+
+  The phenomenon we are talking about is that of a transition, a process of transformation of human consciousness. For Nautas, what we are experiencing now is as mysterious as what happened in the past, and the approaching state is even more so.
+
+
+  On this site, you will find the message, the work, and the documented thought of men and women from all eras: forerunners, pioneering explorers, or simply stepping stones in the natural evolution of our species. We recognize them as fellow travelers, not as distant figures.
+
+
+  We invite you to explore this portal through non-taxonomic passages, which propose a dynamic differentiation between those who investigate or consciously investigate three fundamental enigmas:
+
+
+  • The first enigma: of Consciousness—with an intentional distinction between mind, consciousness, and spirit.
+
+
+  • The second enigma: of the Holistic Spirit—which integrates what scientific specialization has fragmented.
+
+
+  • The third enigma: of the Heart of Art—primarily expressed through creativity.
+pillars_title: ""
 pillar_arte_title: Art
 pillar_arte_desc: Creative expressions that expand the boundaries of perception
   and connect with the essential beauty of existence.

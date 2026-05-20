@@ -1,7 +1,7 @@
 ---
 title: Nautas — Inicio
 description: "Nautas — Navegantes en los umbrales de la transformación. "
-hero_eyebrow: Asociación civil sin fines de lucro
+hero_eyebrow: Asociación civil argentina sin fines de lucro
 hero_title: Arte, Ciencia y Consciencia
 hero_subtitle: >
   Nautas es una asociación civil argentina dedicada a sobrevolar la brecha entre

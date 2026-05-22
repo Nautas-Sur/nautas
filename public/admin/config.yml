@@ -224,6 +224,12 @@ collections:
           - {label: "English", name: "en", widget: "text"}
       - {label: "Imagen Hero", name: "heroImage", widget: "image", required: false}
       - {label: "Alt Hero", name: "heroAlt", widget: "string", required: false}
+      - label: "Video Destacado ID (Trailer)"
+        name: "featuredVideoId"
+        widget: "string"
+        required: false
+        hint: "ID del video que se muestra como portada en el home y en la página del proyecto (ej: Ba7YKF9SZsU). Si no se completa, muestra el primer video de la playlist."
+        pattern: ['^[A-Za-z0-9_-]+$', "Solo el ID del video, sin URLs completas."]
       - label: "Playlist ID de YouTube"
         name: "playlistId"
         widget: "string"

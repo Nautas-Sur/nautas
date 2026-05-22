@@ -78,6 +78,7 @@ const projectsCollection = defineCollection({
     heroImage: z.string().optional(),
     heroAlt: z.string().optional(),
     playlistId: z.string().optional(),
+    featuredVideoId: z.string().optional(),
     episodes: z.array(z.object({
       number: z.number(),
       title: i18nString,

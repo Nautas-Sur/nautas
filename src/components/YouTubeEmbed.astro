@@ -1,16 +1,20 @@
 ---
 export interface Props {
   playlistId: string;
+  videoId?: string;
   title?: string;
 }
 
-const { playlistId, title = 'YouTube playlist' } = Astro.props;
+const { playlistId, videoId, title = 'YouTube playlist' } = Astro.props;
+const embedSrc = videoId
+  ? `https://www.youtube-nocookie.com/embed/${videoId}?list=${playlistId}&origin=${Astro.site?.origin ?? ''}`
+  : `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&origin=${Astro.site?.origin ?? ''}`;
 ---
 
 <div id="yt-player-section" class="relative aspect-video rounded-xl overflow-hidden bg-surface-container-lowest" data-playlist-id={playlistId}>
   <iframe
     id="yt-player"
-    src={`https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&origin=${Astro.site?.origin ?? ''}`}
+    src={embedSrc}
     title={title}
     class="absolute inset-0 w-full h-full"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

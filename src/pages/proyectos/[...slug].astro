@@ -79,7 +79,7 @@ const related = projects
   <!-- YouTube Embed (for completed productions) -->
   {data.playlistId && (
     <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-16">
-      <YouTubeEmbed playlistId={data.playlistId} title={data.title} />
+      <YouTubeEmbed playlistId={data.playlistId} videoId={data.featuredVideoId} title={data.title} />
     </section>
   )}
 

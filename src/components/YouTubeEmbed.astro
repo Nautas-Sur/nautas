@@ -9,7 +9,7 @@ const { playlistId, title = 'YouTube playlist' } = Astro.props;
 
 <div class="relative aspect-video rounded-xl overflow-hidden bg-surface-container-lowest">
   <iframe
-    src={`https://www.youtube.com/embed/videoseries?list=${playlistId}`}
+    src={`https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&origin=https://project-43ure.vercel.app`}
     title={title}
     class="absolute inset-0 w-full h-full"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

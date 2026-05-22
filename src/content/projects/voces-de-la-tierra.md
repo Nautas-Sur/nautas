@@ -94,6 +94,7 @@ episodes:
         systems. Her transcontextual approach to ecological and intercultural
         understanding proposes projects across multiple fields with revealing
         perspectives on relational learning.
+    videoId: Vdoh65cASTA
   - number: 3
     title:
       es: Eugenio Carutti

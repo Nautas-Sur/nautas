@@ -3,7 +3,7 @@ title: El Nexo
 kind: Podcast
 pillar: consciencia
 status: completed
-featured: false
+featured: true
 year: En curso
 tagline:
   es: Conectando Universos. Un espacio dedicado a la tarea del despertar y al

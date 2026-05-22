@@ -224,7 +224,12 @@ collections:
           - {label: "English", name: "en", widget: "text"}
       - {label: "Imagen Hero", name: "heroImage", widget: "image", required: false}
       - {label: "Alt Hero", name: "heroAlt", widget: "string", required: false}
-      - {label: "Playlist ID", name: "playlistId", widget: "string", required: false}
+      - label: "Playlist ID de YouTube"
+        name: "playlistId"
+        widget: "string"
+        required: false
+        hint: "Solo el ID de la playlist, NO la URL completa. Ejemplo: PLxKjsdwjZB4zA4FKqUwXz8txyR4E4m1bw — Lo encontrás en la URL de YouTube después de 'list='"
+        pattern: ['^[A-Za-z0-9_-]+$', "El ID no debe contener URLs ni símbolos especiales. Solo letras, números, guiones y guiones bajos."]
       - label: "Episodios"
         name: "episodes"
         widget: "list"

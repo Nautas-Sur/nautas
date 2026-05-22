@@ -98,7 +98,7 @@ const pillars = [
           {featured.data.playlistId ? (
             <iframe
               src={featured.data.featuredVideoId
-                ? `https://www.youtube-nocookie.com/embed/${featured.data.featuredVideoId}?list=${featured.data.playlistId}&origin=https://project-43ure.vercel.app`
+                ? `https://www.youtube-nocookie.com/embed/${featured.data.featuredVideoId}?origin=https://project-43ure.vercel.app`
                 : `https://www.youtube-nocookie.com/embed/videoseries?list=${featured.data.playlistId}&origin=https://project-43ure.vercel.app`
               }
               title={featured.data.title}

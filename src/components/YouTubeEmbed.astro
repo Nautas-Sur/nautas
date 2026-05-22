@@ -6,9 +6,10 @@ export interface Props {
 }
 
 const { playlistId, videoId, title = 'YouTube playlist' } = Astro.props;
+const origin = Astro.site?.origin ?? '';
 const embedSrc = videoId
-  ? `https://www.youtube-nocookie.com/embed/${videoId}?list=${playlistId}&origin=${Astro.site?.origin ?? ''}`
-  : `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&origin=${Astro.site?.origin ?? ''}`;
+  ? `https://www.youtube-nocookie.com/embed/${videoId}?origin=${origin}`
+  : `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&origin=${origin}`;
 ---
 
 <div id="yt-player-section" class="relative aspect-video rounded-xl overflow-hidden bg-surface-container-lowest" data-playlist-id={playlistId}>

@@ -82,6 +82,7 @@ const projectsCollection = defineCollection({
       number: z.number(),
       title: i18nString,
       description: i18nString.optional(),
+      videoId: z.string().optional(),
     })).optional(),
     phases: z.array(z.object({
       letter: z.string(),

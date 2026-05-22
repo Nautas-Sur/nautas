@@ -152,8 +152,10 @@ const related = projects
               number: ep.number,
               title: t(ep.title.es, ep.title.en),
               description: ep.description ? t(ep.description.es, ep.description.en) : undefined,
+              videoId: ep.videoId,
               active: i === 0,
             }))}
+            playlistId={data.playlistId}
             title={t('Episodios', 'Episodes')}
             countLabel={`${data.episodes.length} ${t('VIDEOS', 'VIDEOS')}`}
             locale={locale}

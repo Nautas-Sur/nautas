@@ -249,6 +249,12 @@ collections:
             fields:
               - {label: "Español", name: "es", widget: "text"}
               - {label: "English", name: "en", widget: "text"}
+          - label: "Video ID de YouTube"
+            name: "videoId"
+            widget: "string"
+            required: false
+            hint: "Solo el ID del video (ej: Ba7YKF9SZsU). Lo encontrás en youtu.be/XXXX o en la URL de YouTube después de 'v='"
+            pattern: ['^[A-Za-z0-9_-]+$', "Solo letras, números, guiones y guiones bajos. Sin URLs completas."]
       - label: "Fases"
         name: "phases"
         widget: "list"

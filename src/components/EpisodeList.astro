@@ -3,17 +3,19 @@ export interface Episode {
   number: number;
   title: string;
   description?: string;
+  videoId?: string;
   active?: boolean;
 }
 
 export interface Props {
   episodes: Episode[];
+  playlistId?: string;
   title?: string;
   countLabel?: string;
   locale?: string;
 }
 
-const { episodes, title, countLabel, locale = 'es' } = Astro.props;
+const { episodes, playlistId, title, countLabel, locale = 'es' } = Astro.props;
 ---
 
 <div class="space-y-4">
@@ -26,18 +28,25 @@ const { episodes, title, countLabel, locale = 'es' } = Astro.props;
     </div>
   )}
   <div class="space-y-2 max-h-[600px] overflow-y-auto pr-1">
-    {episodes.map((ep) => (
-      <div class={`group p-4 md:p-5 rounded-lg transition-all cursor-pointer ${
-        ep.active
-          ? 'bg-surface-container-high border-l-2 border-primary'
-          : 'bg-surface-container-low border-l-2 border-transparent hover:border-outline hover:bg-surface-container-high'
-      }`}>
+    {episodes.map((ep, i) => (
+      <div
+        class={`episode-item group p-4 md:p-5 rounded-lg transition-all cursor-pointer border-l-2 ${
+          ep.active
+            ? 'bg-surface-container-high border-primary'
+            : 'bg-surface-container-low border-transparent hover:border-outline hover:bg-surface-container-high'
+        }`}
+        data-video-id={ep.videoId ?? ''}
+        data-index={i}
+      >
         <div class="flex justify-between items-start mb-2">
-          <span class={`font-label text-[10px] tracking-widest uppercase ${ep.active ? 'text-primary' : 'text-on-surface-variant'}`}>
+          <span class={`ep-num font-label text-[10px] tracking-widest uppercase ${ep.active ? 'text-primary' : 'text-on-surface-variant'}`}>
             {locale === 'en' ? 'Episode' : 'Episodio'} {String(ep.number).padStart(2, '0')}
           </span>
+          {ep.videoId && (
+            <span class="material-symbols-outlined text-xs text-on-surface-variant group-hover:text-primary transition-colors">play_circle</span>
+          )}
         </div>
-        <h3 class={`font-headline text-base mb-1 group-hover:text-primary transition-colors ${ep.active ? 'text-primary' : ''}`}>
+        <h3 class={`ep-title font-headline text-base mb-1 group-hover:text-primary transition-colors ${ep.active ? 'text-primary' : ''}`}>
           {ep.title}
         </h3>
         {ep.description && (
@@ -47,3 +56,46 @@ const { episodes, title, countLabel, locale = 'es' } = Astro.props;
     ))}
   </div>
 </div>
+
+{playlistId && (
+  <script define:vars={{ playlistId }}>
+    const items = document.querySelectorAll('.episode-item');
+    const player = document.getElementById('yt-player');
+    const playerSection = document.getElementById('yt-player-section');
+    const origin = window.location.origin;
+
+    items.forEach((item) => {
+      item.addEventListener('click', () => {
+        const videoId = item.dataset.videoId;
+        const index = item.dataset.index;
+
+        if (!player) return;
+
+        // Build the new embed URL
+        if (videoId) {
+          player.src = `https://www.youtube-nocookie.com/embed/${videoId}?list=${playlistId}&origin=${origin}&autoplay=1`;
+        } else {
+          player.src = `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&index=${index}&origin=${origin}&autoplay=1`;
+        }
+
+        // Update active styles
+        items.forEach((el) => {
+          el.classList.remove('bg-surface-container-high', 'border-primary');
+          el.classList.add('bg-surface-container-low', 'border-transparent');
+          el.querySelector('.ep-num')?.classList.replace('text-primary', 'text-on-surface-variant');
+          el.querySelector('.ep-title')?.classList.remove('text-primary');
+        });
+
+        item.classList.add('bg-surface-container-high', 'border-primary');
+        item.classList.remove('bg-surface-container-low', 'border-transparent');
+        item.querySelector('.ep-num')?.classList.replace('text-on-surface-variant', 'text-primary');
+        item.querySelector('.ep-title')?.classList.add('text-primary');
+
+        // Scroll to player on mobile
+        if (window.innerWidth < 1024) {
+          playerSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+)}

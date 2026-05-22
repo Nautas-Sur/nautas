@@ -65,6 +65,7 @@ episodes:
         Cintia Jancik, from Viva el Monte, tells us about the nourishing power of ancestral foods and how she lives a life immersed in the abundance that the native forest offers to those who care for, preserve, and regenerate the land.
 
         And Nicolás Fioretti, a beekeeper, speaks to us about the ecosystemic wisdom of bees, their relational intelligence, and their communal life, which seems superior to that of humans.
+    videoId: Lp3BWps1ZtY
   - number: 2
     title:
       es: "De Naturaleza Universal - "
@@ -98,6 +99,7 @@ episodes:
 
 
         And about "Biodynamic Production" of products with Julien Baudet.
+    videoId: rMCFqcC1LaM
   - number: 3
     title:
       es: "Despertar Natural - "
@@ -119,6 +121,7 @@ episodes:
         In this episode, we speak with Sacha Laniado about the preservation, productive and agroecological recovery of food and medicinal herbs in the Poca Volcano Reserve, on Cerro del Cóndor, Córdoba province.
 
         And with Salvia Gómez and Martín Ilg about artisanal production, natural building, and the care and preservation of the Nature Reserve in Los Molles, on the way to the tabaquillo forests of Cerro Champaquí.
+    videoId: w2VfEe2Go0Q
   - number: 4
     title:
       es: "Interconectividad de la Naturaleza - "
@@ -136,6 +139,7 @@ episodes:
 
 
         In this episode, we talk with Pablo Friedlander about ecological restoration and ecosystem recovery in native forests. In particular, he spoke to us about the reforestation of the tabaquillo forests, essential for the natural formation of river sources on the peaks of Cerro Champaquí.
+    videoId: oqJOV_qCTLo
   - number: 5
     title:
       es: "Toda Tierra es Sagrada - "
@@ -155,6 +159,7 @@ episodes:
 
 
         In this episode, we travel to the "El Mate" ranch in Delia María, Río Cuarto, Córdoba province, to interview Bruno Vasqueto and Federico Vasqueto. They are promoters of regenerative livestock farming and also carry out educational outreach to encourage and train producers to adopt regenerative livestock practices and the rotation of animals on rich soils where coexistence between species occurs naturally. We also had the opportunity to interview Sergio Toletti, an agronomist, agroecological producer, and university professor, who spoke to us about the importance of soil renewal and health as the primary action for transforming industrial livestock farming into regenerative livestock farming.
+    videoId: PjIgttLlw2I
   - number: 6
     title:
       es: "Pulso Natural - "
@@ -192,6 +197,7 @@ episodes:
         One of the school's students, Tomás Egozcue, also told us how they learn about sustainability and how to connect with nature throughout their learning process. He explained how they are aware of the school's natural construction and the diversity of plants and animals they protect.
 
         And regarding the importance of government collaboration in projects like these, we spoke with Walter Wischnivetzky from the municipality of Mar Chiquita.
+    videoId: twoFkp2J9_k
   - number: 7
     title:
       es: "Esencia Terrestre - "
@@ -218,6 +224,7 @@ episodes:
 
 
         The images, songs, and ceremonies of the Wikina Wos speak to us of the ancestral experience of a natural culture within the context of the destiny of the indigenous peoples of the Salta Chaco region.
+    videoId: 0xz6VeoqWu0
 featureCards:
   - icon: eco
     title:

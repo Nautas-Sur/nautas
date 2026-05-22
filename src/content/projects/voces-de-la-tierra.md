@@ -72,6 +72,7 @@ episodes:
         Nature. He promotes simplicity and elegance as the foundations of a life
         filled with meaning, well-being, and confidence in the creative
         intelligence of a spiritual nature.
+    videoId: HOaoJfRiUqg
   - number: 2
     title:
       es: "Nora Bateson "

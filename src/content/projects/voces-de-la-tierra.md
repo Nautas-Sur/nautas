@@ -119,6 +119,7 @@ episodes:
         the psychic maturity of human beings toward the conception of relational
         intelligence and its unfolding toward the possible grasp of a broader
         intelligence: planetary intelligence."
+    videoId: bRigm93Vc8s
   - number: 4
     title:
       es: "Joanna Macy "
@@ -143,6 +144,7 @@ episodes:
         ecological crises and, through her conception of the world as a larger,
         living body, to transform apathy and fear into constructive and
         collaborative action.
+    videoId: 1q4AbJgIuAo
   - number: 5
     title:
       es: "Fernando Callejón "
@@ -168,6 +170,7 @@ episodes:
         characterize all illness, not only family environments but also
         socioeconomic and cultural contexts. Based on this, he developed the
         principles of social psychobiology.
+    videoId: kkly6YuNpQc
   - number: 6
     title:
       es: Jean Shinoda Bolen
@@ -189,6 +192,7 @@ episodes:
         mutual aid awareness. Her writings are based on a profound analysis of
         spiritual experience, analytical psychology, medicine, and especially
         the role of women in restoring the health of humanity and the planet.
+    videoId: EcvoAQGAnzc
   - number: 7
     title:
       es: Duane Elgin
@@ -212,6 +216,7 @@ episodes:
         inhabiting a Living Universe offers new cultural narratives for our
         collective imagination that can guide us toward a sustainable and
         meaningful future.
+    videoId: 3bfVxq82CL0
   - number: 8
     title:
       es: "Rupert Sheldrake "
@@ -236,6 +241,7 @@ episodes:
         history and experiments conducted under natural conditions. His work has
         placed him at the center of a scientific and philosophical debate that
         also encompasses profound spiritual experience.
+    videoId: Bhe14MGfes
   - number: 9
     title:
       es: Claudio Naranjo
@@ -259,6 +265,7 @@ episodes:
         childlike instincts of human beings. He was a candidate for the Nobel
         Peace Prize. Through the SAT program, he dedicated his life to the
         radical transformation of education."
+    videoId: LN1yJnGgJCQ
   - number: 10
     title:
       es: Mujeres en Diálogo
@@ -284,6 +291,7 @@ episodes:
         in research on the complexities of relationships, not only between human
         beings but also, in extension, our connection with other beings on the
         planet.
+    videoId: jlcppgdSCyQ
   - number: 11
     title:
       es: Brother David Steindl-Rast
@@ -302,6 +310,7 @@ episodes:
         community, including the practice of new paradigms for living,
         especially through gratitude. His aim is to bring a life of meaning and
         harmony with all other beings on the planet into the educational sphere.
+    videoId: jX6AsrS56SM
   - number: 12
     title:
       es: Yann Arthus-Bertrand
@@ -327,6 +336,7 @@ episodes:
         climate. He founded the Good Planet Foundation to raise awareness about
         environmental issues and implement projects to preserve the overall
         health of both humanity and the planet.
+    videoId: T5GEY5xXtX0
 featureCards: []
 voices:
   - Claudio Naranjo

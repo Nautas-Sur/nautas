@@ -65,6 +65,20 @@ const pillars = [
         {locale === 'en' ? 'About Us' : 'Quiénes Somos'}
       </a>
     </div>
+    <!-- Celestial navigation mark -->
+    <div slot="visual" class="hidden md:flex items-center justify-center py-8">
+      <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" class="w-56 lg:w-72 xl:w-80" aria-hidden="true">
+        <g transform="translate(200 200)" stroke="#a3cce9" fill="none">
+          <circle r="180" stroke-width="1.5" opacity="0.12"/>
+          <circle r="110" stroke-width="1.5" opacity="0.22"/>
+          <circle r="28" fill="#a3cce9" stroke="none" opacity="0.35"/>
+          <line x1="0" y1="-220" x2="0" y2="-195" stroke-width="1.5" opacity="0.3"/>
+          <line x1="0" y1="195" x2="0" y2="220" stroke-width="1.5" opacity="0.3"/>
+          <line x1="-220" y1="0" x2="-195" y2="0" stroke-width="1.5" opacity="0.3"/>
+          <line x1="195" y1="0" x2="220" y2="0" stroke-width="1.5" opacity="0.3"/>
+        </g>
+      </svg>
+    </div>
   </HeroSection>
 
   <CelestialLine />

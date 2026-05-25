@@ -12,7 +12,7 @@ const embedSrc = videoId
   : `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&origin=${origin}`;
 ---
 
-<div id="yt-player-section" class="relative aspect-video rounded-xl overflow-hidden bg-surface-container-lowest" data-playlist-id={playlistId}>
+<div id="yt-player-section" class="relative aspect-video rounded-xl overflow-hidden bg-surface-container-lowest shadow-[0_40px_100px_-20px_rgba(0,0,0,0.6)]" data-playlist-id={playlistId}>
   <iframe
     id="yt-player"
     src={embedSrc}

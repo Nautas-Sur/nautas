@@ -3,7 +3,7 @@ title: El Nexo
 kind: Podcast
 pillar: consciencia
 status: completed
-featured: true
+featured: false
 year: En curso
 tagline:
   es: Conectando Universos. Un espacio dedicado a la tarea del despertar y al
@@ -174,57 +174,6 @@ episodes:
 
         As a countermeasure, he, along with numerous lovers of Latin American cinema, offers an open space to creatives from all areas who are interested in learning, sharing, enriching themselves through exchange, and producing original cinematic work in the "Audiovisual Cluster" (an independent organization in which many countries throughout the Americas participate).
     videoId: 0CgUJZyVPUQ
-  - number: 5
-    title:
-      es: Lidia Grammatico - La Sabiduría del Eneagrama
-      en: Lidia Grammatico - The Wisdom of the Enneagram
-    description:
-      es: >-
-        En esta entrevista conversamos con Lidia Grammatico, educadora,
-        psicoterapeuta y referente de las psicoterapias integrativas de Claudio
-        Naranjo. Es fundadora y presidenta de la Asociación Argentina Programa
-        SAT y responsable del Programa SAT© en nuestro país.
-
-        Como desarrolladora en el ámbito de la educación, participó en proyectos transformadores en escuelas públicas de Argentina, integrando elementos de su formación psicoterapeútica. 
-
-
-        En esta ocasión, Lidia nos introduce en el antiguo código del Eneagrama de modo simple y comprensible, aunque su significado e influencia en el psiquismo requiera una profundización mayor que se da en el contexto de los retiros especializados que propone el Programa SAT©. 
-
-        Además de la presentación del Enegrama, la conversación con Lidia Grammatico abrazó muchos temas sensibles, expuestos con entusiasmo apasionado y profunda honestidad. 
-
-
-        El mundialmente reconocido autor, psiquiatra y creador del Programa SAT, el Dr. Claudio Naranjo – también entrevistado por Nautas en la serie documental `Voces de la Tierra´-, confió la continuidad y la coordinación de dicha propuesta de autoconocimiento a Lidia, expresando su decisión en testamento legal, del siguiente modo:
-
-
-        «En Argentina nació el programa SAT a través de Lidia Grammatico, talentosa terapeuta que se entusiasmó con mi visión, aunque desde hace algunos años, y al sentir que mis energías declinaban, ha debido continuar sin mí...» Claudio Naranjo (abril 2019).
-
-
-        Agradecemos a Lidia Grammatico su receptividad y disposición a ofrecernos estas entrevistas, y en especial por honrarnos con su afecto y amistad.
-      en: >-
-        In this interview, we speak with Lidia Grammatico, educator,
-        psychotherapist, and a leading figure in Claudio Naranjo's integrative
-        psychotherapies. She is the founder and president of the Argentine
-        Association of the SAT Program and is responsible for the SAT© Program
-        in our country.
-
-
-        As a developer in the field of education, she has participated in transformative projects in public schools in Argentina, integrating elements of her psychotherapeutic training.
-
-
-        On this occasion, Lidia introduces us to the ancient Enneagram code in a simple and understandable way, although its meaning and influence on the psyche require a deeper exploration, which is provided in the context of the specialized retreats offered by the SAT© Program.
-
-
-        In addition to the presentation of the Enneagram, the conversation with Lidia Grammatico touched on many sensitive topics, presented with passionate enthusiasm and profound honesty.
-
-
-        The world-renowned author, psychiatrist, and creator of the SAT Program, Dr. Claudio Naranjo—also interviewed by Nautas in the documentary series "Voices of the Earth"—entrusted the continuation and coordination of this self-knowledge initiative to Lidia, expressing his decision in his legal will as follows:
-
-
-        "The SAT Program was born in Argentina through Lidia Grammatico, a talented therapist who embraced my vision, although for some years now, as I felt my energy waning, she has had to continue without me..." Claudio Naranjo (April 2019).
-
-
-        We thank Lidia Grammatico for her receptiveness and willingness to grant us these interviews, and especially for honoring us with her affection and friendship.
-    videoId: 2V3YvCN5snk
 featureCards:
   - icon: psychology
     title:

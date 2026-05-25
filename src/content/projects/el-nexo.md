@@ -31,6 +31,7 @@ description:
 
 
     We refer to a Nexus as a deep connective tissue that reconnects what has been fragmented in the mind and society. We integrate knowledge from all times, updated through teachings of nurturing influence and continuous learning.
+heroImage: /images/logo-el-nexo-junio-2024.jpg
 featuredVideoId: ""
 playlistId: PLxKjsdwjZB4yepe57mkKaaEoBkvJuHEzU
 episodes:

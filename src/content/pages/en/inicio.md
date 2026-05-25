@@ -2,7 +2,7 @@
 title: Nautas — Home
 description: Nautas — Navigators on the thresholds of transformation.
 hero_eyebrow: Argentine non-profit civil association
-hero_title: Arts, Sciences and Consciousness
+hero_title: "Arts, Sciences <em>and Consciousness</em>"
 hero_subtitle: >-
   Nautas is an Argentine civil association dedicated to bridging the gap between
   scientific exploration, artistic expression, and inquiry into human

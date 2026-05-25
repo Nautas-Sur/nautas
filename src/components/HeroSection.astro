@@ -26,24 +26,41 @@ const {
       <!-- Star field -->
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
         <svg class="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="8%" cy="15%" r="1.4" fill="#e1e1f0" opacity="0.6"/>
-          <circle cx="22%" cy="28%" r="1" fill="#e1e1f0" opacity="0.45"/>
-          <circle cx="78%" cy="12%" r="1.8" fill="#e1e1f0" opacity="0.7"/>
-          <circle cx="91%" cy="35%" r="1.2" fill="#e1e1f0" opacity="0.55"/>
-          <circle cx="65%" cy="82%" r="1.3" fill="#e1e1f0" opacity="0.6"/>
-          <circle cx="12%" cy="72%" r="1.5" fill="#e1e1f0" opacity="0.55"/>
-          <circle cx="85%" cy="65%" r="1" fill="#e1e1f0" opacity="0.4"/>
-          <circle cx="45%" cy="92%" r="1.1" fill="#e1e1f0" opacity="0.45"/>
-          <circle cx="95%" cy="85%" r="0.9" fill="#e1e1f0" opacity="0.45"/>
-          <circle cx="35%" cy="5%" r="1.3" fill="#e1e1f0" opacity="0.55"/>
+          <!-- White stars -->
+          <circle class="star" style="--op:0.75;--dur:2.8s;--del:0s"   cx="5%"  cy="8%"  r="1.4" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.60;--dur:3.2s;--del:0.7s" cx="15%" cy="22%" r="1.0" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.80;--dur:2.5s;--del:1.4s" cx="28%" cy="10%" r="1.9" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.65;--dur:3.8s;--del:0.3s" cx="42%" cy="5%"  r="1.1" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.85;--dur:2.2s;--del:2.1s" cx="55%" cy="18%" r="1.6" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.90;--dur:3.0s;--del:0.9s" cx="72%" cy="7%"  r="2.1" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.70;--dur:2.6s;--del:1.8s" cx="85%" cy="24%" r="1.3" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.75;--dur:3.5s;--del:0.5s" cx="94%" cy="40%" r="1.7" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.65;--dur:4.0s;--del:2.8s" cx="88%" cy="62%" r="1.1" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.75;--dur:2.9s;--del:1.2s" cx="78%" cy="78%" r="1.9" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.60;--dur:3.3s;--del:3.5s" cx="60%" cy="90%" r="1.4" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.70;--dur:2.7s;--del:0.6s" cx="45%" cy="84%" r="1.2" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.65;--dur:4.2s;--del:1.9s" cx="30%" cy="93%" r="1.6" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.75;--dur:2.4s;--del:2.4s" cx="18%" cy="80%" r="1.3" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.70;--dur:3.6s;--del:0.2s" cx="8%"  cy="57%" r="1.7" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.55;--dur:3.1s;--del:3.0s" cx="3%"  cy="36%" r="1.0" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.50;--dur:4.5s;--del:1.5s" cx="38%" cy="46%" r="0.9" fill="#e1e1f0"/>
+          <circle class="star" style="--op:0.55;--dur:3.9s;--del:2.2s" cx="65%" cy="52%" r="1.1" fill="#e1e1f0"/>
+          <!-- Celestial blue stars -->
+          <circle class="star" style="--op:0.65;--dur:3.4s;--del:0.8s" cx="20%" cy="42%" r="1.4" fill="#a3cce9"/>
+          <circle class="star" style="--op:0.60;--dur:2.6s;--del:1.7s" cx="50%" cy="32%" r="1.2" fill="#a3cce9"/>
+          <circle class="star" style="--op:0.70;--dur:3.7s;--del:0.4s" cx="75%" cy="56%" r="1.6" fill="#a3cce9"/>
+          <circle class="star" style="--op:0.65;--dur:2.8s;--del:2.6s" cx="93%" cy="76%" r="1.3" fill="#a3cce9"/>
+          <circle class="star" style="--op:0.70;--dur:3.0s;--del:3.2s" cx="10%" cy="94%" r="1.5" fill="#a3cce9"/>
+          <circle class="star" style="--op:0.55;--dur:4.1s;--del:1.0s" cx="57%" cy="67%" r="1.0" fill="#a3cce9"/>
+          <circle class="star" style="--op:0.75;--dur:2.3s;--del:3.8s" cx="35%" cy="26%" r="1.7" fill="#a3cce9"/>
         </svg>
       </div>
       <div class="space-y-6">
         {eyebrow && (
           <span class="font-label text-xs tracking-[0.3em] text-tertiary uppercase">{eyebrow}</span>
         )}
-        <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight text-on-surface [&_em]:italic [&_em]:text-primary">
-          {title}
+        <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight text-on-surface [&_em]:not-italic [&_em]:text-primary">
+          <Fragment set:html={title} />
         </h1>
         {subtitle && (
           <p class="font-body text-lg text-on-surface-variant max-w-lg leading-relaxed">{subtitle}</p>
@@ -70,7 +87,7 @@ const {
       {eyebrow && (
         <span class="font-label text-xs tracking-[0.3em] text-tertiary uppercase block mb-6">{eyebrow}</span>
       )}
-      <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight mb-8">{title}</h1>
+      <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 [&_em]:not-italic [&_em]:text-primary"><Fragment set:html={title} /></h1>
       {subtitle && (
         <p class="font-body text-xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
       )}
@@ -81,7 +98,7 @@ const {
       {eyebrow && (
         <span class="font-label text-xs tracking-[0.3em] text-tertiary uppercase block mb-6">{eyebrow}</span>
       )}
-      <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 max-w-4xl">{title}</h1>
+      <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight mb-8 max-w-4xl [&_em]:not-italic [&_em]:text-primary"><Fragment set:html={title} /></h1>
       {subtitle && (
         <p class="font-body text-xl text-on-surface-variant max-w-3xl leading-relaxed">{subtitle}</p>
       )}
@@ -89,3 +106,16 @@ const {
     </section>
   )
 }
+
+<style>
+  .star {
+    opacity: var(--op, 0.6);
+    animation: twinkle var(--dur, 3s) ease-in-out infinite;
+    animation-delay: var(--del, 0s);
+  }
+
+  @keyframes twinkle {
+    0%, 100% { opacity: var(--op, 0.6); }
+    50%       { opacity: calc(var(--op, 0.6) * 0.12); }
+  }
+</style>

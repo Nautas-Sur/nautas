@@ -85,9 +85,9 @@ const pillars = [
 
   <!-- Three Pillars -->
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
-    <h2 class="font-headline text-4xl md:text-5xl text-center mb-16">
-      {d?.pillars_title ?? (locale === 'en' ? 'Three Pillars, One Universe' : 'Tres Pilares, Un Universo')}
-    </h2>
+    <h2 class="font-headline text-4xl md:text-5xl text-center mb-16 [&_em]:not-italic [&_em]:text-primary"
+      set:html={d?.pillars_title ?? (locale === 'en' ? 'Three Pillars, One Universe' : 'Tres Pilares, Un Universo')}
+    />
     <div class="grid md:grid-cols-3 gap-8">
       {pillars.map((p) => (
         <div class="group p-8 md:p-10 rounded-2xl bg-surface-container-low border border-outline-variant/10 hover:bg-surface-container-high transition-all duration-300">
@@ -104,9 +104,9 @@ const pillars = [
   <!-- Featured Production -->
   {featured && (
     <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
-      <h2 class="font-headline text-4xl md:text-5xl mb-12">
-        {locale === 'en' ? 'Featured Production' : 'Producción Destacada'}
-      </h2>
+      <h2 class="font-headline text-4xl md:text-5xl mb-12 [&_em]:not-italic [&_em]:text-primary"
+        set:html={locale === 'en' ? 'Featured <em>Production</em>' : 'Producción <em>Destacada</em>'}
+      />
       <div class="grid md:grid-cols-2 gap-12 items-center">
         <div class="aspect-video rounded-xl overflow-hidden bg-surface-container-lowest relative">
           {featured.data.playlistId ? (

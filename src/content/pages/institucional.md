@@ -3,11 +3,11 @@ title: Nautas — Institucional
 description: NAUTAS es una entidad civil, de bien público, sin fines de lucro,
   dedicada a la promoción y difusión del arte, la ciencia y la consciencia
   humana.
-hero_title: Una nave compartida, un mismo destino.
+hero_title: "Una nave compartida, <em>un mismo destino.</em>"
 hero_subtitle: NAUTAS es una asociación argentina sin fines de lucro dedicada a
   la producción audiovisual y la investigación cultural en la intersección del
   arte, la ciencia y la consciencia.
-mission_title: Nuestro Propósito
+mission_title: "Nuestro <em>Propósito</em>"
 mission_p1: "NAUTAS es una entidad civil, de bien público, sin fines de lucro,
   cuya finalidad social es la promoción y difusión de contenidos que responden a
   tres áreas principales: arte, ciencia e investigaciones acerca del espíritu y
@@ -32,7 +32,7 @@ mission_p5: Nautas promueve, asimismo, el desarrollo de nuevas expresiones que
   del mundo, difundiendo su conocimiento en forma educativa y lúdica,
   estimulando la cooperación y la creatividad.
 mission_cta: Los invitamos a participar activa y comprometidamente con nuestras propuestas.
-vision_title: Visión Participativa
+vision_title: "Visión <em>Participativa</em>"
 vision_p1: El propósito de Nautas no está "definido", no es algo a alcanzar sino
   algo a construir entre todos conjuntamente. Porque un nuevo paradigma ha de
   emerger precisamente como algo diferente de lo hasta ahora conocido.
@@ -57,8 +57,8 @@ vision_p5: No hay manual de instrucciones para quienes se adentren en las
   que pueden hacer de nuestro viaje una pesadilla o una aventura conjunta en la
   cual descubrimos lo mejor que cada uno puede darse a sí mismo y a los
   compañeros de ruta.
-team_title: Nuestro Equipo
+team_title: "Nuestro <em>Equipo</em>"
 team_subtitle: Una tripulación multidisciplinaria unida por la misma órbita.
-cta_title: ¿Querés acompañar el rumbo?
+cta_title: "¿Querés acompañar <em>el rumbo?</em>"
 cta_subtitle: Escribinos, sumate al equipo o explorá nuestros proyectos.
 ---

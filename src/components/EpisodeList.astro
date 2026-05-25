@@ -27,10 +27,10 @@ const { episodes, playlistId, title, countLabel, locale = 'es' } = Astro.props;
       )}
     </div>
   )}
-  <div class="space-y-2 max-h-[600px] overflow-y-auto pr-1">
+  <div class="space-y-2 max-h-[680px] overflow-y-auto pr-1">
     {episodes.map((ep, i) => (
       <div
-        class={`episode-item group p-4 md:p-5 rounded-lg transition-all cursor-pointer border-l-2 ${
+        class={`episode-item group rounded-lg transition-all cursor-pointer border-l-2 overflow-hidden ${
           ep.active
             ? 'bg-surface-container-high border-primary'
             : 'bg-surface-container-low border-transparent hover:border-outline hover:bg-surface-container-high'
@@ -38,20 +38,38 @@ const { episodes, playlistId, title, countLabel, locale = 'es' } = Astro.props;
         data-video-id={ep.videoId ?? ''}
         data-index={i}
       >
-        <div class="flex justify-between items-start mb-2">
-          <span class={`ep-num font-label text-[10px] tracking-widest uppercase ${ep.active ? 'text-primary' : 'text-on-surface-variant'}`}>
-            {locale === 'en' ? 'Episode' : 'Episodio'} {String(ep.number).padStart(2, '0')}
-          </span>
-          {ep.videoId && (
-            <span class="material-symbols-outlined text-xs text-on-surface-variant group-hover:text-primary transition-colors">play_circle</span>
+        {/* Thumbnail */}
+        {ep.videoId && (
+          <div class="relative w-full overflow-hidden" style="aspect-ratio:16/9">
+            <img
+              src={`https://img.youtube.com/vi/${ep.videoId}/mqdefault.jpg`}
+              alt=""
+              loading="lazy"
+              class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low/80 to-transparent pointer-events-none"/>
+            <div class="absolute bottom-2 right-2">
+              <span class="material-symbols-outlined text-xl text-primary drop-shadow" style="font-variation-settings:'FILL' 1;">play_circle</span>
+            </div>
+          </div>
+        )}
+        {/* Content */}
+        <div class="p-4 md:p-5">
+          <div class="flex justify-between items-start mb-2">
+            <span class={`ep-num font-label text-[10px] tracking-widest uppercase ${ep.active ? 'text-primary' : 'text-on-surface-variant'}`}>
+              {locale === 'en' ? 'Episode' : 'Episodio'} {String(ep.number).padStart(2, '0')}
+            </span>
+            {!ep.videoId && (
+              <span class="material-symbols-outlined text-xs text-on-surface-variant group-hover:text-primary transition-colors">play_circle</span>
+            )}
+          </div>
+          <h3 class={`ep-title font-headline text-base mb-1 group-hover:text-primary transition-colors ${ep.active ? 'text-primary' : ''}`}>
+            {ep.title}
+          </h3>
+          {ep.description && (
+            <p class="text-xs text-on-surface-variant line-clamp-2 font-light">{ep.description}</p>
           )}
         </div>
-        <h3 class={`ep-title font-headline text-base mb-1 group-hover:text-primary transition-colors ${ep.active ? 'text-primary' : ''}`}>
-          {ep.title}
-        </h3>
-        {ep.description && (
-          <p class="text-xs text-on-surface-variant line-clamp-2 font-light">{ep.description}</p>
-        )}
       </div>
     ))}
   </div>

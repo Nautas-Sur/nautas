@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,300;0,400;0,700;1,300&amp;family=Manrope:wght@200;300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#11131d",
+                        "primary-fixed": "#c7e7ff",
+                        "on-tertiary": "#17324d",
+                        "on-surface": "#e1e1f0",
+                        "tertiary-fixed-dim": "#afc9ea",
+                        "surface-bright": "#373844",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#204b63",
+                        "on-secondary-container": "#bbbcb8",
+                        "on-secondary-fixed": "#1a1c1a",
+                        "secondary-fixed": "#e2e3df",
+                        "secondary-fixed-dim": "#c6c7c3",
+                        "primary-fixed-dim": "#a3cce9",
+                        "on-primary-fixed": "#001e2e",
+                        "outline-variant": "#44474c",
+                        "surface-tint": "#a3cce9",
+                        "outline": "#8e9196",
+                        "error-container": "#93000a",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#191b26",
+                        "on-secondary-fixed-variant": "#454745",
+                        "secondary-container": "#4a4c49",
+                        "on-background": "#e1e1f0",
+                        "inverse-primary": "#3a637c",
+                        "tertiary-container": "#001b33",
+                        "tertiary-fixed": "#d1e4ff",
+                        "surface-container-highest": "#32343f",
+                        "inverse-on-surface": "#2e303b",
+                        "inverse-surface": "#e1e1f0",
+                        "surface-container": "#1d1f2a",
+                        "surface-variant": "#32343f",
+                        "surface-container-high": "#282934",
+                        "primary-container": "#001d2c",
+                        "on-tertiary-container": "#6b85a4",
+                        "on-error": "#690005",
+                        "primary": "#a3cce9",
+                        "on-primary-container": "#6087a2",
+                        "on-tertiary-fixed": "#001d36",
+                        "on-secondary": "#2f312e",
+                        "on-primary": "#00344c",
+                        "tertiary": "#afc9ea",
+                        "secondary": "#c6c7c3",
+                        "on-surface-variant": "#c4c6cc",
+                        "surface-container-lowest": "#0c0e18",
+                        "surface": "#11131d",
+                        "background": "#11131d",
+                        "on-tertiary-fixed-variant": "#2f4865"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "fontFamily": {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            background-color: #11131d;
+            color: #e1e1f0;
+            font-family: 'Manrope', sans-serif;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-panel {
+            background: rgba(17, 19, 29, 0.6);
+            backdrop-filter: blur(20px);
+        }
+        .text-glow {
+            text-shadow: 0 0 20px rgba(163, 204, 233, 0.3);
+        }
+        .celestial-gradient {
+            background: radial-gradient(circle at top right, #001d2c 0%, #11131d 70%);
+        }
+        .divider-gradient {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #44474c 50%, transparent 100%);
+        }
+    </style>
+</head>
+<body class="bg-background selection:bg-primary/30">
+<!-- TopNavBar -->
+<nav class="bg-slate-950/60 backdrop-blur-xl fixed top-0 w-full z-50 tonal-shift-bg-slate-900/40">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto w-full">
+<div class="flex items-center gap-4">
+<img alt="Stellar Horizon Logo" class="h-10 w-auto" data-alt="minimalist geometric logo for a science NGO featuring clean white lines and celestial motifs on a transparent background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-eqi1cCcXKtG7G3PY2YIrbnH3gaoLPznL7MRvHmABKa09pgflByrOTZnbrtAfcQF2BCgPtW_LoxEVTlK2W3t7eC289yN_kDUaddN5-LPbSCYgTYFD0IsK77XHKDILu5PvtA7SnNeKU7KF47F4nYTFFVY-4f3cJIIt61BaTCFH08MfxoPL-i8orqTwl7McNuFZ_u4TnEkowwgq7k3S9UIRzdyKfXqi00aPPPxwc1AsYcWkXxygDycN5OMKOc7OjKrqNnkEH9-Y9w"/>
+<span class="text-2xl font-light italic text-sky-200 dark:text-sky-100 font-['Noto_Serif'] tracking-tight">Stellar Horizon</span>
+</div>
+<div class="hidden md:flex items-center space-gap-8 gap-8 font-['Noto_Serif'] tracking-tight">
+<a class="text-slate-400 font-medium pb-1 hover:text-sky-100 transition-colors duration-300" href="#">Observatory</a>
+<a class="text-sky-300 font-semibold border-b border-sky-300/30 pb-1 hover:text-sky-100 transition-colors duration-300" href="#">Expeditions</a>
+<a class="text-slate-400 font-medium pb-1 hover:text-sky-100 transition-colors duration-300" href="#">Archives</a>
+<a class="text-slate-400 font-medium pb-1 hover:text-sky-100 transition-colors duration-300" href="#">Consciousness</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-sky-200 hover:text-sky-100 transition-opacity active:opacity-80">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 min-h-screen celestial-gradient">
+<!-- Hero Section: Cinematic Video Player -->
+<section class="max-w-7xl mx-auto px-8 pt-12 pb-16">
+<div class="relative aspect-video rounded-xl overflow-hidden bg-surface-container-lowest group cursor-pointer shadow-[0_40px_100px_-20px_rgba(0,0,0,0.6)]">
+<img class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-1000" data-alt="breathtaking cinematic landscape of a misty mountain range at night under a star-filled sky with deep blue and indigo tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIfHTKgFf5CvWrFddKjm-LorsY1NGYc_p0xvGAz8MKuxEtAkJnLIL5f7ORWJOWgYn5GDVJaXlomDDNAKWA0muL_T4Kw7HZKUk3U_F_1vXeQ8K0GJ6nh148xHntNYKCc1voWINtL9OzvmiIbNyGSyxUfiXK1nVxgi7fBrihd7jqPARNYuhoI-mwKYzGFc07h_ZeZtzaMisyDdjF6ju9n4bJuqBryvuKf9fXu1ANTrOLDktpBO6pvzp01_jExDACDWStBb2g5fYHHA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface-dim via-transparent to-transparent"></div>
+<!-- Play Interface -->
+<div class="absolute inset-0 flex flex-col items-center justify-center">
+<div class="w-24 h-24 rounded-full border border-primary/30 flex items-center justify-center bg-surface-dim/40 backdrop-blur-md group-hover:bg-primary transition-all duration-500">
+<span class="material-symbols-outlined text-5xl text-primary group-hover:text-on-primary transition-colors pl-2" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<p class="mt-6 font-label uppercase tracking-[0.4em] text-primary-fixed-dim opacity-70 group-hover:opacity-100 transition-opacity">Ver Documental Completo</p>
+</div>
+<!-- Floating Label -->
+<div class="absolute bottom-8 left-8 flex items-center gap-3">
+<div class="w-3 h-3 rounded-full bg-error animate-pulse shadow-[0_0_10px_#ffb4ab]"></div>
+<span class="font-label text-xs tracking-widest uppercase text-on-surface/80">Estreno Exclusivo</span>
+</div>
+</div>
+</section>
+<!-- Content Grid -->
+<section class="max-w-7xl mx-auto px-8 pb-24 grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Main Content: Detailed Narrative -->
+<div class="lg:col-span-8 space-y-12">
+<div class="space-y-6">
+<h1 class="text-6xl font-headline font-light tracking-tight text-glow leading-tight">Voces de la Tierra</h1>
+<div class="flex items-center gap-6 font-label text-sm tracking-widest text-on-tertiary-container uppercase">
+<span>Serie Documental</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>Exploración Terrestre</span>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<span>Legado Humano</span>
+</div>
+</div>
+<div class="divider-gradient opacity-30"></div>
+<div class="prose prose-invert max-w-none font-body font-light text-lg leading-relaxed text-on-surface-variant space-y-8">
+<p class="text-xl font-medium text-on-surface border-l-2 border-primary/40 pl-6 italic">
+                        El propósito de esta serie documental es reunir la esencia de sabiduría contenida en culturas ancestrales y tradiciones espirituales como también la descubierta en las últimas exploraciones de la humanidad en el área de la ciencia, la consciencia y las artes en todo el mundo.
+                    </p>
+<p>
+                        Aunar las voces que surgen de todos los rincones del planeta y nos hablan de valores y prácticas que pueden ayudar a resolver los incontables problemas que enfrentamos como colectivo humano en la actualidad. Esta recopilación de profundos mensajes implica también la transmisión de un legado humano registrado para beneficio de las generaciones actuales y futuras.
+                    </p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8 py-8">
+<div class="bg-surface-container-low p-8 rounded-lg border border-outline-variant/10 space-y-4">
+<span class="material-symbols-outlined text-primary text-3xl">diversity_3</span>
+<h3 class="font-headline text-xl">Sabiduría Ancestral</h3>
+<p class="text-sm opacity-70">Combinamos el conocimiento de antiguas civilizaciones con visiones filosóficas y espirituales nuevas y creativas.</p>
+</div>
+<div class="bg-surface-container-low p-8 rounded-lg border border-outline-variant/10 space-y-4">
+<span class="material-symbols-outlined text-primary text-3xl">biotech</span>
+<h3 class="font-headline text-xl">Exploración Científica</h3>
+<p class="text-sm opacity-70">Integración de activistas en los campos de la ciencia, tecnología e investigación de la conciencia.</p>
+</div>
+</div>
+<p>
+                        El énfasis intencional en este documental es dar voz al planeta Tierra a través de sus mensajeros: mujeres y hombres que, desde diferentes perspectivas, condiciones y transmisión de conocimiento, están actuando para propiciar el desenvolvimiento de una civilización más equilibrada y sensible. Todos ellos son activistas de cambios reales en los campos de la educación, la salud, el medio ambiente, el arte, la ciencia y la tecnología, y también la espiritualidad o la investigación de la conciencia.
+                    </p>
+<p>
+                        El objetivo vital es acercar la experiencia y el ejemplo viviente de aquellos cuyas voces anuncian la existencia de una inteligencia más vasta y compleja que nos interconecta a todos, y construir puentes entre ellos y todas las personas afines en propósito.
+                    </p>
+<div class="bg-surface-container-highest/30 p-10 rounded-xl space-y-6">
+<h3 class="font-headline text-2xl font-light text-primary">Voces Destacadas</h3>
+<div class="flex flex-wrap gap-x-4 gap-y-2 text-sm font-label uppercase tracking-wider text-on-surface-variant">
+<span class="bg-surface-container px-3 py-1 rounded">Claudio Naranjo</span>
+<span class="bg-surface-container px-3 py-1 rounded">Rupert Sheldrake</span>
+<span class="bg-surface-container px-3 py-1 rounded">Nora Bateson</span>
+<span class="bg-surface-container px-3 py-1 rounded">Yann Arthus-Bertrand</span>
+<span class="bg-surface-container px-3 py-1 rounded">Satish Kumar</span>
+<span class="bg-surface-container px-3 py-1 rounded">Duane Elgin</span>
+<span class="bg-surface-container px-3 py-1 rounded">Shinoda Bolen</span>
+<span class="bg-surface-container px-3 py-1 rounded">Eugenio Carutti</span>
+<span class="bg-surface-container px-3 py-1 rounded">Fernando Callejón</span>
+<span class="bg-surface-container px-3 py-1 rounded">Joanna Macy</span>
+</div>
+</div>
+<p>
+                        Esos ejemplos pueden inspirarnos a hacer que la transformación de las condiciones humanas y sus vínculos con el ecosistema sea una prioridad, dando lugar a un coraje renovado para vivir una existencia plena de significado y una experiencia individual y colectiva más digna y armoniosa.
+                    </p>
+</div>
+</div>
+<!-- Sidebar: Related Projects / Episodes -->
+<aside class="lg:col-span-4 space-y-12">
+<div class="sticky top-32 space-y-10">
+<h2 class="font-headline text-2xl font-light italic text-sky-200">Otros Episodios</h2>
+<div class="space-y-8">
+<!-- Related Item 1 -->
+<div class="group cursor-pointer">
+<div class="relative h-48 rounded-lg overflow-hidden bg-surface-container mb-4">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" data-alt="abstract close-up of cracked earth textures with subtle glowing orange light appearing from the fissures at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwrihRUtyCE8QKFRd9P1mKQHGCSfmszhdzTVL6H0jOZeppWcuSkmu8J9y2bJCILJTHRSg6G8yqAqL0H99ruxs2m0dZO7yL84apSNPxStuReoVXze_1vRimoMo9jqJ3cMPfADDyegqrnfz21IYyLSNsmUbq92eRgaqAJXfYK0Mjj7gOXXAXGPpsoZ4KW4B7J8_ryeXG3Bol5Fr_B_WacNZVTkOt6ejlR-zi1bUGwWkK3T9L29R5LUtccKTebYYi7tgWal9zDT83SA"/>
+<div class="absolute inset-0 bg-surface-dim/20"></div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-label text-xs uppercase tracking-widest text-primary-fixed-dim">Pulso Terrestre</span>
+<span class="text-xs text-outline">Vol. 13</span>
+</div>
+<h3 class="font-headline text-lg group-hover:text-primary transition-colors">La Frecuencia del Magma</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2">Explorando las resonancias electromagnéticas emitidas por los volcanes activos de la cordillera.</p>
+</div>
+</div>
+<!-- Related Item 2 -->
+<div class="group cursor-pointer">
+<div class="relative h-48 rounded-lg overflow-hidden bg-surface-container mb-4">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 opacity-80" data-alt="ethereal deep sea bioluminescence of jellyfish glowing in dark indigo water with soft particles resembling a nebula" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAORZORDjXLa0baB0YcJinh0pR-p362OmnOnyY2ErqA9NwK3cSXXb6uADGSu6WWeTxQgIjeeEV-fgqj7AGzrNuCB-sIGtZKRBoKcL54mzfzKUGKi2hppNUQz87Hi4v0HfbHIWTAXdVCBeKOWrpMX1D_ICPSaEWu4OtD7_-H-IPaMtTVDGIl3xMftBrulTWSUm4aBm9_LYlZbpmAj_PPqdSw34jRQGv_Od011vrIusbHc-GM5HCflAIN6gFQ8Buzo2Qm--Jy5dUGRw"/>
+<div class="absolute inset-0 bg-surface-dim/20"></div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between items-center">
+<span class="font-label text-xs uppercase tracking-widest text-primary-fixed-dim">Abismo Profundo</span>
+<span class="text-xs text-outline">Vol. 07</span>
+</div>
+<h3 class="font-headline text-lg group-hover:text-primary transition-colors">Bioluminiscencia Consciente</h3>
+<p class="text-sm text-on-surface-variant line-clamp-2">Un estudio sobre la comunicación lumínica en las profundidades de la fosa oceánica.</p>
+</div>
+</div>
+</div>
+<!-- Call to Action -->
+<div class="bg-surface-container-high p-8 rounded-xl border border-outline-variant/10">
+<h4 class="font-headline text-xl mb-4">Únete a la Misión</h4>
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Apoya la transmisión de este legado humano y accede a contenidos exclusivos del Orbit.</p>
+<button class="w-full py-4 bg-primary text-on-primary font-label text-xs uppercase tracking-[0.2em] rounded-md hover:bg-primary-fixed-dim transition-colors shadow-lg">Suscribirse al Orbit</button>
+</div>
+</div>
+</aside>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-950 w-full relative bottom-0">
+<div class="gradient-fade-border h-px w-full bg-gradient-to-r from-transparent via-slate-700 to-transparent"></div>
+<div class="flex flex-col items-center justify-center py-12 px-8 space-y-6 text-center max-w-screen-2xl mx-auto">
+<div class="text-lg font-['Noto_Serif'] text-slate-200">Stellar Horizon</div>
+<div class="flex flex-wrap justify-center gap-8 font-['Manrope'] text-xs font-light tracking-widest">
+<a class="text-slate-500 hover:text-sky-200 transition-colors" href="#">Ethics &amp; Science</a>
+<a class="text-slate-500 hover:text-sky-200 transition-colors" href="#">Privacy</a>
+<a class="text-slate-500 hover:text-sky-200 transition-colors" href="#">Contact Orbit</a>
+<a class="text-slate-500 hover:text-sky-200 transition-colors" href="#">Journal</a>
+</div>
+<div class="font-['Manrope'] text-[10px] font-light tracking-widest text-slate-600">
+                © 2024 Celestial Observer NGO. All Rights Reserved.
+            </div>
+</div>
+</footer>
+</body></html>

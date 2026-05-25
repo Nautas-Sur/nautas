@@ -31,8 +31,7 @@ hero_subtitle: >-
 
 
   • The third enigma: of the Heart of Art—primarily expressed through creativity.
-pillars_title: Different Dimensions, One Source. Two-way bridges and passages
-  between Art, Science, and Consciousness.
+pillars_title: "Different Dimensions, <em>One Source.</em>"
 pillar_arte_title: Art
 pillar_arte_desc: >-
   Art: inspiration. Creative expressions that expand the limits of perception

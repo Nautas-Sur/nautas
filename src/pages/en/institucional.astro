@@ -29,8 +29,8 @@ team.sort((a, b) => a.data.order - b.data.order);
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
     <div class="grid md:grid-cols-12 gap-12">
       <div class="md:col-span-5">
-        <h2 class="font-headline text-4xl md:text-5xl mb-8 md:sticky md:top-32">
-          {d?.mission_title ?? ''}
+        <h2 class="font-headline text-4xl md:text-5xl mb-8 md:sticky md:top-32 [&_em]:not-italic [&_em]:text-primary">
+          <Fragment set:html={d?.mission_title ?? ''} />
         </h2>
         <div class="aspect-square rounded-full border border-primary/20 p-8 relative flex items-center justify-center">
           <div class="absolute inset-0 bg-primary/5 rounded-full animate-pulse"></div>
@@ -68,8 +68,8 @@ team.sort((a, b) => a.data.order - b.data.order);
     <div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant/10">
       <div class="grid md:grid-cols-2">
         <div class="p-8 md:p-16 lg:p-20 flex flex-col justify-center">
-          <h2 class="font-headline text-4xl md:text-5xl mb-10">
-            {d?.vision_title ?? ''}
+          <h2 class="font-headline text-4xl md:text-5xl mb-10 [&_em]:not-italic [&_em]:text-primary">
+            <Fragment set:html={d?.vision_title ?? ''} />
           </h2>
           <div class="space-y-6 text-on-surface-variant leading-relaxed text-base md:text-lg">
             {d?.vision_p1 && <p>{d.vision_p1}</p>}
@@ -107,8 +107,8 @@ team.sort((a, b) => a.data.order - b.data.order);
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
     <div class="flex flex-col md:flex-row justify-between items-end mb-14">
       <div class="max-w-xl">
-        <h2 class="font-headline text-4xl md:text-5xl mb-4">
-          {d?.team_title ?? ''}
+        <h2 class="font-headline text-4xl md:text-5xl mb-4 [&_em]:not-italic [&_em]:text-primary">
+          <Fragment set:html={d?.team_title ?? ''} />
         </h2>
         <p class="text-on-surface-variant text-lg">
           {d?.team_subtitle ?? ''}
@@ -134,8 +134,8 @@ team.sort((a, b) => a.data.order - b.data.order);
   <!-- CTA -->
   <section class="max-w-[1200px] mx-auto px-6 md:px-12 mb-20 text-center py-24 md:py-32 bg-nebula rounded-3xl relative overflow-hidden">
     <div class="relative z-10">
-      <h2 class="font-headline text-4xl md:text-5xl mb-8">
-        {d?.cta_title ?? ''}
+      <h2 class="font-headline text-4xl md:text-5xl mb-8 [&_em]:not-italic [&_em]:text-primary">
+        <Fragment set:html={d?.cta_title ?? ''} />
       </h2>
       <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-10">
         {d?.cta_subtitle ?? ''}

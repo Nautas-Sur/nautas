@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-primary-fixed": "#001e2e",
+                    "on-tertiary-container": "#6b85a4",
+                    "on-surface-variant": "#c4c6cc",
+                    "on-tertiary-fixed-variant": "#2f4865",
+                    "tertiary-container": "#001b33",
+                    "inverse-surface": "#e1e1f0",
+                    "on-secondary-fixed": "#1a1c1a",
+                    "on-surface": "#e1e1f0",
+                    "secondary-container": "#4a4c49",
+                    "surface-container-highest": "#32343f",
+                    "surface-bright": "#373844",
+                    "primary-fixed": "#c7e7ff",
+                    "secondary": "#c6c7c3",
+                    "primary": "#a3cce9",
+                    "primary-container": "#001d2c",
+                    "surface-variant": "#32343f",
+                    "on-tertiary-fixed": "#001d36",
+                    "outline": "#8e9196",
+                    "surface-tint": "#a3cce9",
+                    "inverse-on-surface": "#2e303b",
+                    "on-error": "#690005",
+                    "tertiary-fixed-dim": "#afc9ea",
+                    "outline-variant": "#44474c",
+                    "secondary-fixed": "#e2e3df",
+                    "surface-container-low": "#191b26",
+                    "on-secondary-fixed-variant": "#454745",
+                    "on-background": "#e1e1f0",
+                    "primary-fixed-dim": "#a3cce9",
+                    "error": "#ffb4ab",
+                    "surface-container-lowest": "#0c0e18",
+                    "surface-container-high": "#282934",
+                    "surface-container": "#1d1f2a",
+                    "on-secondary": "#2f312e",
+                    "inverse-primary": "#3a637c",
+                    "on-primary": "#00344c",
+                    "error-container": "#93000a",
+                    "surface-dim": "#11131d",
+                    "surface": "#11131d",
+                    "background": "#11131d",
+                    "on-primary-fixed-variant": "#204b63",
+                    "on-tertiary": "#17324d",
+                    "on-secondary-container": "#bbbcb8",
+                    "tertiary": "#afc9ea",
+                    "tertiary-fixed": "#d1e4ff",
+                    "on-primary-container": "#6087a2",
+                    "on-error-container": "#ffdad6",
+                    "secondary-fixed-dim": "#c6c7c3"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "fontFamily": {
+                    "headline": ["Noto Serif"],
+                    "body": ["Manrope"],
+                    "label": ["Manrope"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .bg-nebula {
+            background: radial-gradient(circle at 50% 50%, #001d2c 0%, #11131d 70%);
+        }
+        .celestial-line {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, #a3cce9 50%, transparent 100%);
+            opacity: 0.2;
+        }
+        .glass-panel {
+            background: rgba(29, 31, 42, 0.4);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(163, 204, 233, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-primary/30 selection:text-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-[#11131d]/60 backdrop-blur-xl">
+<div class="flex justify-between items-center px-12 py-6 max-w-[1440px] mx-auto">
+<div class="text-2xl font-headline italic text-[#a3cce9]">NAUTAS</div>
+<div class="hidden md:flex gap-10 items-center">
+<a class="font-headline text-lg tracking-wide text-[#e1e1f0]/70 hover:text-[#a3cce9] hover:bg-white/5 transition-all duration-300" href="#">Inicio</a>
+<a class="font-headline text-lg tracking-wide text-[#a3cce9] border-b border-[#a3cce9]/30 pb-1 hover:bg-white/5 transition-all duration-300" href="#">Institucional</a>
+<a class="font-headline text-lg tracking-wide text-[#e1e1f0]/70 hover:text-[#a3cce9] hover:bg-white/5 transition-all duration-300" href="#">Proyectos</a>
+<a class="font-headline text-lg tracking-wide text-[#e1e1f0]/70 hover:text-[#a3cce9] hover:bg-white/5 transition-all duration-300" href="#">Contacto</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded font-label text-sm uppercase tracking-widest hover:brightness-110 active:scale-95 transition-all duration-200">
+                Únete a la Misión
+            </button>
+</div>
+</nav>
+<main class="pt-32">
+<!-- Hero Section -->
+<section class="max-w-[1440px] mx-auto px-12 mb-32 grid md:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<span class="font-label text-xs tracking-[0.3em] text-tertiary uppercase">La Asociación Argentina</span>
+<h1 class="font-headline text-6xl md:text-8xl leading-tight">Navegando el <span class="italic">Cosmos</span> de la Ciencia Consciente.</h1>
+<p class="font-body text-lg text-on-surface-variant max-w-lg leading-relaxed">
+                    Nautas es una asociación argentina dedicada a cerrar la brecha entre la exploración científica, la expresión artística y la conciencia humana. Creemos que las estrellas no son solo para ser observadas, sino para ser entendidas como parte de nuestra identidad compartida.
+                </p>
+</div>
+<div class="relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low">
+<img alt="Deep space exploration" class="w-full h-full object-cover opacity-80 mix-blend-screen" data-alt="Stunning long exposure of the Milky Way galaxy over the Andes mountains, deep blues and purples with crisp stars" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8MIFPjcuHwsp5MPQ7KLa5drlsSIp8WPnnQoBO_s_OGL2nyj8TfZVveVDxAtS66dU1dayZSzrsaHFD_87MjU_4VM2g43Hy5SF0ZCjfLbntrD6xIXfHMTvDFXCacnMZ8ilvroAMXaF9pl0uuxlTvyK30gB1r4UFEYKkx6vmC0fjok48rOX7qLuqW5A_WfsSOk8-6EKe5h1pT_gFnI4UCPS_q93l0eJKrwUpLnIf99em4oY-vHcJucaScllj_UWwE3VE15aQLIejjw"/>
+</div>
+<div class="absolute -bottom-8 -left-8 p-8 bg-surface-container-highest/80 backdrop-blur-md rounded-lg max-w-xs border border-outline-variant/15">
+<div class="text-primary mb-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">explore</span>
+</div>
+<p class="text-sm font-body italic text-on-surface-variant">"Observar es participar. Somos el universo experimentándose a sí mismo a través del lente de la ciencia y el alma."</p>
+</div>
+</div>
+</section>
+<div class="celestial-line max-w-4xl mx-auto mb-32"></div>
+<!-- Propósito (Updated with TEXT_10) -->
+<section class="max-w-[1440px] mx-auto px-12 mb-40">
+<div class="grid md:grid-cols-12 gap-12">
+<div class="md:col-span-5">
+<h2 class="font-headline text-5xl mb-8 sticky top-32">Nuestro Propósito</h2>
+<div class="aspect-square rounded-full border border-primary/20 p-8 relative flex items-center justify-center">
+<div class="absolute inset-0 bg-primary/5 rounded-full animate-pulse"></div>
+<div class="text-center relative z-10">
+<span class="material-symbols-outlined text-primary text-6xl mb-4">auto_awesome</span>
+<p class="font-label text-xs uppercase tracking-[0.3em] text-tertiary">Evolución Cultural</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-7 space-y-8">
+<div class="glass-panel p-12 rounded-2xl">
+<p class="text-xl text-on-surface leading-relaxed mb-8 font-headline italic">
+                            NAUTAS es una entidad civil, de bien público, sin fines de lucro, cuya finalidad social es la promoción y difusión de contenidos que responden a tres áreas principales: arte, ciencia e investigaciones acerca del espíritu y la consciencia humana.
+                        </p>
+<div class="space-y-6 text-on-surface-variant leading-relaxed">
+<p>La vocación de sus integrantes es propiciar la comunicación de ideas y el desarrollo de actividades que favorezcan la interacción social y la integración de una gran diversidad cultural.</p>
+<p>Incluye entre sus premisas fundacionales el estudio y la aplicación de diferentes conocimientos que contemplen la búsqueda de una convivencia armoniosa y la mejor utilización de los recursos naturales. Esto implica la transmisión de conocimientos y prácticas concretas adecuadas a la realidad social de nuestro tiempo.</p>
+<p>Para el desarrollo de estas actividades se dedica a la producción de eventos, conferencias, cursos, talleres, contenidos audiovisuales e intervenciones artísticas de distinta índole, asociados a mensajes y personalidades mundialmente reconocidas por su intento de consolidación de nuevos paradigmas, edificadores de un mundo culturalmente más evolucionado, más consciente y en armonía con la naturaleza.</p>
+<p>Nautas promueve, asimismo, el desarrollo de nuevas expresiones que sirvan para incrementar la salud de la sociedad, del medio ambiente, la comunicación, las relaciones personales y las artes a través del continente y del mundo, difundiendo su conocimiento en forma educativa y lúdica, estimulando la cooperación y la creatividad.</p>
+<p class="text-primary font-bold">Los invitamos a participar activa y comprometidamente con nuestras propuestas.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Visión (Updated with TEXT_12) -->
+<section class="max-w-[1440px] mx-auto px-12 mb-40">
+<div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant/10">
+<div class="grid md:grid-cols-2">
+<div class="p-12 md:p-20 flex flex-col justify-center">
+<h2 class="font-headline text-5xl mb-12">Visión Participativa</h2>
+<div class="space-y-8 text-on-surface-variant leading-relaxed text-lg">
+<p>
+                                El propósito de Nautas no está "definido", no es algo a alcanzar sino algo a construir entre todos conjuntamente. Porque un nuevo paradigma ha de emerger precisamente como algo nuevo, diferente de lo hasta ahora conocido.
+                            </p>
+<p>
+                                En este sentido, el propósito que nos aúna es el de crear, como si compusiéramos una obra, una visión multi-participativa, en varios planos o dimensiones creativas, que pueda reflejar la vitalidad y la inteligencia que surgen cuando somos capaces de conectar con la verdad del corazón y movernos en el mundo desde allí.
+                            </p>
+<p>
+                                Más que instruir o enseñar, lo que nos convoca es poner a disposición del público hispanoparlante herramientas que posibiliten la participación y la comunicación libre e interactiva para crear una forma verdaderamente nueva de relacionarnos.
+                            </p>
+</div>
+</div>
+<div class="relative bg-surface-container-high flex flex-col items-center justify-center p-12 md:p-20 text-center border-l border-outline-variant/10">
+<div class="max-w-md">
+<div class="mb-12">
+<span class="material-symbols-outlined text-primary text-5xl mb-6">public</span>
+<blockquote class="font-headline text-3xl italic text-on-surface mb-6">
+                                    "Navegamos a bordo de una misma nave: el planeta Tierra. Nuestro destino está ligado al designio de su Espíritu."
+                                </blockquote>
+</div>
+<div class="space-y-6 text-sm text-on-surface-variant leading-relaxed text-left">
+<p>El planeta está dando señales de un movimiento que incumbe a todos sus habitantes. Existen varias formas posibles en que podemos responder a este movimiento y eso no significa que debamos "hacer" algo sino tal vez estar más receptivos y disponibles para responder al cambio que se está evidenciando a todo nuestro alrededor.</p>
+<p>No hay manual de instrucciones para quienes se adentren en las profundidades de un viaje de consciencia colectivo, pero hay algunas variables que pueden hacer de nuestro viaje una pesadilla o una aventura conjunta en la cual descubrimos lo mejor que cada uno puede darse a sí mismo y a los compañeros de ruta.</p>
+</div>
+</div>
+<!-- Background decoration -->
+<div class="absolute inset-0 opacity-5 pointer-events-none">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle cx="50" cy="50" fill="none" r="45" stroke="currentColor" stroke-dasharray="1 4"></circle>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Our Team (Asymmetric Editorial) -->
+<section class="max-w-[1440px] mx-auto px-12 mb-40">
+<div class="flex flex-col md:flex-row justify-between items-end mb-20">
+<div class="max-w-xl">
+<h2 class="font-headline text-5xl mb-6">Nuestro Equipo</h2>
+<p class="text-on-surface-variant text-lg">Una tripulación multidisciplinaria de astrofísicos, filósofos, artistas digitales y líderes comunitarios unidos por la misma órbita.</p>
+</div>
+<button class="mt-8 md:mt-0 font-label text-sm uppercase tracking-[0.2em] text-primary flex items-center gap-2 group">
+                    Ver Nómina Completa
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+</div>
+<div class="grid md:grid-cols-4 gap-8">
+<!-- Member 1 -->
+<div class="group">
+<div class="aspect-[3/4] overflow-hidden rounded-lg mb-6 relative">
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+<img alt="Team member" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Portrait of a mature man with thoughtful expression and silver hair, dark studio background with professional soft lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAiVTen4enbnUjXB7iRUkSRZOPP3pK8SIlKRnLdGi-c3sY0dz4PFv3mVbM892f-Vz1fDyxtSJpV19cqrfWOpSs8B5J3_8-jc8UGKHiv9SdFUKGNvGjos55RyT6RSvDObxJCLGKpvfKuu280Ds_d6_HBXBl_y6j1Hs5kS8NwGVM2QFty4ZVcsV5I9rO7g8z8meSyBBcA1soBljpclUhC2_aG61VmDOiZtUmHG4kJgIM1wPRhKDIpkCocYqi2h3AUSTMxUWkNTZwGMQ"/>
+</div>
+<h5 class="font-headline text-xl mb-1">Dr. Julián Rossi</h5>
+<p class="font-label text-xs uppercase tracking-widest text-tertiary">Director de Astrofísica</p>
+</div>
+<!-- Member 2 -->
+<div class="group mt-12">
+<div class="aspect-[3/4] overflow-hidden rounded-lg mb-6 relative">
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+<img alt="Team member" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Portrait of a confident woman with curly hair looking directly at camera, soft ambient blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKCBawp-7eXzVENKzn-gpx92pCLW6xzRi5dB7J7RJuYoHkO68LWOxeXSWA3il_WIcZ0BnouspAdgPsRs4bBTYT9gxL3p336JkKZnuSn_0WuD30ANhR8HB3okKQaSnx0wEA_vZTMb3XAdLdcAAVEQfYZLh0m6jg1MLqHLGWWNL7mA59_qk-VD7LWWSaZgGAahBkgI7Qa3hI40ZspW_N4ztsHuqSQLMtYLQs5mrw6IPjRkmqLe_VeSorwybs_aOAnsBExgiHar6o8w"/>
+</div>
+<h5 class="font-headline text-xl mb-1">Elena Moretti</h5>
+<p class="font-label text-xs uppercase tracking-widest text-tertiary">Curadora Cultural</p>
+</div>
+<!-- Member 3 -->
+<div class="group">
+<div class="aspect-[3/4] overflow-hidden rounded-lg mb-6 relative">
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+<img alt="Team member" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Portrait of a young man with glasses and creative style, warm directional light on face" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw-VBPsKKJk4rF_DBBfVcGOxh57uM7QUSXgLi_EaZ5v0fnCUGCBBTMy6DYF6VxtUYMLHOR9Qr42avQ0YH9I3W67Ywv8Hg8Hdot4nz6Ha-njA5syLZ2Uq6PUwGU9nCeZwZyV8m6SszZ7Q2npSiDh9h-BSzA2yofU0pby4ns4hyXuRA2n8vkJkJSkziywmly3mrSc55tslSo3h3oLiEmTxiz8xHtbcf9CHWFU3vR5ah19eNgBwG6JDoALvly4Dt2ZGe6JTOmNw152g"/>
+</div>
+<h5 class="font-headline text-xl mb-1">Lucas Benítez</h5>
+<p class="font-label text-xs uppercase tracking-widest text-tertiary">Visualización de Datos</p>
+</div>
+<!-- Member 4 -->
+<div class="group mt-12">
+<div class="aspect-[3/4] overflow-hidden rounded-lg mb-6 relative">
+<div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+<img alt="Team member" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Portrait of a woman scientist in professional attire, soft library background, natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvvGJLeS1WkFiystgvi3ahSwYymgIiEuqitknDihA_XOEjeqYdeaA4W6wx-lPr32J12CWmkstHLRsSaH5MaZaZrUSEzCTCJUpf4Gs2I0w3POnr2plRqb8MDN0g6u-hMHR71jZAVMcHvZhz18QKyLAz9635pzBXq08PqkytpvUlhCFV0o2cttqaVvcNdjSSaZo-SALmEIA6-_qC5IqvIWU2lw1CUBpYEUKx_h-AQ0CDRqlk3Vf28thyD9V_JJAqwV-m1XqLuxF37A"/>
+</div>
+<h5 class="font-headline text-xl mb-1">Sofía Wagner</h5>
+<p class="font-label text-xs uppercase tracking-widest text-tertiary">Líder de Educación</p>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="max-w-[1200px] mx-auto px-12 mb-20 text-center py-32 bg-nebula rounded-3xl relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+<svg class="w-full h-full" viewbox="0 0 100 100">
+<circle class="text-primary" cx="50" cy="50" fill="none" r="40" stroke="currentColor"></circle>
+<circle class="text-primary" cx="50" cy="50" fill="none" r="20" stroke="currentColor"></circle>
+</svg>
+</div>
+<div class="relative z-10">
+<h2 class="font-headline text-5xl mb-8">¿Listo para mapear lo desconocido?</h2>
+<p class="text-on-surface-variant text-xl max-w-2xl mx-auto mb-12">Suscríbete a nuestro boletín para recibir bitácoras celestiales mensuales, avances científicos e invitaciones a eventos exclusivos.</p>
+<div class="flex flex-col md:flex-row justify-center gap-4 max-w-md mx-auto">
+<input class="bg-transparent border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface py-3 px-4 outline-none transition-all flex-grow" placeholder="estelar@navegante.com" type="email"/>
+<button class="bg-primary text-on-primary px-8 py-3 rounded font-label text-xs uppercase tracking-[0.2em] whitespace-nowrap">Suscribirse</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#11131d] w-full py-16 px-12 mt-20 tonal-shift bg-gradient-to-t from-[#191b26] to-transparent border-t border-[#a3cce9]/10">
+<div class="flex flex-col md:flex-row justify-between items-start gap-8 max-w-[1440px] mx-auto">
+<div class="space-y-4">
+<div class="text-xl font-headline text-[#e1e1f0]">NAUTAS</div>
+<p class="text-[#e1e1f0]/40 max-w-xs font-body text-sm leading-relaxed">Dedicados a la integración de la verdad científica y la conciencia humana.</p>
+</div>
+<div class="flex flex-col md:flex-row gap-12">
+<div class="flex flex-col gap-4">
+<span class="font-label text-xs tracking-widest text-[#afc9ea] uppercase">Conectar</span>
+<a class="font-label text-sm uppercase tracking-widest text-[#e1e1f0]/40 hover:text-[#a3cce9] transition-colors opacity-80 hover:opacity-100" href="#">Instagram</a>
+<a class="font-label text-sm uppercase tracking-widest text-[#e1e1f0]/40 hover:text-[#a3cce9] transition-colors opacity-80 hover:opacity-100" href="#">Facebook</a>
+<a class="font-label text-sm uppercase tracking-widest text-[#e1e1f0]/40 hover:text-[#a3cce9] transition-colors opacity-80 hover:opacity-100" href="#">YouTube</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label text-xs tracking-widest text-[#afc9ea] uppercase">Legal</span>
+<a class="font-label text-sm uppercase tracking-widest text-[#e1e1f0]/40 hover:text-[#a3cce9] transition-colors opacity-80 hover:opacity-100" href="#">Política de Privacidad</a>
+<a class="font-label text-sm uppercase tracking-widest text-[#e1e1f0]/40 hover:text-[#a3cce9] transition-colors opacity-80 hover:opacity-100" href="#">Términos de Servicio</a>
+</div>
+</div>
+</div>
+<div class="max-w-[1440px] mx-auto mt-16 pt-8 border-t border-outline-variant/10">
+<p class="text-center font-label text-xs uppercase tracking-[0.3em] text-[#e1e1f0]/40">© 2024 ONG NAUTAS. El Observador Celestial.</p>
+</div>
+</footer>
+</body></html>

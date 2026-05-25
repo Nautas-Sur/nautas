@@ -25,8 +25,7 @@ hero_subtitle: >
   ·	El segundo enigma: del Espíritu Holístico —que integra lo que la especialización científica ha fragmentado—.
 
   ·	El tercer enigma: del Corazón del Arte —principamente expresado a través de la creatividad—.
-pillars_title: Diferentes Dimensiones, una misma Fuente. Puentes y tránsitos de
-  doble mano entre Arte, Ciencia y Conciencia.
+pillars_title: "Diferentes Dimensiones, <em>una misma Fuente.</em>"
 pillar_arte_title: Arte
 pillar_arte_desc: >
   Arte: inspiración. Expresiones creativas que amplían los límites de la

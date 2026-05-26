@@ -1,4 +1,11 @@
 ---
+export interface Trailer {
+  videoId: string;
+  label?: string;
+  title?: string;
+  active?: boolean;
+}
+
 export interface Episode {
   number: number;
   title: string;
@@ -9,31 +16,104 @@ export interface Episode {
 
 export interface Props {
   episodes: Episode[];
+  trailer?: Trailer;
   playlistId?: string;
   title?: string;
   countLabel?: string;
   locale?: string;
 }
 
-const { episodes, playlistId, title, countLabel, locale = 'es' } = Astro.props;
+const { episodes, trailer, playlistId, title, countLabel, locale = 'es' } = Astro.props;
 ---
 
-<div class="space-y-4">
+<div class="space-y-5">
   {(title || countLabel) && (
-    <div class="flex items-center justify-between">
-      {title && <h2 class="font-headline text-2xl">{title}</h2>}
+    <div class="flex items-end justify-between gap-4 pb-3 border-b border-on-surface/[0.08]">
+      {title && (
+        <h2 class="font-headline text-2xl md:text-3xl text-on-surface leading-tight">
+          {title}
+        </h2>
+      )}
       {countLabel && (
-        <span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">{countLabel}</span>
+        <span class="font-bitacora text-[10px] text-warm uppercase tracking-[0.2em] whitespace-nowrap pb-1">
+          // {countLabel}
+        </span>
       )}
     </div>
   )}
-  <div class="space-y-2 max-h-[680px] overflow-y-auto pr-1">
+
+  {/* Trailer */}
+  {trailer && (
+    <div
+      class={`trailer-item group rounded-xl transition-all cursor-pointer overflow-hidden border ${
+        trailer.active
+          ? 'bg-surface-container-high border-warm/40 shadow-[0_8px_24px_rgba(212,165,116,0.08)]'
+          : 'bg-surface-container-low border-transparent hover:border-warm/20 hover:bg-surface-container-high hover:-translate-y-px'
+      }`}
+      data-video-id={trailer.videoId}
+      data-is-trailer="true"
+    >
+      {/* Thumbnail */}
+      <div class="relative w-full overflow-hidden" style="aspect-ratio:16/9">
+        <img
+          src={`https://img.youtube.com/vi/${trailer.videoId}/mqdefault.jpg`}
+          alt=""
+          loading="lazy"
+          class="w-full h-full object-cover opacity-70 group-hover:opacity-95 group-hover:scale-105 transition-all duration-500"
+        />
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-surface-container-low/90 via-surface-container-low/20 to-transparent pointer-events-none"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-warm/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          aria-hidden="true"
+        ></div>
+
+        {/* Chip adelanto */}
+        <div class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5">
+          <span class="font-bitacora text-[9px] text-warm uppercase tracking-[0.15em] bg-background/70 backdrop-blur px-2 py-0.5 rounded-full border border-warm/30">
+            // {trailer.label ?? (locale === 'en' ? 'trailer' : 'adelanto')}
+          </span>
+          <span
+            class="material-symbols-outlined text-2xl text-warm drop-shadow-md group-hover:scale-110 transition-transform"
+            style="font-variation-settings:'FILL' 1;"
+          >
+            play_circle
+          </span>
+        </div>
+      </div>
+
+      {/* Content */}
+      <div class="p-4 md:p-5">
+        <h3
+          class={`font-headline text-base md:text-lg leading-tight transition-colors ${
+            trailer.active ? 'text-warm' : 'text-on-surface group-hover:text-warm'
+          }`}
+        >
+          {trailer.title ?? (locale === 'en' ? 'Trailer' : 'Adelanto')}
+        </h3>
+      </div>
+    </div>
+  )}
+
+  {/* Separator */}
+  {trailer && episodes.length > 0 && (
+    <div class="flex items-center gap-3 pt-1">
+      <span class="font-bitacora text-[10px] text-warm uppercase tracking-[0.2em]">
+        // {locale === 'en' ? 'episodes' : 'episodios'}
+      </span>
+      <div class="flex-1 h-px bg-on-surface/[0.08]"></div>
+    </div>
+  )}
+
+  <div class="space-y-2 max-h-[680px] overflow-y-auto pr-1 scrollbar-thin">
     {episodes.map((ep, i) => (
       <div
-        class={`episode-item group rounded-lg transition-all cursor-pointer border-l-2 overflow-hidden ${
+        class={`episode-item group rounded-xl transition-all cursor-pointer overflow-hidden border ${
           ep.active
-            ? 'bg-surface-container-high border-primary'
-            : 'bg-surface-container-low border-transparent hover:border-outline hover:bg-surface-container-high'
+            ? 'bg-surface-container-high border-warm/40 shadow-[0_8px_24px_rgba(212,165,116,0.08)]'
+            : 'bg-surface-container-low border-transparent hover:border-warm/20 hover:bg-surface-container-high hover:-translate-y-px'
         }`}
         data-video-id={ep.videoId ?? ''}
         data-index={i}
@@ -45,29 +125,66 @@ const { episodes, playlistId, title, countLabel, locale = 'es' } = Astro.props;
               src={`https://img.youtube.com/vi/${ep.videoId}/mqdefault.jpg`}
               alt=""
               loading="lazy"
-              class="w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:scale-105 transition-all duration-500"
+              class="w-full h-full object-cover opacity-70 group-hover:opacity-95 group-hover:scale-105 transition-all duration-500"
             />
-            <div class="absolute inset-0 bg-gradient-to-t from-surface-container-low/80 to-transparent pointer-events-none"/>
-            <div class="absolute bottom-2 right-2">
-              <span class="material-symbols-outlined text-xl text-primary drop-shadow" style="font-variation-settings:'FILL' 1;">play_circle</span>
+            {/* Gradiente para legibilidad inferior */}
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-surface-container-low/90 via-surface-container-low/20 to-transparent pointer-events-none"
+              aria-hidden="true"
+            ></div>
+
+            {/* Overlay cálido sutil al hover */}
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-warm/[0.06] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+              aria-hidden="true"
+            ></div>
+
+            {/* Indicador de play en esquina inferior derecha */}
+            <div class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5">
+              {ep.active && (
+                <span class="font-bitacora text-[9px] text-warm uppercase tracking-[0.15em] bg-background/70 backdrop-blur px-2 py-0.5 rounded-full border border-warm/30">
+                  // {locale === 'en' ? 'now playing' : 'reproduciendo'}
+                </span>
+              )}
+              <span
+                class="material-symbols-outlined text-2xl text-warm drop-shadow-md group-hover:scale-110 transition-transform"
+                style="font-variation-settings:'FILL' 1;"
+              >
+                play_circle
+              </span>
             </div>
           </div>
         )}
+
         {/* Content */}
         <div class="p-4 md:p-5">
-          <div class="flex justify-between items-start mb-2">
-            <span class={`ep-num font-label text-[10px] tracking-widest uppercase ${ep.active ? 'text-primary' : 'text-on-surface-variant'}`}>
-              {locale === 'en' ? 'Episode' : 'Episodio'} {String(ep.number).padStart(2, '0')}
+          <div class="flex justify-between items-start mb-2 gap-3">
+            <span
+              class={`ep-num font-bitacora text-[10px] tracking-[0.15em] uppercase ${
+                ep.active ? 'text-warm' : 'text-on-surface/40'
+              }`}
+            >
+              // {locale === 'en' ? 'episode' : 'episodio'} {String(ep.number).padStart(2, '0')}
             </span>
             {!ep.videoId && (
-              <span class="material-symbols-outlined text-xs text-on-surface-variant group-hover:text-primary transition-colors">play_circle</span>
+              <span class="material-symbols-outlined text-base text-on-surface/40 group-hover:text-warm transition-colors">
+                play_circle
+              </span>
             )}
           </div>
-          <h3 class={`ep-title font-headline text-base mb-1 group-hover:text-primary transition-colors ${ep.active ? 'text-primary' : ''}`}>
+
+          <h3
+            class={`ep-title font-headline text-base md:text-lg leading-tight mb-1.5 transition-colors ${
+              ep.active ? 'text-warm' : 'text-on-surface group-hover:text-warm'
+            }`}
+          >
             {ep.title}
           </h3>
+
           {ep.description && (
-            <p class="text-xs text-on-surface-variant line-clamp-2 font-light">{ep.description}</p>
+            <p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed font-body">
+              {ep.description}
+            </p>
           )}
         </div>
       </div>
@@ -75,13 +192,54 @@ const { episodes, playlistId, title, countLabel, locale = 'es' } = Astro.props;
   </div>
 </div>
 
-{playlistId && (
-  <script define:vars={{ playlistId }}>
+<style>
+  /* Scrollbar minimalista para la lista de episodios */
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(212, 165, 116, 0.2) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 6px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(212, 165, 116, 0.2);
+    border-radius: 9999px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(212, 165, 116, 0.4);
+  }
+</style>
+
+{(playlistId || trailer) && (
+  <script define:vars={{ playlistId, trailerVideoId: trailer?.videoId ?? '' }}>
     const items = document.querySelectorAll('.episode-item');
+    const trailerItem = document.querySelector('.trailer-item');
     const player = document.getElementById('yt-player');
     const playerSection = document.getElementById('yt-player-section');
     const origin = window.location.origin;
 
+    function activateItem(activeEl) {
+      // Deactivate all episodes
+      items.forEach((el) => {
+        el.classList.remove('bg-surface-container-high', 'border-warm/40', 'shadow-[0_8px_24px_rgba(212,165,116,0.08)]');
+        el.classList.add('bg-surface-container-low', 'border-transparent');
+        el.querySelector('.ep-num')?.classList.replace('text-warm', 'text-on-surface/40');
+        el.querySelector('.ep-title')?.classList.replace('text-warm', 'text-on-surface');
+      });
+      // Deactivate trailer
+      if (trailerItem) {
+        trailerItem.classList.remove('bg-surface-container-high', 'border-warm/40', 'shadow-[0_8px_24px_rgba(212,165,116,0.08)]');
+        trailerItem.classList.add('bg-surface-container-low', 'border-transparent');
+      }
+
+      activeEl.classList.add('bg-surface-container-high', 'border-warm/40', 'shadow-[0_8px_24px_rgba(212,165,116,0.08)]');
+      activeEl.classList.remove('bg-surface-container-low', 'border-transparent');
+    }
+
+    // Episode clicks
     items.forEach((item) => {
       item.addEventListener('click', () => {
         const videoId = item.dataset.videoId;
@@ -89,31 +247,36 @@ const { episodes, playlistId, title, countLabel, locale = 'es' } = Astro.props;
 
         if (!player) return;
 
-        // Build the new embed URL
         if (videoId) {
           player.src = `https://www.youtube-nocookie.com/embed/${videoId}?list=${playlistId}&origin=${origin}&autoplay=1`;
         } else {
           player.src = `https://www.youtube-nocookie.com/embed/videoseries?list=${playlistId}&index=${index}&origin=${origin}&autoplay=1`;
         }
 
-        // Update active styles
-        items.forEach((el) => {
-          el.classList.remove('bg-surface-container-high', 'border-primary');
-          el.classList.add('bg-surface-container-low', 'border-transparent');
-          el.querySelector('.ep-num')?.classList.replace('text-primary', 'text-on-surface-variant');
-          el.querySelector('.ep-title')?.classList.remove('text-primary');
-        });
+        activateItem(item);
+        item.querySelector('.ep-num')?.classList.replace('text-on-surface/40', 'text-warm');
+        item.querySelector('.ep-title')?.classList.replace('text-on-surface', 'text-warm');
 
-        item.classList.add('bg-surface-container-high', 'border-primary');
-        item.classList.remove('bg-surface-container-low', 'border-transparent');
-        item.querySelector('.ep-num')?.classList.replace('text-on-surface-variant', 'text-primary');
-        item.querySelector('.ep-title')?.classList.add('text-primary');
-
-        // Scroll to player on mobile
         if (window.innerWidth < 1024) {
           playerSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
       });
     });
+
+    // Trailer click
+    if (trailerItem && trailerVideoId) {
+      trailerItem.addEventListener('click', () => {
+        if (!player) return;
+
+        // Trailer is not part of the playlist — embed without list param
+        player.src = `https://www.youtube-nocookie.com/embed/${trailerVideoId}?origin=${origin}&autoplay=1`;
+
+        activateItem(trailerItem);
+
+        if (window.innerWidth < 1024) {
+          playerSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
   </script>
 )}

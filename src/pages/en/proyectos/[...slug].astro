@@ -159,8 +159,14 @@ const related = projects
               title: t(ep.title.es, ep.title.en),
               description: ep.description ? t(ep.description.es, ep.description.en) : undefined,
               videoId: ep.videoId,
-              active: i === 0,
+              active: !data.featuredVideoId && i === 0,
             }))}
+            trailer={data.featuredVideoId ? {
+              videoId: data.featuredVideoId,
+              active: true,
+              title: t('Adelanto de la serie', 'Series trailer'),
+              label: t('adelanto', 'trailer'),
+            } : undefined}
             playlistId={data.playlistId}
             title={t('Episodios', 'Episodes')}
             countLabel={`${data.episodes.length} ${t('VIDEOS', 'VIDEOS')}`}

@@ -32,55 +32,146 @@ const {
 } = Astro.props;
 
 const href = `/${locale === 'en' ? 'en/' : ''}proyectos/${slug}`;
+const t = (es: string, en: string) => (locale === 'en' ? en : es);
 ---
 
 {
   variant === 'horizontal' ? (
-    <a href={href} class="group flex gap-6 p-6 bg-surface-container-low rounded-xl border border-outline-variant/10 hover:bg-surface-container-high transition-all duration-300">
-      <div class="w-32 h-32 shrink-0 rounded-lg overflow-hidden bg-surface-container-high">
+    <a
+      href={href}
+      class="group flex flex-col sm:flex-row gap-6 p-6 bg-surface-container-low rounded-xl border border-transparent hover:border-warm/30 hover:bg-surface-container-high hover:-translate-y-1 hover:shadow-[0_16px_40px_rgba(0,0,0,0.35)] transition-all duration-300"
+    >
+      {/* Imagen */}
+      <div class="w-full sm:w-40 h-40 sm:h-auto shrink-0 rounded-lg overflow-hidden bg-surface-container-high relative">
         {image ? (
-          <img src={image} alt={imageAlt} class="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-opacity" loading="lazy" />
+          <img
+            src={image}
+            alt={imageAlt}
+            class="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500"
+            loading="lazy"
+          />
         ) : (
-          <div class="w-full h-full flex items-center justify-center text-primary/20">
-            <span class="material-symbols-outlined text-4xl">movie</span>
+          <div class="w-full h-full flex items-center justify-center text-warm/30">
+            <span class="material-symbols-outlined text-5xl">movie</span>
           </div>
         )}
+        {/* Etiqueta de estado */}
+        <span
+          class={`absolute top-3 left-3 px-2.5 py-0.5 rounded-full font-bitacora text-[10px] uppercase tracking-[0.15em] backdrop-blur-md ${
+            status === 'completed'
+              ? 'bg-background/70 text-warm border border-warm/30'
+              : 'bg-background/70 text-primary border border-primary/30'
+          }`}
+        >
+          {status === 'completed' ? t('Terminado', 'Completed') : t('En desarrollo', 'In progress')}
+        </span>
       </div>
-      <div class="flex flex-col justify-center gap-2">
-        <div class="flex items-center gap-2">
+
+      {/* Contenido */}
+      <div class="flex flex-col justify-center gap-2 flex-1">
+        <div class="flex items-center gap-3 flex-wrap">
           <PillarBadge pillar={pillar} locale={locale} />
-          <span class="font-label text-[10px] text-on-surface-variant uppercase tracking-widest">{kind}</span>
+          <span class="font-bitacora text-[10px] text-on-surface/50 uppercase tracking-[0.15em]">
+            {kind}
+          </span>
         </div>
-        <h3 class="font-headline text-xl group-hover:text-primary transition-colors">{title}</h3>
-        {tagline && <p class="text-sm text-on-surface-variant line-clamp-2">{tagline}</p>}
-        <div class="flex gap-4 text-xs text-on-surface-variant mt-1">
-          {episodeCount && <span>{episodeCount} {locale === 'en' ? 'episodes' : 'episodios'}</span>}
+
+        <h3 class="font-headline text-2xl leading-tight text-on-surface group-hover:text-warm transition-colors">
+          {title}
+        </h3>
+
+        {tagline && (
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed line-clamp-2">
+            {tagline}
+          </p>
+        )}
+
+        <div class="flex items-center gap-3 mt-2 font-bitacora text-[11px] text-on-surface/40 tracking-wider">
+          {episodeCount && (
+            <span>
+              {episodeCount} {t('EPISODIOS', 'EPISODES')}
+            </span>
+          )}
+          {episodeCount && year && <span class="text-on-surface/20">·</span>}
           {year && <span>{year}</span>}
+          <span class="ml-auto text-warm group-hover:translate-x-1 transition-transform" aria-hidden="true">
+            →
+          </span>
         </div>
       </div>
     </a>
   ) : (
-    <a href={href} class="group block">
-      <div class="aspect-[4/3] overflow-hidden rounded-lg mb-4 relative bg-surface-container-low">
+    <a
+      href={href}
+      class="group block transition-all duration-300 hover:-translate-y-1"
+    >
+      {/* Imagen / placeholder */}
+      <div class="aspect-[4/3] overflow-hidden rounded-xl mb-5 relative bg-surface-container-low border border-transparent group-hover:border-warm/20 transition-all duration-500">
         {image ? (
-          <img src={image} alt={imageAlt} class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 opacity-70 group-hover:opacity-100" loading="lazy" />
+          <img
+            src={image}
+            alt={imageAlt}
+            class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 opacity-75 group-hover:opacity-100"
+            loading="lazy"
+          />
         ) : (
-          <div class="w-full h-full flex items-center justify-center text-primary/20">
-            <span class="material-symbols-outlined text-6xl">movie</span>
+          <div class="w-full h-full flex items-center justify-center text-warm/20 bg-gradient-to-br from-surface-container-low to-surface-container-lowest">
+            <span class="material-symbols-outlined text-7xl">movie</span>
           </div>
         )}
-        <div class="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+
+        {/* Overlay sutil de calidez al hover */}
+        <div
+          class="absolute inset-0 bg-gradient-to-t from-warm/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+          aria-hidden="true"
+        ></div>
+
+        {/* Etiqueta de estado */}
+        <span
+          class={`absolute top-3 left-3 px-2.5 py-0.5 rounded-full font-bitacora text-[10px] uppercase tracking-[0.15em] backdrop-blur-md ${
+            status === 'completed'
+              ? 'bg-background/70 text-warm border border-warm/30'
+              : 'bg-background/70 text-primary border border-primary/30'
+          }`}
+        >
+          {status === 'completed' ? t('Terminado', 'Completed') : t('En desarrollo', 'In progress')}
+        </span>
       </div>
-      <div class="space-y-1">
-        <div class="flex items-center gap-2 mb-1">
+
+      {/* Texto */}
+      <div class="space-y-2">
+        <div class="flex items-center gap-3">
           <PillarBadge pillar={pillar} locale={locale} />
+          <span class="font-bitacora text-[10px] text-on-surface/50 uppercase tracking-[0.15em]">
+            {kind}
+          </span>
         </div>
-        <h3 class="font-headline text-xl group-hover:text-primary transition-colors">{title}</h3>
-        <p class="font-label text-xs uppercase tracking-widest text-tertiary">{kind}</p>
-        {tagline && <p class="text-sm text-on-surface-variant mt-2 line-clamp-2">{tagline}</p>}
-        {status === 'completed' && episodeCount && (
-          <p class="text-xs text-on-surface-variant mt-1">{episodeCount} {locale === 'en' ? 'episodes' : 'episodios'} {year && `· ${year}`}</p>
+
+        <h3 class="font-headline text-2xl md:text-[1.625rem] leading-tight text-on-surface group-hover:text-warm transition-colors">
+          {title}
+        </h3>
+
+        {tagline && (
+          <p class="font-body text-sm text-on-surface-variant leading-relaxed line-clamp-2 pt-1">
+            {tagline}
+          </p>
         )}
+
+        {/* Meta inferior con flecha */}
+        <div class="flex items-center gap-2 pt-3 font-bitacora text-[11px] text-on-surface/40 tracking-wider border-t border-on-surface/[0.08] mt-3">
+          {episodeCount && status === 'completed' && (
+            <span>
+              {episodeCount} {t('EPISODIOS', 'EPISODES')}
+            </span>
+          )}
+          {episodeCount && year && status === 'completed' && (
+            <span class="text-on-surface/20">·</span>
+          )}
+          {year && <span>{year}</span>}
+          <span class="ml-auto text-warm group-hover:translate-x-1 transition-transform" aria-hidden="true">
+            {t('EXPLORAR', 'EXPLORE')} →
+          </span>
+        </div>
       </div>
     </a>
   )

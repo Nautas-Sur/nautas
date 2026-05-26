@@ -1,9 +1,13 @@
 @import 'tailwindcss';
 
-/* ── Celestial Observer Design Tokens ── */
+/* ════════════════════════════════════════════════════════════════
+   NAUTAS — SISTEMA DE DISEÑO "STELLAR HORIZON + CALIDEZ"
+   v1.0 · Mayo 2026
+   ════════════════════════════════════════════════════════════════ */
+
 @theme {
-  /* Colors — Celestial palette */
-  --color-background: #11131d;
+  /* ── COLORES: La noche ── */
+  --color-background: #0a0e1a;
   --color-surface: #11131d;
   --color-surface-dim: #11131d;
   --color-surface-container-lowest: #0c0e18;
@@ -13,14 +17,16 @@
   --color-surface-container-highest: #32343f;
   --color-surface-bright: #373844;
   --color-surface-variant: #32343f;
-  --color-on-surface: #e1e1f0;
-  --color-on-surface-variant: #c4c6cc;
-  --color-on-background: #e1e1f0;
+
+  /* ── COLORES: La luz (textos, cálidos no clínicos) ── */
+  --color-on-surface: #ece8dd;
+  --color-on-surface-variant: #b8b5ac;
+  --color-on-background: #ece8dd;
   --color-outline: #8e9196;
   --color-outline-variant: #44474c;
-  --color-surface-tint: #a3cce9;
+  --color-on-surface-susurro: #6b6960;
 
-  /* Primary (Celestial Blue) */
+  /* ── COLORES: El cielo (identidad celestial) ── */
   --color-primary: #a3cce9;
   --color-on-primary: #00344c;
   --color-primary-container: #001d2c;
@@ -30,8 +36,16 @@
   --color-on-primary-fixed: #001e2e;
   --color-on-primary-fixed-variant: #204b63;
   --color-inverse-primary: #3a637c;
+  --color-surface-tint: #a3cce9;
 
-  /* Secondary */
+  /* ── COLORES: El fuego (calidez cálida para romper la frialdad) ── */
+  --color-warm: #d4a574;
+  --color-warm-strong: #c89968;
+  --color-warm-deep: #b07d4a;
+  --color-warm-ember: #8b4513;
+  --color-on-warm: #1a1408;
+
+  /* ── COLORES: Secondary y Tertiary ── */
   --color-secondary: #c6c7c3;
   --color-on-secondary: #2f312e;
   --color-secondary-container: #4a4c49;
@@ -41,42 +55,52 @@
   --color-on-secondary-fixed: #1a1c1a;
   --color-on-secondary-fixed-variant: #454745;
 
-  /* Tertiary */
-  --color-tertiary: #afc9ea;
-  --color-on-tertiary: #17324d;
-  --color-tertiary-container: #001b33;
-  --color-on-tertiary-container: #6b85a4;
-  --color-tertiary-fixed: #d1e4ff;
-  --color-tertiary-fixed-dim: #afc9ea;
-  --color-on-tertiary-fixed: #001d36;
-  --color-on-tertiary-fixed-variant: #2f4865;
+  --color-tertiary: #d4a574;
+  --color-on-tertiary: #1a1408;
+  --color-tertiary-container: #3a2a18;
+  --color-on-tertiary-container: #e6c89c;
+  --color-tertiary-fixed: #f0d4a8;
+  --color-tertiary-fixed-dim: #d4a574;
+  --color-on-tertiary-fixed: #1a1408;
+  --color-on-tertiary-fixed-variant: #6b4f2d;
 
-  /* Error */
+  /* ── COLORES: Áreas temáticas ── */
+  --color-pillar-arte: #d4a574;
+  --color-pillar-ciencia: #a3cce9;
+  --color-pillar-consciencia: #b8a4d4;
+
+  /* ── COLORES: Error ── */
   --color-error: #ffb4ab;
   --color-on-error: #690005;
   --color-error-container: #93000a;
   --color-on-error-container: #ffdad6;
 
-  /* Inverse */
-  --color-inverse-surface: #e1e1f0;
+  /* ── COLORES: Inverse ── */
+  --color-inverse-surface: #ece8dd;
   --color-inverse-on-surface: #2e303b;
 
-  /* Typography */
-  --font-headline: 'Noto Serif', Georgia, serif;
-  --font-body: 'Manrope', system-ui, sans-serif;
-  --font-label: 'Manrope', system-ui, sans-serif;
+  /* ── TIPOGRAFÍAS ── */
+  --font-headline: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-label: 'Inter', system-ui, sans-serif;
+  --font-bitacora: 'DM Mono', 'Courier New', monospace;
 
-  /* Border radius */
-  --radius-sm: 0.125rem;
-  --radius-md: 0.25rem;
-  --radius-lg: 0.5rem;
-  --radius-xl: 0.75rem;
+  /* ── RADIOS ── */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
 }
 
-/* ── Base Styles ── */
+/* ════════════════════════════════════════════════════════════════
+   ESTILOS BASE
+   ════════════════════════════════════════════════════════════════ */
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
   }
 
   body {
@@ -85,51 +109,96 @@
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
+    overflow-x: hidden;
+  }
+
+  /* Grano sutil sobre todo el sitio (textura analógica) */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.92 0 0 0 0 0.91 0 0 0 0 0.87 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    mix-blend-mode: overlay;
+  }
+
+  /* Hacemos que el contenido del body quede sobre el grano */
+  body > * {
+    position: relative;
+    z-index: 2;
   }
 
   ::selection {
-    background-color: rgb(163 204 233 / 0.3);
-    color: var(--color-primary);
+    background-color: var(--color-warm);
+    color: var(--color-on-warm);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-headline);
+    font-weight: 400;
+    letter-spacing: -0.02em;
+  }
+
+  h1 { line-height: 0.95; }
+  h2 { line-height: 1.05; }
+  h3 { line-height: 1.1; }
+
+  /* Itálicas de Cormorant son la voz poética */
+  em {
+    font-style: italic;
+    color: var(--color-primary);
+  }
+
+  a {
+    transition: color 200ms cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
 
-/* ── Celestial Utilities ── */
+/* ════════════════════════════════════════════════════════════════
+   UTILIDADES PERSONALIZADAS
+   ════════════════════════════════════════════════════════════════ */
+
 @utility bg-nebula {
-  background: radial-gradient(circle at 50% 50%, #001d2c 0%, #11131d 70%);
+  background: radial-gradient(circle at 50% 50%, #001d2c 0%, #0a0e1a 70%);
 }
 
 @utility celestial-line {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #a3cce9 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--color-primary) 50%, transparent 100%);
   opacity: 0.2;
 }
 
 @utility glass-panel {
   background: rgb(29 31 42 / 0.4);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border: 1px solid rgb(163 204 233 / 0.1);
 }
 
 @utility glass-card {
   background: rgb(50 52 63 / 0.4);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgb(142 145 150 / 0.15);
 }
 
 @utility tonal-shift {
-  background: linear-gradient(180deg, #11131d 0%, #191b26 100%);
+  background: linear-gradient(180deg, #0a0e1a 0%, #191b26 100%);
 }
 
 @utility nebula-glow {
-  background: radial-gradient(circle at center, #001d2c 0%, #11131d 100%);
+  background: radial-gradient(circle at center, #001d2c 0%, #0a0e1a 100%);
 }
 
 @utility celestial-glow {
   box-shadow: 0 0 40px 6px rgb(163 204 233 / 0.06);
+}
+
+@utility warm-glow {
+  box-shadow: 0 0 40px 6px rgb(212 165 116 / 0.08);
 }
 
 @utility ghost-border {
@@ -142,5 +211,36 @@
 
 @utility divider-gradient {
   height: 1px;
-  background: linear-gradient(90deg, transparent 0%, #44474c 50%, transparent 100%);
+  background: linear-gradient(90deg, transparent 0%, var(--color-outline-variant) 50%, transparent 100%);
+}
+
+/* Cielo estrellado sutil que cubre todo el fondo */
+@utility starfield-bg {
+  background-image:
+    radial-gradient(1px 1px at 23% 17%, var(--color-on-surface) 50%, transparent),
+    radial-gradient(1px 1px at 67% 73%, var(--color-on-surface) 50%, transparent),
+    radial-gradient(1.5px 1.5px at 84% 31%, var(--color-primary) 50%, transparent),
+    radial-gradient(1px 1px at 12% 89%, var(--color-on-surface) 50%, transparent),
+    radial-gradient(0.5px 0.5px at 91% 12%, var(--color-on-surface-variant) 50%, transparent),
+    radial-gradient(1px 1px at 45% 55%, var(--color-on-surface) 50%, transparent),
+    radial-gradient(1px 1px at 8% 41%, var(--color-warm) 50%, transparent),
+    radial-gradient(0.5px 0.5px at 76% 88%, var(--color-on-surface) 50%, transparent);
+  opacity: 0.5;
+}
+
+/* Estilo de "anotación de bitácora" para uso textual */
+@utility bitacora {
+  font-family: var(--font-bitacora);
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: var(--color-warm);
+}
+
+/* Metadatos técnicos (sin itálica, con tracking abierto) */
+@utility bitacora-meta {
+  font-family: var(--font-bitacora);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-warm);
 }

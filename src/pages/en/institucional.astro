@@ -27,17 +27,20 @@ team.sort((a, b) => a.data.order - b.data.order);
 
   <!-- Mission / Propósito -->
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
+    <p class="font-bitacora italic text-warm text-sm mb-6">
+      // {locale === 'en' ? 'mission' : 'misión'}
+    </p>
     <div class="grid md:grid-cols-12 gap-12">
       <div class="md:col-span-5">
-        <h2 class="font-headline text-4xl md:text-5xl mb-8 md:sticky md:top-32 [&_em]:not-italic [&_em]:text-primary">
+        <h2 class="font-headline text-4xl md:text-5xl mb-8 md:sticky md:top-32 [&_em]:italic [&_em]:text-warm">
           <Fragment set:html={d?.mission_title ?? ''} />
         </h2>
-        <div class="aspect-square rounded-full border border-primary/20 p-8 relative flex items-center justify-center">
-          <div class="absolute inset-0 bg-primary/5 rounded-full animate-pulse"></div>
+        <div class="aspect-square rounded-full border border-warm/20 p-8 relative flex items-center justify-center">
+          <div class="absolute inset-0 bg-warm/[0.04] rounded-full animate-pulse"></div>
           <div class="text-center relative z-10">
-            <span class="material-symbols-outlined text-primary text-6xl mb-4">auto_awesome</span>
-            <p class="font-label text-xs uppercase tracking-[0.3em] text-tertiary">
-              {locale === 'en' ? 'Cultural Evolution' : 'Evolución Cultural'}
+            <span class="font-headline text-warm/60 text-7xl block mb-4 leading-none" aria-hidden="true">✦</span>
+            <p class="font-bitacora italic text-warm text-xs">
+              // {locale === 'en' ? 'cultural evolution' : 'evolución cultural'}
             </p>
           </div>
         </div>
@@ -53,7 +56,7 @@ team.sort((a, b) => a.data.order - b.data.order);
             {d?.mission_p4 && <p>{d.mission_p4}</p>}
             {d?.mission_p5 && <p>{d.mission_p5}</p>}
             {d?.mission_cta && (
-              <p class="text-primary font-bold">{d.mission_cta}</p>
+              <p class="text-warm font-headline italic text-lg">{d.mission_cta}</p>
             )}
           </div>
         </GlassPanel>
@@ -65,10 +68,13 @@ team.sort((a, b) => a.data.order - b.data.order);
 
   <!-- Vision -->
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
-    <div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-outline-variant/10">
+    <p class="font-bitacora italic text-warm text-sm mb-6">
+      // {locale === 'en' ? 'vision' : 'visión'}
+    </p>
+    <div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-warm/10">
       <div class="grid md:grid-cols-2">
         <div class="p-8 md:p-16 lg:p-20 flex flex-col justify-center">
-          <h2 class="font-headline text-4xl md:text-5xl mb-10 [&_em]:not-italic [&_em]:text-primary">
+          <h2 class="font-headline text-4xl md:text-5xl mb-10 [&_em]:italic [&_em]:text-warm">
             <Fragment set:html={d?.vision_title ?? ''} />
           </h2>
           <div class="space-y-6 text-on-surface-variant leading-relaxed text-base md:text-lg">
@@ -77,9 +83,9 @@ team.sort((a, b) => a.data.order - b.data.order);
             {d?.vision_p3 && <p>{d.vision_p3}</p>}
           </div>
         </div>
-        <div class="relative bg-surface-container-high flex flex-col items-center justify-center p-8 md:p-16 lg:p-20 text-center border-l border-outline-variant/10">
+        <div class="relative bg-surface-container-high flex flex-col items-center justify-center p-8 md:p-16 lg:p-20 text-center border-l border-warm/10">
           <div class="mb-10 relative z-10">
-            <span class="material-symbols-outlined text-primary text-5xl mb-6">public</span>
+            <span class="font-headline text-warm/50 text-6xl block mb-6 leading-none" aria-hidden="true">⊙</span>
             {d?.vision_blockquote && (
               <blockquote class="font-headline text-2xl md:text-3xl italic text-on-surface mb-6">
                 {d.vision_blockquote}
@@ -91,7 +97,7 @@ team.sort((a, b) => a.data.order - b.data.order);
             {d?.vision_p5 && <p>{d.vision_p5}</p>}
           </div>
           <!-- Dashed circle background decoration -->
-          <div class="absolute inset-0 opacity-[0.06] pointer-events-none overflow-hidden" aria-hidden="true">
+          <div class="absolute inset-0 opacity-[0.08] text-warm pointer-events-none overflow-hidden" aria-hidden="true">
             <svg class="w-full h-full" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
               <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-dasharray="1 4"/>
             </svg>
@@ -105,9 +111,12 @@ team.sort((a, b) => a.data.order - b.data.order);
 
   <!-- Team -->
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
+    <p class="font-bitacora italic text-warm text-sm mb-6">
+      // {locale === 'en' ? 'team' : 'equipo'}
+    </p>
     <div class="flex flex-col md:flex-row justify-between items-end mb-14">
       <div class="max-w-xl">
-        <h2 class="font-headline text-4xl md:text-5xl mb-4 [&_em]:not-italic [&_em]:text-primary">
+        <h2 class="font-headline text-4xl md:text-5xl mb-4 [&_em]:italic [&_em]:text-warm">
           <Fragment set:html={d?.team_title ?? ''} />
         </h2>
         <p class="text-on-surface-variant text-lg">
@@ -134,7 +143,10 @@ team.sort((a, b) => a.data.order - b.data.order);
   <!-- CTA -->
   <section class="max-w-[1200px] mx-auto px-6 md:px-12 mb-20 text-center py-24 md:py-32 bg-nebula rounded-3xl relative overflow-hidden">
     <div class="relative z-10">
-      <h2 class="font-headline text-4xl md:text-5xl mb-8 [&_em]:not-italic [&_em]:text-primary">
+      <p class="font-bitacora italic text-warm text-sm mb-6">
+        // {locale === 'en' ? 'set sail' : 'embarcate'}
+      </p>
+      <h2 class="font-headline text-4xl md:text-5xl mb-8 [&_em]:italic [&_em]:text-warm">
         <Fragment set:html={d?.cta_title ?? ''} />
       </h2>
       <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-10">
@@ -143,15 +155,17 @@ team.sort((a, b) => a.data.order - b.data.order);
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a
           href={`/${locale === 'en' ? 'en/' : ''}contacto`}
-          class="bg-primary text-on-primary px-8 py-3 rounded font-label text-xs uppercase tracking-[0.2em] hover:brightness-110 transition-all"
+          class="group inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-warm text-on-warm font-bitacora text-sm hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgb(from_var(--color-warm)_r_g_b_/_0.5)] transition-all"
         >
-          {locale === 'en' ? 'Contact Us' : 'Contactanos'}
+          {locale === 'en' ? 'Contact us' : 'Contactanos'}
+          <span class="transition-transform group-hover:translate-x-1">→</span>
         </a>
         <a
           href={`/${locale === 'en' ? 'en/' : ''}proyectos`}
-          class="border border-primary/30 text-primary px-8 py-3 rounded font-label text-xs uppercase tracking-[0.2em] hover:bg-primary/10 transition-all"
+          class="group inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border border-warm/40 text-warm font-bitacora text-sm hover:border-warm hover:bg-warm/[0.06] hover:-translate-y-0.5 transition-all"
         >
-          {locale === 'en' ? 'View Projects' : 'Ver Proyectos'}
+          {locale === 'en' ? 'View projects' : 'Ver proyectos'}
+          <span class="transition-transform group-hover:translate-x-1">→</span>
         </a>
       </div>
     </div>

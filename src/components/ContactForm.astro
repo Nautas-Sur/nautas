@@ -22,42 +22,42 @@ const subjectOptions = [
   <input type="checkbox" name="botcheck" class="hidden" style="display:none;" />
 
   <div>
-    <label for="name" class="font-label text-xs uppercase tracking-widest text-on-surface-variant block mb-2">
-      {t('Nombre', 'Name')}
+    <label for="name" class="font-bitacora italic text-warm text-xs block mb-2">
+      // {t('nombre', 'name')}
     </label>
     <input
       type="text"
       id="name"
       name="name"
       required
-      class="w-full bg-transparent border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface py-3 px-0 outline-none transition-all placeholder:text-on-surface/30"
+      class="w-full bg-transparent border-b border-outline-variant/30 focus:border-warm focus:ring-0 text-on-surface py-3 px-0 outline-none transition-all placeholder:text-on-surface/30"
       placeholder={t('Tu nombre completo', 'Your full name')}
     />
   </div>
 
   <div>
-    <label for="email" class="font-label text-xs uppercase tracking-widest text-on-surface-variant block mb-2">
-      {t('Email', 'Email')}
+    <label for="email" class="font-bitacora italic text-warm text-xs block mb-2">
+      // {t('email', 'email')}
     </label>
     <input
       type="email"
       id="email"
       name="email"
       required
-      class="w-full bg-transparent border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface py-3 px-0 outline-none transition-all placeholder:text-on-surface/30"
+      class="w-full bg-transparent border-b border-outline-variant/30 focus:border-warm focus:ring-0 text-on-surface py-3 px-0 outline-none transition-all placeholder:text-on-surface/30"
       placeholder={t('tu@email.com', 'you@email.com')}
     />
   </div>
 
   <div>
-    <span class="font-label text-xs uppercase tracking-widest text-on-surface-variant block mb-3">
-      {t('Asunto', 'Subject')}
+    <span class="font-bitacora italic text-warm text-xs block mb-3">
+      // {t('asunto', 'subject')}
     </span>
     <div class="flex flex-wrap gap-2">
       {subjectOptions.map((opt) => (
         <label class="cursor-pointer">
           <input type="radio" name="category" value={opt.value} class="hidden peer" />
-          <span class="inline-block px-4 py-2 rounded-full text-xs font-label uppercase tracking-widest border border-outline-variant/20 text-on-surface-variant peer-checked:border-primary peer-checked:text-primary peer-checked:bg-primary-container/50 hover:border-outline transition-all">
+          <span class="inline-block px-4 py-2 rounded-full text-xs font-bitacora border border-on-surface/15 text-on-surface-variant peer-checked:border-warm peer-checked:text-warm peer-checked:bg-warm/[0.08] hover:border-warm/40 transition-all">
             {t(opt.es, opt.en)}
           </span>
         </label>
@@ -66,27 +66,29 @@ const subjectOptions = [
   </div>
 
   <div>
-    <label for="message" class="font-label text-xs uppercase tracking-widest text-on-surface-variant block mb-2">
-      {t('Mensaje', 'Message')}
+    <label for="message" class="font-bitacora italic text-warm text-xs block mb-2">
+      // {t('mensaje', 'message')}
     </label>
     <textarea
       id="message"
       name="message"
       rows={5}
       required
-      class="w-full bg-transparent border-b border-outline-variant/30 focus:border-primary focus:ring-0 text-on-surface py-3 px-0 outline-none transition-all resize-none placeholder:text-on-surface/30"
+      class="w-full bg-transparent border-b border-outline-variant/30 focus:border-warm focus:ring-0 text-on-surface py-3 px-0 outline-none transition-all resize-none placeholder:text-on-surface/30"
       placeholder={t('Escribí tu mensaje acá...', 'Write your message here...')}
     ></textarea>
   </div>
 
   <button
     type="submit"
-    class="bg-primary text-on-primary px-8 py-3 rounded font-label text-xs uppercase tracking-[0.2em] hover:brightness-110 active:scale-95 transition-all duration-200"
+    data-submit-text={t('Enviar mensaje', 'Send message')}
+    class="group inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-warm text-on-warm font-bitacora text-sm hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgb(from_var(--color-warm)_r_g_b_/_0.5)] active:scale-95 transition-all duration-200"
   >
-    {t('Enviar Mensaje', 'Send Message')}
+    <span class="submit-label">{t('Enviar mensaje', 'Send message')}</span>
+    <span class="transition-transform group-hover:translate-x-1">→</span>
   </button>
 
-  <div id="form-success" class="hidden p-4 bg-primary-container text-primary rounded-lg text-sm">
+  <div id="form-success" class="hidden p-4 bg-warm/[0.12] text-warm border border-warm/30 rounded-lg text-sm font-body">
     {t('¡Mensaje enviado! Te responderemos pronto.', 'Message sent! We\'ll get back to you soon.')}
   </div>
   <div id="form-error" class="hidden p-4 bg-error-container text-error rounded-lg text-sm">
@@ -99,6 +101,8 @@ const subjectOptions = [
   const success = document.getElementById('form-success');
   const errorEl = document.getElementById('form-error');
   const submitBtn = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+  const submitLabel = submitBtn?.querySelector('.submit-label') as HTMLSpanElement;
+  const submitTextDefault = submitBtn?.getAttribute('data-submit-text') || 'Enviar mensaje';
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -106,7 +110,7 @@ const subjectOptions = [
     if (errorEl) errorEl.classList.add('hidden');
     if (submitBtn) {
       submitBtn.disabled = true;
-      submitBtn.textContent = '...';
+      if (submitLabel) submitLabel.textContent = '...';
     }
 
     try {
@@ -123,7 +127,7 @@ const subjectOptions = [
     } finally {
       if (submitBtn) {
         submitBtn.disabled = false;
-        submitBtn.textContent = form.getAttribute('data-submit-text') || 'Enviar Mensaje';
+        if (submitLabel) submitLabel.textContent = submitTextDefault;
       }
     }
   });

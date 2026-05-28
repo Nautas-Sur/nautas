@@ -6,10 +6,10 @@ export interface Props {
 
 const { pillar, locale = 'es' } = Astro.props;
 
-const icons = {
-  arte: 'palette',
-  ciencia: 'science',
-  consciencia: 'psychology',
+const glyphs = {
+  arte: '◐',
+  ciencia: '✧',
+  consciencia: '❍',
 };
 
 const labels = {
@@ -28,9 +28,9 @@ const styles = {
 ---
 
 <span
-  class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bitacora uppercase tracking-widest border"
+  class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-bitacora border"
   style={styles}
 >
-  <span class="material-symbols-outlined text-sm">{icons[pillar]}</span>
+  <span class="font-headline text-sm leading-none" aria-hidden="true">{glyphs[pillar]}</span>
   {locale === 'en' ? labels[pillar].en : labels[pillar].es}
 </span>

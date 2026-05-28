@@ -36,6 +36,38 @@ const related = projects
   .filter((p) => p.id !== slug)
   .filter((p) => p.data.pillar === data.pillar)
   .slice(0, 3);
+
+const iconGlyphMap: Record<string, string> = {
+  // Genéricos / abstractos
+  'auto_awesome': '✦',
+  'public': '⊙',
+  'psychology': '❍',
+  'palette': '◐',
+  'science': '✧',
+  // Comunidad / personas
+  'groups': '◯',
+  'person': '◯',
+  'diversity_3': '◯',
+  // Naturaleza / planeta
+  'forest': '✾',
+  'eco': '✾',
+  'spa': '✾',
+  // Media / contenido
+  'movie': '▷',
+  'play_circle': '▷',
+  'mic': '◐',
+  // Conocimiento / educación
+  'school': '◆',
+  'book': '◆',
+  'menu_book': '◆',
+  'lightbulb': '✦',
+  // Salud / bienestar
+  'healing': '✚',
+  'favorite': '♡',
+  // Comunicación
+  'forum': '◇',
+  'chat': '◇',
+};
 ---
 
 <BaseLayout
@@ -103,37 +135,6 @@ const related = projects
         {data.featureCards && data.featureCards.length > 0 && (
           <section class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-warm/10">
             {data.featureCards.map((card) => {
-              const iconGlyphMap: Record<string, string> = {
-                // Genéricos / abstractos
-                'auto_awesome': '✦',
-                'public': '⊙',
-                'psychology': '❍',
-                'palette': '◐',
-                'science': '✧',
-                // Comunidad / personas
-                'groups': '◯',
-                'person': '◯',
-                'diversity_3': '◯',
-                // Naturaleza / planeta
-                'forest': '✾',
-                'eco': '✾',
-                'spa': '✾',
-                // Media / contenido
-                'movie': '▷',
-                'play_circle': '▷',
-                'mic': '◐',
-                // Conocimiento / educación
-                'school': '◆',
-                'book': '◆',
-                'menu_book': '◆',
-                'lightbulb': '✦',
-                // Salud / bienestar
-                'healing': '✚',
-                'favorite': '♡',
-                // Comunicación
-                'forum': '◇',
-                'chat': '◇',
-              };
               const glyph = iconGlyphMap[card.icon] || '◆';
               return (
                 <div class="group bg-surface-container-low p-8 rounded-xl border border-warm/10 hover:border-warm/30 transition-all duration-300">

@@ -19,6 +19,9 @@ const d = page?.data;
     <div class="grid md:grid-cols-2 gap-16">
       {/* Left: Info */}
       <div>
+        <p class="font-bitacora italic text-warm text-sm mb-6">
+          // {locale === 'en' ? 'write to us' : 'escribínos'}
+        </p>
         <h1 class="font-headline text-5xl md:text-7xl leading-tight mb-4">
           {d?.hero_title ?? ''}
         </h1>
@@ -28,26 +31,26 @@ const d = page?.data;
 
         <div class="space-y-8">
           <div>
-            <span class="font-label text-xs uppercase tracking-widest text-tertiary block mb-1">
-              {d?.email_label ?? 'Email'}
+            <span class="font-bitacora italic text-warm text-xs block mb-2">
+              // {d?.email_label ?? 'email'}
             </span>
-            <a href={`mailto:${d?.email ?? 'contacto@nautas.org'}`} class="text-xl text-on-surface hover:text-primary transition-colors">
+            <a href={`mailto:${d?.email ?? 'contacto@nautas.org'}`} class="text-xl text-on-surface hover:text-warm transition-colors">
               {d?.email ?? 'contacto@nautas.org'}
             </a>
           </div>
 
           <div>
-            <span class="font-label text-xs uppercase tracking-widest text-tertiary block mb-1">
-              {d?.youtube_label ?? 'YouTube'}
+            <span class="font-bitacora italic text-warm text-xs block mb-2">
+              // {d?.youtube_label ?? 'youtube'}
             </span>
-            <a href={d?.youtube_url ?? 'https://youtube.com/@Nautas'} target="_blank" rel="noopener noreferrer" class="text-xl text-on-surface hover:text-primary transition-colors">
+            <a href={d?.youtube_url ?? 'https://www.youtube.com/@Nautas'} target="_blank" rel="noopener noreferrer" class="text-xl text-on-surface hover:text-warm transition-colors">
               {d?.youtube_display ?? 'youtube.com/@Nautas'}
             </a>
           </div>
 
           <div>
-            <span class="font-label text-xs uppercase tracking-widest text-tertiary block mb-1">
-              {d?.location_label ?? (locale === 'en' ? 'Location' : 'Ubicación')}
+            <span class="font-bitacora italic text-warm text-xs block mb-2">
+              // {d?.location_label ?? (locale === 'en' ? 'location' : 'ubicación')}
             </span>
             <p class="text-xl text-on-surface">
               {d?.location ?? 'Buenos Aires, Argentina'}
@@ -55,8 +58,8 @@ const d = page?.data;
           </div>
 
           <div>
-            <span class="font-label text-xs uppercase tracking-widest text-tertiary block mb-1">
-              {d?.response_label ?? (locale === 'en' ? 'Response Time' : 'Tiempo de Respuesta')}
+            <span class="font-bitacora italic text-warm text-xs block mb-2">
+              // {d?.response_label ?? (locale === 'en' ? 'response time' : 'tiempo de respuesta')}
             </span>
             <p class="text-on-surface-variant">
               {d?.response_time ?? (locale === 'en' ? '3-5 business days' : '3 a 5 días hábiles')}
@@ -67,15 +70,53 @@ const d = page?.data;
         <CelestialLine />
 
         {/* Social */}
-        <div class="flex gap-6">
-          <a href="https://instagram.com/nautas" target="_blank" rel="noopener noreferrer" class="text-on-surface-variant hover:text-primary transition-colors" aria-label="Instagram">
-            <span class="material-symbols-outlined text-3xl">photo_camera</span>
+        <div class="flex gap-4">
+          <a
+            href="https://www.instagram.com/nautas_sur/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Instagram"
+            class="w-12 h-12 inline-flex items-center justify-center rounded-full border border-on-surface/15 text-on-surface-variant hover:border-warm hover:text-warm hover:-translate-y-0.5 transition-all"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="4" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" />
+            </svg>
           </a>
-          <a href="https://facebook.com/nautas" target="_blank" rel="noopener noreferrer" class="text-on-surface-variant hover:text-primary transition-colors" aria-label="Facebook">
-            <span class="material-symbols-outlined text-3xl">groups</span>
+          <a
+            href="https://web.facebook.com/nautas.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Facebook"
+            class="w-12 h-12 inline-flex items-center justify-center rounded-full border border-on-surface/15 text-on-surface-variant hover:border-warm hover:text-warm hover:-translate-y-0.5 transition-all"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5" aria-hidden="true">
+              <path d="M 14 8 L 14 6 Q 14 4 16 4 L 18 4 M 14 8 L 14 20 M 10 12 L 18 12" stroke-linecap="round" />
+            </svg>
           </a>
-          <a href={d?.youtube_url ?? 'https://youtube.com/@Nautas'} target="_blank" rel="noopener noreferrer" class="text-on-surface-variant hover:text-primary transition-colors" aria-label="YouTube">
-            <span class="material-symbols-outlined text-3xl">play_circle</span>
+          <a
+            href="https://www.youtube.com/@Nautas"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="YouTube"
+            class="w-12 h-12 inline-flex items-center justify-center rounded-full border border-on-surface/15 text-on-surface-variant hover:border-warm hover:text-warm hover:-translate-y-0.5 transition-all"
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-5 h-5" aria-hidden="true">
+              <rect x="2" y="6" width="20" height="12" rx="2" />
+              <polygon points="10,9 16,12 10,15" fill="currentColor" />
+            </svg>
+          </a>
+          <a
+            href="https://linktr.ee/nautas"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Linktree"
+            class="w-12 h-12 inline-flex items-center justify-center rounded-full border border-on-surface/15 text-on-surface-variant hover:border-warm hover:text-warm hover:-translate-y-0.5 transition-all"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5" aria-hidden="true">
+              <path d="M11.39 21.5h2.61V13.5l5.66 5.66 1.84-1.84L15.84 11.66H22V9.05h-6.16l5.66-5.66L19.66 1.55 14 7.21V1.5h-2.61V7.2L5.73 1.55 3.89 3.39 9.55 9.05H3.39v2.61h6.16L3.89 17.32l1.84 1.84 5.66-5.66z"/>
+            </svg>
           </a>
         </div>
       </div>

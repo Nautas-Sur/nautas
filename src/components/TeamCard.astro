@@ -20,13 +20,13 @@ const { name, role, photo, photoAlt = '', bio } = Astro.props;
         loading="lazy"
       />
     ) : (
-      <div class="w-full h-full flex items-center justify-center text-primary/20">
-        <span class="material-symbols-outlined text-6xl">person</span>
+      <div class="w-full h-full flex items-center justify-center">
+        <span class="font-headline text-warm/30 text-6xl leading-none" aria-hidden="true">◯</span>
       </div>
     )}
-    <div class="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+    <div class="absolute inset-0 bg-warm/[0.06] opacity-0 group-hover:opacity-100 transition-opacity"></div>
   </div>
   <h4 class="font-headline text-lg mb-1">{name}</h4>
-  <p class="font-label text-xs uppercase tracking-widest text-tertiary">{role}</p>
+  <p class="font-bitacora italic text-warm text-xs">// {role.toLowerCase()}</p>
   {bio && <p class="text-sm text-on-surface-variant mt-3 leading-relaxed">{bio}</p>}
 </div>

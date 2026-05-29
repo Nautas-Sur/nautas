@@ -70,6 +70,7 @@ const iconGlyphMap: Record<string, string> = {
 };
 
 const hasVideo = !!(data.playlistId || data.featuredVideoId || data.episodes?.some((ep) => ep.videoId));
+const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.find((ep) => ep.videoId)?.videoId : undefined);
 ---
 
 <BaseLayout
@@ -108,10 +109,10 @@ const hasVideo = !!(data.playlistId || data.featuredVideoId || data.episodes?.so
     </p>
   </section>
 
-  <!-- YouTube Embed (for completed productions) -->
-  {data.playlistId && (
+  <!-- YouTube Embed -->
+  {hasVideo && (
     <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-16">
-      <YouTubeEmbed playlistId={data.playlistId} videoId={data.featuredVideoId} title={data.title} />
+      <YouTubeEmbed playlistId={data.playlistId} videoId={embedVideoId} title={data.title} />
     </section>
   )}
 

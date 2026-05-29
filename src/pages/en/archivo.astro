@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroSection from '../../components/HeroSection.astro';
 import ProjectCard from '../../components/ProjectCard.astro';
 import FilterBar from '../../components/FilterBar.astro';
+import { getProjectCover } from '../../lib/projectCover';
 
 const locale = Astro.currentLocale || 'es';
 const pageSlug = locale === 'en' ? 'en/archivo' : 'archivo';
@@ -38,7 +39,7 @@ const projects = await getCollection('projects');
             tagline={locale === 'en' ? p.data.tagline.en : p.data.tagline.es}
             year={p.data.year}
             episodeCount={p.data.episodes?.length}
-            image={p.data.heroImage}
+            image={getProjectCover(p.data)}
             status={p.data.status}
             locale={locale}
           />

@@ -1,8 +1,9 @@
 import { config, collection, fields } from '@keystatic/core';
 
 export default config({
-  storage: {
-    kind: 'local',
+  storage: import.meta.env.DEV ? { kind: 'local' } : { kind: 'cloud' },
+  cloud: {
+    project: 'nautas/nautas',
   },
   collections: {
     projects: collection({

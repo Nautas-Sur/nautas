@@ -41,7 +41,11 @@ export default config({
           es: fields.text({ label: 'Español', multiline: true }),
           en: fields.text({ label: 'Inglés', multiline: true }),
         }, { label: 'Descripción' }),
-        heroImage: fields.text({ label: 'Imagen de portada (ruta)' }),
+        heroImage: fields.image({
+          label: 'Imagen de portada',
+          directory: 'public/images/projects',
+          publicPath: '/images/projects/',
+        }),
         heroAlt: fields.text({ label: 'Texto alternativo de la portada' }),
         playlistId: fields.text({ label: 'ID de playlist YouTube' }),
         featuredVideoId: fields.text({ label: 'ID de video destacado (trailer)' }),

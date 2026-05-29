@@ -6,6 +6,7 @@ import CelestialLine from '../components/CelestialLine.astro';
 import GlassPanel from '../components/GlassPanel.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import PillarBadge from '../components/PillarBadge.astro';
+import { getProjectCover } from '../lib/projectCover';
 
 const locale = Astro.currentLocale || 'es';
 const pageSlug = locale === 'en' ? 'en/inicio' : 'inicio';
@@ -191,7 +192,7 @@ const pillars = [
             tagline={locale === 'en' ? p.data.tagline.en : p.data.tagline.es}
             year={p.data.year}
             episodeCount={p.data.episodes?.length}
-            image={p.data.heroImage}
+            image={getProjectCover(p.data)}
             status="completed"
             locale={locale}
           />
@@ -215,6 +216,7 @@ const pillars = [
             kind={p.data.kind}
             pillar={p.data.pillar}
             tagline={locale === 'en' ? p.data.tagline.en : p.data.tagline.es}
+            image={getProjectCover(p.data)}
             status="in_development"
             locale={locale}
             variant="horizontal"

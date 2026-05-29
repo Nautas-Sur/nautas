@@ -68,6 +68,8 @@ const iconGlyphMap: Record<string, string> = {
   'forum': '◇',
   'chat': '◇',
 };
+
+const hasVideo = !!(data.playlistId || data.featuredVideoId || data.episodes?.some((ep) => ep.videoId));
 ---
 
 <BaseLayout
@@ -110,6 +112,20 @@ const iconGlyphMap: Record<string, string> = {
   {data.playlistId && (
     <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-16">
       <YouTubeEmbed playlistId={data.playlistId} videoId={data.featuredVideoId} title={data.title} />
+    </section>
+  )}
+
+  <!-- Hero Image (projects without video) -->
+  {!hasVideo && data.heroImage && (
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-16">
+      <div class="w-full aspect-video rounded-2xl overflow-hidden">
+        <img
+          src={data.heroImage}
+          alt={data.heroAlt || data.title}
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+      </div>
     </section>
   )}
 

@@ -104,5 +104,30 @@ export default config({
         ctaLink: fields.text({ label: 'Link del CTA (URL)' }),
       },
     }),
+    team: collection({
+      label: 'Equipo',
+      slugField: 'name',
+      path: 'src/content/team/*',
+      format: { data: 'yaml' },
+      schema: {
+        name: fields.slug({ name: { label: 'Nombre' } }),
+        role: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'Inglés' }),
+        }, { label: 'Rol' }),
+        bio: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'Inglés', multiline: true }),
+        }, { label: 'Biografía' }),
+        order: fields.integer({ label: 'Orden' }),
+        photo: fields.image({
+          label: 'Foto',
+          directory: 'public/images/team',
+          publicPath: '/images/team/',
+          description: 'Retrato vertical 3:4 · mínimo 600×800 px (ideal 900×1200) · cara/torso centrados · JPG, menos de 500 KB',
+          validation: { isRequired: false },
+        }),
+      },
+    }),
   },
 });

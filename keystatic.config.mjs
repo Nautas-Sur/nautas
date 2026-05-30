@@ -43,6 +43,7 @@ export default config({
         }, { label: 'Descripción' }),
         heroImage: fields.image({
           label: 'Imagen de portada',
+          description: '16:9 · mínimo 1280×720 px (ideal 1920×1080) · sujeto centrado, se recorta a cuadrado en algunas vistas · JPG, menos de 500 KB',
           directory: 'public/images/projects',
           publicPath: '/images/projects/',
         }),

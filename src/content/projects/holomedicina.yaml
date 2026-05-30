@@ -42,7 +42,7 @@ phases:
       es: "Adaptación internacional al contexto local, nuevas fronteras de la medicina."
       en: "International adaptation to the local context, new frontiers of medicine."
 featureCards:
-  - icon: "biotech"
+  - icon: "science"
     title:
       es: "Actualización Integrativa"
       en: "Integrative Update"

@@ -1,5 +1,5 @@
 title: Pulso Terrestre
-kind: 'Serie documental  '
+kind: Serie Documental
 pillar: ciencia
 status: completed
 featured: false
@@ -356,7 +356,7 @@ featureCards:
       en: >-
         Recognizing the intrinsic value of all living beings beyond their
         utility to humans.
-  - icon: home_work
+  - icon: eco
     title:
       es: Autosustentabilidad
       en: Self-Sustainability

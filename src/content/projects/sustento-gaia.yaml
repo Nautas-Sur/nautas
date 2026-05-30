@@ -49,14 +49,14 @@ phases:
       es: "Implementación de proyectos locales de regeneración con participación colectiva."
       en: "Implementation of local regeneration projects with collective participation."
 featureCards:
-  - icon: "nature"
+  - icon: "forest"
     title:
       es: "Biodiversidad"
       en: "Biodiversity"
     description:
       es: "Protección y regeneración de la diversidad biológica como base de la vida."
       en: "Protection and regeneration of biological diversity as the foundation of life."
-  - icon: "water_drop"
+  - icon: "eco"
     title:
       es: "Recursos Naturales"
       en: "Natural Resources"

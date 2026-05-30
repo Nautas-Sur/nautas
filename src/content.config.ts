@@ -102,7 +102,7 @@ const projectsCollection = defineCollection({
 });
 
 const teamCollection = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/team' }),
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/team' }),
   schema: z.object({
     name: z.string(),
     role: i18nString,

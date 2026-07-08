@@ -1,9 +1,15 @@
 title: Prueba
+kind: Documental
 pillar: arte
 status: in_development
-featured: false
-tagline: {}
-description: {}
+featured: true
+year: '2026'
+tagline:
+  es: Esto es una prueba
+  en: Is a test
+description:
+  es: Probando, probando
+heroImage: /images/projects/prueba/heroImage.png
 episodes: []
 phases: []
 featureCards: []

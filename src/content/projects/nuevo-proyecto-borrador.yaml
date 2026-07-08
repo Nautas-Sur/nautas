@@ -1,0 +1,18 @@
+title: Nuevo Proyecto Borrador
+kind: Hola
+pillar: arte
+status: in_development
+featured: true
+year: '2026'
+tagline:
+  es: Es un prueba
+  en: Is a test
+description:
+  es: probando, probando
+heroImage: /images/projects/nuevo-proyecto-borrador/heroImage.png
+heroAlt: hola hola
+episodes: []
+phases: []
+featureCards: []
+voices: []
+ctaText: {}

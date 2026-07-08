@@ -15,4 +15,6 @@ episodes: []
 phases: []
 featureCards: []
 voices: []
-ctaText: {}
+ctaText:
+  es: Boton de Prueba
+  en: Test Button

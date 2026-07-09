@@ -13,7 +13,7 @@ export default config({
       format: { data: 'yaml' },
       schema: {
         title: fields.slug({ name: { label: 'Título', description: 'Este texto genera la dirección (URL) del proyecto. Evitá cambiarlo en un proyecto ya publicado: rompe los links que ya existen.' } }),
-        kind: fields.text({ label: 'Tipo', description: 'Categoría del proyecto que se muestra en la tarjeta. Ej: Serie Documental, Podcast, Programa Educativo.' }),
+        kind: fields.text({ label: 'Tipo', description: 'Categoría del proyecto que se muestra en la tarjeta. Ej: Serie Documental, Podcast, Programa Educativo.', validation: { isRequired: true } }),
         pillar: fields.select({
           label: 'Pilar',
           options: [
@@ -34,12 +34,12 @@ export default config({
         featured: fields.checkbox({ label: 'Destacado', defaultValue: false, description: 'Si está tildado, el proyecto aparece en la sección "Producción Destacada" del inicio. Solo funciona en proyectos con estado Completado, y si hay varios tildados se muestra únicamente el primero.' }),
         year: fields.text({ label: 'Año', description: 'Ej: 2024, o un rango: 2023–2024.' }),
         tagline: fields.object({
-          es: fields.text({ label: 'Español' }),
-          en: fields.text({ label: 'Inglés' }),
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
         }, { label: 'Frase / Lema', description: 'Frase corta que resume el proyecto. Aparece debajo del título.' }),
         description: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'Inglés', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
         }, { label: 'Descripción' }),
         heroImage: fields.image({
           label: 'Imagen de portada',
@@ -52,11 +52,11 @@ export default config({
         featuredVideoId: fields.text({ label: 'ID de video destacado (trailer)', description: 'ID del video del trailer o adelanto. Se obtiene de la URL del video en YouTube: la parte después de "v=" (o después de "youtu.be/"). Ejemplo: en youtube.com/watch?v=abc123, el ID es abc123. Dejar vacío si el proyecto no tiene trailer.' }),
         episodes: fields.array(
           fields.object({
-            number: fields.integer({ label: 'Número' }),
+            number: fields.integer({ label: 'Número', validation: { isRequired: true } }),
             videoId: fields.text({ label: 'ID de video YouTube', description: 'ID del video del episodio en YouTube: la parte después de "v=" en la URL (o después de "youtu.be/"). Ejemplo: en youtube.com/watch?v=abc123, el ID es abc123.' }),
             title: fields.object({
-              es: fields.text({ label: 'Español' }),
-              en: fields.text({ label: 'Inglés' }),
+              es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+              en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
             }, { label: 'Título' }),
             description: fields.object({
               es: fields.text({ label: 'Español', multiline: true }),
@@ -67,14 +67,14 @@ export default config({
         ),
         phases: fields.array(
           fields.object({
-            letter: fields.text({ label: 'Letra', description: 'Letra que identifica la fase: A, B, C…' }),
+            letter: fields.text({ label: 'Letra', description: 'Letra que identifica la fase: A, B, C…', validation: { isRequired: true } }),
             title: fields.object({
-              es: fields.text({ label: 'Español' }),
-              en: fields.text({ label: 'Inglés' }),
+              es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+              en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
             }, { label: 'Título' }),
             description: fields.object({
-              es: fields.text({ label: 'Español', multiline: true }),
-              en: fields.text({ label: 'Inglés', multiline: true }),
+              es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
+              en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
             }, { label: 'Descripción' }),
           }, { label: 'Fase' }),
           { label: 'Fases', itemLabel: (props) => props.fields.letter.value || 'Fase' }
@@ -111,12 +111,12 @@ export default config({
               defaultValue: 'auto_awesome',
             }),
             title: fields.object({
-              es: fields.text({ label: 'Español' }),
-              en: fields.text({ label: 'Inglés' }),
+              es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+              en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
             }, { label: 'Título' }),
             description: fields.object({
-              es: fields.text({ label: 'Español', multiline: true }),
-              en: fields.text({ label: 'Inglés', multiline: true }),
+              es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
+              en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
             }, { label: 'Descripción' }),
           }, { label: 'Tarjeta' }),
           { label: 'Tarjetas destacadas', itemLabel: (props) => props.fields.title.fields.es.value || 'Card' }
@@ -126,8 +126,8 @@ export default config({
           { label: 'Voces', itemLabel: (props) => props.value || 'Voz', description: 'Nombres de los protagonistas o entrevistados del proyecto. Aparecen como etiquetas en la página del proyecto. Sumá uno por cada persona (por ejemplo, los 12 entrevistados de Voces de la Tierra).' }
         ),
         ctaText: fields.object({
-          es: fields.text({ label: 'Español' }),
-          en: fields.text({ label: 'Inglés' }),
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
         }, { label: 'Texto del botón' }),
         ctaLink: fields.text({ label: 'Link del botón', description: 'URL completa adonde lleva el botón, incluyendo https://.' }),
       },
@@ -140,12 +140,12 @@ export default config({
       schema: {
         name: fields.slug({ name: { label: 'Nombre' } }),
         role: fields.object({
-          es: fields.text({ label: 'Español' }),
-          en: fields.text({ label: 'Inglés' }),
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
         }, { label: 'Rol' }),
         bio: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'Inglés', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
         }, { label: 'Biografía' }),
         order: fields.integer({ label: 'Orden', description: 'Define el orden de aparición en la página. Número más bajo = aparece primero.' }),
         photo: fields.image({

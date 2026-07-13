@@ -1,0 +1,18 @@
+title: Probando, Probando
+kind: Prueba
+pillar: arte
+status: in_development
+featured: true
+tagline:
+  es: 1,2,3
+  en: 1,2,3
+description:
+  es: Es una Prueba
+  en: Its a test
+episodes: []
+phases: []
+featureCards: []
+voices: []
+ctaText:
+  es: Boton
+  en: Button

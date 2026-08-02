@@ -7,11 +7,12 @@ import GlassPanel from '../components/GlassPanel.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import PillarBadge from '../components/PillarBadge.astro';
 import { getProjectCover } from '../lib/projectCover';
+import { em } from '../lib/emphasis';
 
 const locale = Astro.currentLocale || 'es';
-const pageSlug = locale === 'en' ? 'en/inicio' : 'inicio';
-const page = await getEntry('pages', pageSlug);
+const page = await getEntry('pages', 'inicio');
 const d = page?.data;
+const t = (f?: { es: string; en: string }) => f?.[locale] ?? '';
 
 const projects = await getCollection('projects');
 const completed = projects.filter((p) => p.data.status === 'completed');
@@ -20,34 +21,34 @@ const featured = completed.find((p) => p.data.featured);
 
 const pillars = [
   {
-    title: d?.pillar_arte_title ?? (locale === 'en' ? 'Art' : 'Arte'),
-    desc: d?.pillar_arte_desc ?? '',
+    title: t(d?.pillar_arte_title) ?? (locale === 'en' ? 'Art' : 'Arte'),
+    desc: t(d?.pillar_arte_desc) ?? '',
     key: 'arte' as const,
   },
   {
-    title: d?.pillar_ciencia_title ?? (locale === 'en' ? 'Science' : 'Ciencia'),
-    desc: d?.pillar_ciencia_desc ?? '',
+    title: t(d?.pillar_ciencia_title) ?? (locale === 'en' ? 'Science' : 'Ciencia'),
+    desc: t(d?.pillar_ciencia_desc) ?? '',
     key: 'ciencia' as const,
   },
   {
-    title: d?.pillar_consciencia_title ?? (locale === 'en' ? 'Consciousness' : 'Consciencia'),
-    desc: d?.pillar_consciencia_desc ?? '',
+    title: t(d?.pillar_consciencia_title) ?? (locale === 'en' ? 'Consciousness' : 'Consciencia'),
+    desc: t(d?.pillar_consciencia_desc) ?? '',
     key: 'consciencia' as const,
   },
 ];
 ---
 
 <BaseLayout
-  title={d?.title ?? (locale === 'en' ? 'Home' : 'Inicio')}
-  description={d?.description ?? ''}
+  title={t(d?.title) ?? (locale === 'en' ? 'Home' : 'Inicio')}
+  description={t(d?.description) ?? ''}
   locale={locale}
 >
   <!-- Hero -->
   <HeroSection
     variant="split"
-    eyebrow={d?.hero_eyebrow}
-    title={d?.hero_title ?? ''}
-    subtitle={d?.hero_subtitle}
+    eyebrow={t(d?.hero_eyebrow)}
+    title={em(t(d?.hero_title)) ?? ''}
+    subtitle={t(d?.hero_subtitle)}
   >
     <div class="flex flex-wrap gap-4 pt-4">
       <a
@@ -90,7 +91,7 @@ const pillars = [
     </p>
     <h2
       class="font-headline text-4xl md:text-5xl text-center mb-16 [&_em]:italic [&_em]:text-warm"
-      set:html={d?.pillars_title ?? (locale === 'en' ? 'Three Pillars, One Universe' : 'Tres Pilares, Un Universo')}
+      set:html={em(t(d?.pillars_title)) ?? (locale === 'en' ? 'Three Pillars, One Universe' : 'Tres Pilares, Un Universo')}
     />
     <div class="grid md:grid-cols-3 gap-8">
       {pillars.map((p) => {
@@ -237,7 +238,7 @@ const pillars = [
           "
         </span>
         <blockquote class="font-headline text-2xl md:text-3xl italic text-on-surface leading-relaxed mb-10">
-          {d?.vision_quote ?? ''}
+          {t(d?.vision_quote) ?? ''}
         </blockquote>
         <div class="flex items-center justify-center gap-4">
           <span class="h-px w-12 bg-warm/30"></span>
@@ -266,11 +267,11 @@ const pillars = [
       </p>
 
       <h2 class="font-headline text-4xl md:text-5xl mb-6">
-        {d?.newsletter_title ?? ''}
+        {t(d?.newsletter_title) ?? ''}
       </h2>
 
       <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-12">
-        {d?.newsletter_subtitle ?? ''}
+        {t(d?.newsletter_subtitle) ?? ''}
       </p>
 
       <form class="flex flex-col sm:flex-row justify-center gap-3 max-w-md mx-auto group/form">

@@ -5,24 +5,25 @@ import HeroSection from '../components/HeroSection.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import FilterBar from '../components/FilterBar.astro';
 import { getProjectCover } from '../lib/projectCover';
+import { em } from '../lib/emphasis';
 
 const locale = Astro.currentLocale || 'es';
-const pageSlug = locale === 'en' ? 'en/archivo' : 'archivo';
-const page = await getEntry('pages', pageSlug);
+const page = await getEntry('pages', 'archivo');
 const d = page?.data;
+const t = (f?: { es: string; en: string }) => f?.[locale] ?? '';
 
 const projects = await getCollection('projects');
 ---
 
 <BaseLayout
-  title={d?.title ?? ''}
-  description={d?.description ?? ''}
+  title={t(d?.title) ?? ''}
+  description={t(d?.description) ?? ''}
   locale={locale}
 >
   <HeroSection
     variant="default"
-    title={d?.hero_title ?? ''}
-    subtitle={d?.hero_subtitle}
+    title={em(t(d?.hero_title)) ?? ''}
+    subtitle={t(d?.hero_subtitle)}
   />
 
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-20">

@@ -1,0 +1,42 @@
+title:
+  es: Nautas — Contacto
+  en: Nautas — Contact
+description:
+  es: Contactá a NAUTAS. Escribinos para consultas, colaboraciones, prensa o sumarte al equipo.
+  en: Contact NAUTAS. Write to us for inquiries, collaborations, press, or joining the team.
+hero_title:
+  es: Escribinos.
+  en: Write to Us.
+contact_tagline:
+  es: Cada nave necesita tripulación.
+  en: Every vessel needs a crew.
+email_label:
+  es: Correo Electrónico
+  en: Email
+email:
+  es: contacto@nautas.org
+  en: contacto@nautas.org
+youtube_label:
+  es: YouTube
+  en: YouTube
+youtube_url:
+  es: https://www.youtube.com/@Nautas
+  en: https://www.youtube.com/@Nautas
+youtube_display:
+  es: youtube.com/@Nautas
+  en: youtube.com/@Nautas
+location_label:
+  es: Ubicación
+  en: Location
+location:
+  es: Buenos Aires, Argentina
+  en: Buenos Aires, Argentina
+response_label:
+  es: Tiempo de Respuesta
+  en: Response Time
+response_time:
+  es: 3 a 5 días hábiles
+  en: 3-5 business days
+form_title:
+  es: Enviá tu mensaje
+  en: Send your message

@@ -5,22 +5,23 @@ import HeroSection from '../components/HeroSection.astro';
 import CelestialLine from '../components/CelestialLine.astro';
 import GlassPanel from '../components/GlassPanel.astro';
 import TeamCard from '../components/TeamCard.astro';
+import { em } from '../lib/emphasis';
 
 const locale = Astro.currentLocale || 'es';
-const pageSlug = locale === 'en' ? 'en/institucional' : 'institucional';
-const page = await getEntry('pages', pageSlug);
+const page = await getEntry('pages', 'institucional');
 const d = page?.data;
+const t = (f?: { es: string; en: string }) => f?.[locale] ?? '';
 
 const team = await getCollection('team');
 team.sort((a, b) => a.data.order - b.data.order);
 ---
 
-<BaseLayout title={d?.title ?? ''} description={d?.description ?? ''} locale={locale}>
+<BaseLayout title={t(d?.title) ?? ''} description={t(d?.description) ?? ''} locale={locale}>
   <!-- Hero -->
   <HeroSection
     variant="centered"
-    title={d?.hero_title ?? ''}
-    subtitle={d?.hero_subtitle}
+    title={em(t(d?.hero_title)) ?? ''}
+    subtitle={t(d?.hero_subtitle)}
   />
 
   <CelestialLine />
@@ -33,7 +34,7 @@ team.sort((a, b) => a.data.order - b.data.order);
     <div class="grid md:grid-cols-12 gap-12">
       <div class="md:col-span-5">
         <h2 class="font-headline text-4xl md:text-5xl mb-8 md:sticky md:top-32 [&_em]:italic [&_em]:text-warm">
-          <Fragment set:html={d?.mission_title ?? ''} />
+          <Fragment set:html={em(t(d?.mission_title)) ?? ''} />
         </h2>
         <div class="aspect-square rounded-full border border-warm/20 p-8 relative flex items-center justify-center">
           <div class="absolute inset-0 bg-warm/[0.04] rounded-full animate-pulse"></div>
@@ -49,14 +50,14 @@ team.sort((a, b) => a.data.order - b.data.order);
         <GlassPanel>
           <div class="space-y-6 text-on-surface-variant leading-relaxed">
             {d?.mission_p1 && (
-              <p class="text-xl text-on-surface leading-relaxed mb-8 font-headline italic">{d.mission_p1}</p>
+              <p class="text-xl text-on-surface leading-relaxed mb-8 font-headline italic">{t(d.mission_p1)}</p>
             )}
-            {d?.mission_p2 && <p>{d.mission_p2}</p>}
-            {d?.mission_p3 && <p>{d.mission_p3}</p>}
-            {d?.mission_p4 && <p>{d.mission_p4}</p>}
-            {d?.mission_p5 && <p>{d.mission_p5}</p>}
+            {d?.mission_p2 && <p>{t(d.mission_p2)}</p>}
+            {d?.mission_p3 && <p>{t(d.mission_p3)}</p>}
+            {d?.mission_p4 && <p>{t(d.mission_p4)}</p>}
+            {d?.mission_p5 && <p>{t(d.mission_p5)}</p>}
             {d?.mission_cta && (
-              <p class="text-warm font-headline italic text-lg">{d.mission_cta}</p>
+              <p class="text-warm font-headline italic text-lg">{t(d.mission_cta)}</p>
             )}
           </div>
         </GlassPanel>
@@ -75,12 +76,12 @@ team.sort((a, b) => a.data.order - b.data.order);
       <div class="grid md:grid-cols-2">
         <div class="p-8 md:p-16 lg:p-20 flex flex-col justify-center">
           <h2 class="font-headline text-4xl md:text-5xl mb-10 [&_em]:italic [&_em]:text-warm">
-            <Fragment set:html={d?.vision_title ?? ''} />
+            <Fragment set:html={em(t(d?.vision_title)) ?? ''} />
           </h2>
           <div class="space-y-6 text-on-surface-variant leading-relaxed text-base md:text-lg">
-            {d?.vision_p1 && <p>{d.vision_p1}</p>}
-            {d?.vision_p2 && <p>{d.vision_p2}</p>}
-            {d?.vision_p3 && <p>{d.vision_p3}</p>}
+            {d?.vision_p1 && <p>{t(d.vision_p1)}</p>}
+            {d?.vision_p2 && <p>{t(d.vision_p2)}</p>}
+            {d?.vision_p3 && <p>{t(d.vision_p3)}</p>}
           </div>
         </div>
         <div class="relative bg-surface-container-high flex flex-col items-center justify-center p-8 md:p-16 lg:p-20 text-center border-l border-warm/10">
@@ -88,13 +89,13 @@ team.sort((a, b) => a.data.order - b.data.order);
             <span class="font-headline text-warm/50 text-6xl block mb-6 leading-none" aria-hidden="true">⊙</span>
             {d?.vision_blockquote && (
               <blockquote class="font-headline text-2xl md:text-3xl italic text-on-surface mb-6">
-                {d.vision_blockquote}
+                {t(d.vision_blockquote)}
               </blockquote>
             )}
           </div>
           <div class="space-y-6 text-sm text-on-surface-variant leading-relaxed text-left relative z-10">
-            {d?.vision_p4 && <p>{d.vision_p4}</p>}
-            {d?.vision_p5 && <p>{d.vision_p5}</p>}
+            {d?.vision_p4 && <p>{t(d.vision_p4)}</p>}
+            {d?.vision_p5 && <p>{t(d.vision_p5)}</p>}
           </div>
           <!-- Dashed circle background decoration -->
           <div class="absolute inset-0 opacity-[0.08] text-warm pointer-events-none overflow-hidden" aria-hidden="true">
@@ -117,10 +118,10 @@ team.sort((a, b) => a.data.order - b.data.order);
     <div class="flex flex-col md:flex-row justify-between items-end mb-14">
       <div class="max-w-xl">
         <h2 class="font-headline text-4xl md:text-5xl mb-4 [&_em]:italic [&_em]:text-warm">
-          <Fragment set:html={d?.team_title ?? ''} />
+          <Fragment set:html={em(t(d?.team_title)) ?? ''} />
         </h2>
         <p class="text-on-surface-variant text-lg">
-          {d?.team_subtitle ?? ''}
+          {t(d?.team_subtitle) ?? ''}
         </p>
       </div>
     </div>
@@ -147,10 +148,10 @@ team.sort((a, b) => a.data.order - b.data.order);
         // {locale === 'en' ? 'set sail' : 'embarcate'}
       </p>
       <h2 class="font-headline text-4xl md:text-5xl mb-8 [&_em]:italic [&_em]:text-warm">
-        <Fragment set:html={d?.cta_title ?? ''} />
+        <Fragment set:html={em(t(d?.cta_title)) ?? ''} />
       </h2>
       <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-10">
-        {d?.cta_subtitle ?? ''}
+        {t(d?.cta_subtitle) ?? ''}
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a

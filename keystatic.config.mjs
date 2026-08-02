@@ -1,9 +1,327 @@
-import { config, collection, fields } from '@keystatic/core';
+import { config, collection, singleton, fields } from '@keystatic/core';
+
+const ASTERISK_HINT = 'Para poner una parte en itálica, encerrala entre asteriscos: *así*';
+const SEO_HINT = 'No se ve en la página. Aparece en Google y al compartir el link.';
+const ORDER_HINT = 'Se muestran en orden, uno debajo del otro.';
 
 export default config({
   storage: import.meta.env.DEV ? { kind: 'local' } : { kind: 'cloud' },
   cloud: {
     project: 'nautas/nautas',
+  },
+  // NOTA: content.config.ts define hero_image (bilingüe, opcional)
+  // que no se registra acá a propósito: no lo consume ningún .astro
+  // y no existe en ningún .yaml. Slot reservado para imágenes de
+  // encabezado (previsto para Fase 3). Si se empieza a usar, hay
+  // que agregarlo acá.
+  singletons: {
+    inicio: singleton({
+      label: 'Página: Inicio',
+      path: 'src/content/pages/inicio',
+      format: { data: 'yaml' },
+      schema: {
+        // --- Portada ---
+        hero_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Portada — Etiqueta superior' }),
+        hero_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Portada — Título principal' }),
+        hero_subtitle: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Portada — Texto de presentación' }),
+        // --- Los tres pilares ---
+        pillars_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Pilares — Título de sección' }),
+        pillar_arte_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Pilares — Arte: título' }),
+        pillar_arte_desc: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Pilares — Arte: descripción' }),
+        pillar_ciencia_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Pilares — Ciencia: título' }),
+        pillar_ciencia_desc: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Pilares — Ciencia: descripción' }),
+        pillar_consciencia_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Pilares — Consciencia: título' }),
+        pillar_consciencia_desc: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Pilares — Consciencia: descripción' }),
+        // --- Cita de visión ---
+        vision_quote: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Cita de visión' }),
+        // --- Newsletter ---
+        newsletter_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Newsletter — Título' }),
+        newsletter_subtitle: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Newsletter — Subtítulo' }),
+        // --- SEO y metadatos ---
+        title: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Título para buscadores' }),
+        description: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Descripción para buscadores' }),
+      },
+    }),
+    institucional: singleton({
+      label: 'Página: Institucional',
+      path: 'src/content/pages/institucional',
+      format: { data: 'yaml' },
+      schema: {
+        // --- Portada ---
+        hero_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Portada — Título principal' }),
+        hero_subtitle: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Portada — Texto de presentación' }),
+        // --- Misión ---
+        mission_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Misión — Título' }),
+        mission_p1: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Misión — Párrafo 1' }),
+        mission_p2: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Misión — Párrafo 2' }),
+        mission_p3: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Misión — Párrafo 3' }),
+        mission_p4: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Misión — Párrafo 4' }),
+        mission_p5: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Misión — Párrafo 5' }),
+        mission_cta: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Misión — Frase de cierre' }),
+        // --- Visión ---
+        vision_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Visión — Título' }),
+        vision_p1: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Visión — Párrafo 1' }),
+        vision_p2: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Visión — Párrafo 2' }),
+        vision_p3: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Visión — Párrafo 3' }),
+        vision_blockquote: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Visión — Cita destacada' }),
+        vision_p4: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Visión — Párrafo 4' }),
+        vision_p5: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ORDER_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
+        }, { label: 'Visión — Párrafo 5' }),
+        // --- Equipo ---
+        team_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Equipo — Título' }),
+        team_subtitle: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Equipo — Subtítulo' }),
+        // --- Llamado final ---
+        cta_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Llamado final — Título' }),
+        cta_subtitle: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Llamado final — Subtítulo' }),
+        // --- SEO y metadatos ---
+        title: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Título para buscadores' }),
+        description: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Descripción para buscadores' }),
+      },
+    }),
+    proyectos: singleton({
+      label: 'Página: Proyectos',
+      path: 'src/content/pages/proyectos',
+      format: { data: 'yaml' },
+      schema: {
+        // --- Portada ---
+        hero_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Portada — Etiqueta superior' }),
+        hero_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Portada — Título principal' }),
+        hero_subtitle: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Portada — Texto de presentación' }),
+        // --- Secciones ---
+        completed_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Secciones — Título de Producciones' }),
+        in_dev_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
+        }, { label: 'Secciones — Título de En Desarrollo' }),
+        // --- SEO y metadatos ---
+        title: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Título para buscadores' }),
+        description: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Descripción para buscadores' }),
+      },
+    }),
+    archivo: singleton({
+      label: 'Página: Archivo',
+      path: 'src/content/pages/archivo',
+      format: { data: 'yaml' },
+      schema: {
+        // --- Portada ---
+        hero_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Portada — Etiqueta superior' }),
+        hero_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Portada — Título principal' }),
+        hero_subtitle: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Portada — Texto de presentación' }),
+        // --- SEO y metadatos ---
+        title: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Título para buscadores' }),
+        description: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Descripción para buscadores' }),
+      },
+    }),
+    contacto: singleton({
+      label: 'Página: Contacto',
+      path: 'src/content/pages/contacto',
+      format: { data: 'yaml' },
+      schema: {
+        // --- Portada ---
+        hero_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Portada — Título principal' }),
+        contact_tagline: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Portada — Texto de presentación' }),
+        // --- Datos de contacto ---
+        email_label: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Datos — Etiqueta del campo de email' }),
+        email: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Datos — Dirección de email' }),
+        youtube_label: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Datos — Etiqueta del campo de YouTube' }),
+        youtube_url: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Datos — Link de YouTube' }),
+        youtube_display: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Datos — Texto visible del link de YouTube' }),
+        location_label: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Datos — Etiqueta del campo de ubicación' }),
+        location: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Datos — Ubicación' }),
+        response_label: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Datos — Etiqueta del tiempo de respuesta' }),
+        response_time: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Datos — Tiempo de respuesta' }),
+        // --- Formulario ---
+        form_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Formulario — Título' }),
+        // --- SEO y metadatos ---
+        title: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Título para buscadores' }),
+        description: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'English', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Descripción para buscadores' }),
+      },
+    }),
   },
   collections: {
     projects: collection({

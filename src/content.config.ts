@@ -115,8 +115,30 @@ const teamCollection = defineCollection({
   }),
 });
 
+const uiCollection = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/ui' }),
+  schema: z.object({
+    // === DETALLE DE PROYECTO ===
+    back_to_archive: bi.optional(),
+    voices_eyebrow: bi.optional(),
+    voices_title: bi.optional(),
+    phases_eyebrow: bi.optional(),
+    phases_title: bi.optional(),
+    trailer_title: bi.optional(),
+    trailer_label: bi.optional(),
+    episodes_title: bi.optional(),
+    episodes_count_label: bi.optional(),
+    project_cta_eyebrow: bi.optional(),
+    project_cta_title: bi.optional(),
+    project_cta_text: bi.optional(),
+    related_eyebrow: bi.optional(),
+    related_title: bi.optional(),
+  }),
+});
+
 export const collections = {
   pages: pagesCollection,
   projects: projectsCollection,
   team: teamCollection,
+  ui: uiCollection,
 };

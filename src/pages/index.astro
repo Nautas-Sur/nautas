@@ -12,7 +12,7 @@ import { em } from '../lib/emphasis';
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'inicio');
 const d = page?.data;
-const t = (f?: { es: string; en: string }) => f?.[locale] ?? '';
+const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
 
 const projects = await getCollection('projects');
 const completed = projects.filter((p) => p.data.status === 'completed');

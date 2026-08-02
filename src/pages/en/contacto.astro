@@ -7,7 +7,7 @@ import CelestialLine from '../../components/CelestialLine.astro';
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'contacto');
 const d = page?.data;
-const t = (f?: { es: string; en: string }) => f?.[locale] ?? '';
+const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
 ---
 
 <BaseLayout

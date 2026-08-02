@@ -1,0 +1,42 @@
+back_to_archive:
+  es: volver al archivo
+  en: back to archive
+voices_eyebrow:
+  es: voces destacadas
+  en: featured voices
+voices_title:
+  es: Voces Destacadas
+  en: Featured Voices
+phases_eyebrow:
+  es: fases del programa
+  en: program phases
+phases_title:
+  es: Fases del Programa
+  en: Program Phases
+trailer_title:
+  es: Adelanto de la serie
+  en: Series trailer
+trailer_label:
+  es: adelanto
+  en: trailer
+episodes_title:
+  es: Episodios
+  en: Episodes
+episodes_count_label:
+  es: VIDEOS
+  en: VIDEOS
+project_cta_eyebrow:
+  es: continuar la travesía
+  en: continue the voyage
+project_cta_title:
+  es: Explorá la Serie
+  en: Explore the Series
+project_cta_text:
+  es: Contenidos holísticos y sensitivos en armonía con el planeta.
+  en: Holistic and sensitive content in harmony with the planet.
+related_eyebrow:
+  es: mismas aguas
+  en: same waters
+related_title:
+  es: Producciones Relacionadas
+  en: Related Productions

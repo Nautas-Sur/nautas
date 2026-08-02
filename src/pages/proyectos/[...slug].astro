@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 import type { GetStaticPaths } from 'astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroSection from '../../components/HeroSection.astro';
@@ -19,6 +19,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 const { slug } = Astro.params;
 const locale = Astro.currentLocale || 'es';
 const t = (es: string, en: string) => (locale === 'en' ? en : es);
+const ui = await getEntry('ui', 'textos');
+const u = (f?: { es: string; en: string }) => f?.[locale] || undefined;
 
 const projects = await getCollection('projects');
 const project = projects.find((p) => p.id === slug);
@@ -85,7 +87,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
       class="group inline-flex items-center gap-2 font-bitacora italic text-warm/70 hover:text-warm text-sm mb-8 transition-colors"
     >
       <span class="transition-transform group-hover:-translate-x-1" aria-hidden="true">←</span>
-      // {t('volver al archivo', 'back to archive')}
+      // {u(ui?.data.back_to_archive) ?? t('volver al archivo', 'back to archive')}
     </a>
 
     <div class="flex flex-wrap items-center gap-3 mb-6">
@@ -168,9 +170,9 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
         {data.voices && data.voices.length > 0 && (
           <section class="pt-8 border-t border-warm/10">
             <p class="font-bitacora italic text-warm text-sm mb-4">
-              // {t('voces destacadas', 'featured voices')}
+              // {u(ui?.data.voices_eyebrow) ?? t('voces destacadas', 'featured voices')}
             </p>
-            <h3 class="font-headline text-2xl mb-6">{t('Voces Destacadas', 'Featured Voices')}</h3>
+            <h3 class="font-headline text-2xl mb-6">{u(ui?.data.voices_title) ?? t('Voces Destacadas', 'Featured Voices')}</h3>
             <div class="flex flex-wrap gap-2">
               {data.voices.map((voice) => (
                 <span class="inline-block px-4 py-1.5 rounded-full text-xs font-body text-on-surface-variant border border-warm/20 bg-warm/[0.04]">
@@ -185,9 +187,9 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
         {data.phases && data.phases.length > 0 && (
           <section class="pt-8 border-t border-warm/10">
             <p class="font-bitacora italic text-warm text-sm mb-4">
-              // {t('fases del programa', 'program phases')}
+              // {u(ui?.data.phases_eyebrow) ?? t('fases del programa', 'program phases')}
             </p>
-            <h3 class="font-headline text-2xl mb-8">{t('Fases del Programa', 'Program Phases')}</h3>
+            <h3 class="font-headline text-2xl mb-8">{u(ui?.data.phases_title) ?? t('Fases del Programa', 'Program Phases')}</h3>
             <div class="grid sm:grid-cols-2 gap-6">
               {data.phases.map((phase) => (
                 <div class="group flex gap-4 p-6 bg-surface-container-low rounded-xl border border-warm/10 hover:border-warm/30 transition-all duration-300">
@@ -220,12 +222,12 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
             trailer={data.featuredVideoId ? {
               videoId: data.featuredVideoId,
               active: true,
-              title: t('Adelanto de la serie', 'Series trailer'),
-              label: t('adelanto', 'trailer'),
+              title: u(ui?.data.trailer_title) ?? t('Adelanto de la serie', 'Series trailer'),
+              label: u(ui?.data.trailer_label) ?? t('adelanto', 'trailer'),
             } : undefined}
             playlistId={data.playlistId}
-            title={t('Episodios', 'Episodes')}
-            countLabel={`${data.episodes.length} ${t('VIDEOS', 'VIDEOS')}`}
+            title={u(ui?.data.episodes_title) ?? t('Episodios', 'Episodes')}
+            countLabel={`${data.episodes.length} ${u(ui?.data.episodes_count_label) ?? t('VIDEOS', 'VIDEOS')}`}
             locale={locale}
           />
         )}
@@ -235,13 +237,13 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
           <GlassPanel padding="md">
             <div class="text-center">
               <p class="font-bitacora italic text-warm/70 text-xs mb-3">
-                // {t('continuar la travesía', 'continue the voyage')}
+                // {u(ui?.data.project_cta_eyebrow) ?? t('continuar la travesía', 'continue the voyage')}
               </p>
               <h4 class="font-headline italic text-xl text-warm mb-4">
-                {t('Explorá la Serie', 'Explore the Series')}
+                {u(ui?.data.project_cta_title) ?? t('Explorá la Serie', 'Explore the Series')}
               </h4>
               <p class="text-xs text-on-surface-variant leading-relaxed mb-6">
-                {t(
+                {u(ui?.data.project_cta_text) ?? t(
                   'Contenidos holísticos y sensitivos en armonía con el planeta.',
                   'Holistic and sensitive content in harmony with the planet.'
                 )}
@@ -268,10 +270,10 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
       <section class="mt-32 mb-20">
         <CelestialLine />
         <p class="font-bitacora italic text-warm text-sm mb-4">
-          // {t('mismas aguas', 'same waters')}
+          // {u(ui?.data.related_eyebrow) ?? t('mismas aguas', 'same waters')}
         </p>
         <h2 class="font-headline text-3xl md:text-4xl mb-10">
-          {t('Producciones Relacionadas', 'Related Productions')}
+          {u(ui?.data.related_title) ?? t('Producciones Relacionadas', 'Related Productions')}
         </h2>
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {related.map((p) => (

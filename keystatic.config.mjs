@@ -322,6 +322,73 @@ export default config({
         }, { label: 'SEO — Descripción para buscadores' }),
       },
     }),
+    // Textos que aparecen en TODAS las páginas de proyecto. Un cambio acá
+    // afecta a todos los proyectos.
+    // (Keystatic Singleton no admite una `description` a nivel de colección,
+    // por eso queda documentado acá como comentario.)
+    ui: singleton({
+      label: 'Textos de interfaz',
+      path: 'src/content/ui/textos',
+      format: { data: 'yaml' },
+      schema: {
+        back_to_archive: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Link de vuelta al archivo' }),
+        voices_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Voces: etiqueta superior' }),
+        voices_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Voces: título' }),
+        phases_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Fases: etiqueta superior' }),
+        phases_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Fases: título' }),
+        trailer_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Trailer: título' }),
+        trailer_label: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Trailer: etiqueta' }),
+        episodes_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Episodios: título' }),
+        episodes_count_label: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Episodios: palabra del contador' }),
+        project_cta_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Caja lateral: etiqueta superior' }),
+        project_cta_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Detalle — Caja lateral: título' }),
+        project_cta_text: fields.object({
+          es: fields.text({ label: 'Español', multiline: true }),
+          en: fields.text({ label: 'English', multiline: true }),
+        }, { label: 'Detalle — Caja lateral: texto' }),
+        related_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Relacionados — Etiqueta superior' }),
+        related_title: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Relacionados — Título' }),
+      },
+    }),
   },
   collections: {
     projects: collection({

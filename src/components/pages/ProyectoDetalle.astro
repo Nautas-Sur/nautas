@@ -1,0 +1,287 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../HeroSection.astro';
+import CelestialLine from '../CelestialLine.astro';
+import GlassPanel from '../GlassPanel.astro';
+import YouTubeEmbed from '../YouTubeEmbed.astro';
+import EpisodeList from '../EpisodeList.astro';
+import PillarBadge from '../PillarBadge.astro';
+
+const { slug } = Astro.params;
+const locale = Astro.currentLocale || 'es';
+const t = (es: string, en: string) => (locale === 'en' ? en : es);
+const ui = await getEntry('ui', 'textos');
+const u = (f?: { es: string; en: string }) => f?.[locale] || undefined;
+
+const projects = await getCollection('projects');
+const project = projects.find((p) => p.id === slug);
+
+if (!project) {
+  return Astro.rewrite('/404');
+}
+
+const { data } = project;
+const description = t(data.description.es, data.description.en);
+const tagline = t(data.tagline.es, data.tagline.en);
+
+// Related: other projects of same pillar
+const related = projects
+  .filter((p) => p.id !== slug)
+  .filter((p) => p.data.pillar === data.pillar)
+  .slice(0, 3);
+
+const iconGlyphMap: Record<string, string> = {
+  // Genéricos / abstractos
+  'auto_awesome': '✦',
+  'public': '⊙',
+  'psychology': '❍',
+  'palette': '◐',
+  'science': '✧',
+  // Comunidad / personas
+  'groups': '◯',
+  'person': '◯',
+  'diversity_3': '◯',
+  // Naturaleza / planeta
+  'forest': '✾',
+  'eco': '✾',
+  'spa': '✾',
+  // Media / contenido
+  'movie': '▷',
+  'play_circle': '▷',
+  'mic': '◐',
+  // Conocimiento / educación
+  'school': '◆',
+  'book': '◆',
+  'menu_book': '◆',
+  'lightbulb': '✦',
+  // Salud / bienestar
+  'healing': '✚',
+  'favorite': '♡',
+  // Comunicación
+  'forum': '◇',
+  'chat': '◇',
+};
+
+const hasVideo = !!(data.playlistId || data.featuredVideoId || data.episodes?.some((ep) => ep.videoId));
+const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.find((ep) => ep.videoId)?.videoId : undefined);
+---
+
+<BaseLayout
+  title={data.title}
+  description={description.slice(0, 160)}
+  locale={locale}
+>
+  <!-- Hero -->
+  <section class="max-w-[1440px] mx-auto px-6 md:px-12 pt-32 pb-16">
+    <a
+      href={`/${locale === 'en' ? 'en/' : ''}archivo`}
+      class="group inline-flex items-center gap-2 font-bitacora italic text-warm/70 hover:text-warm text-sm mb-8 transition-colors"
+    >
+      <span class="transition-transform group-hover:-translate-x-1" aria-hidden="true">←</span>
+      // {u(ui?.data.back_to_archive) ?? t('volver al archivo', 'back to archive')}
+    </a>
+
+    <div class="flex flex-wrap items-center gap-3 mb-6">
+      <PillarBadge pillar={data.pillar} locale={locale} />
+      <span class="font-bitacora italic text-warm/70 text-xs">// {data.kind}</span>
+      <span class={`px-2.5 py-0.5 rounded-full font-bitacora text-[10px] ${
+        data.status === 'completed'
+          ? 'text-warm border border-warm/30 bg-warm/[0.06]'
+          : 'text-warm/50 border border-warm/15 bg-warm/[0.03]'
+      }`}>
+        // {data.status === 'completed' ? t('terminado', 'completed') : t('en desarrollo', 'in progress')}
+      </span>
+      {data.year && <span class="font-bitacora italic text-warm/70 text-xs ml-auto">{data.year}</span>}
+    </div>
+
+    <h1 class="font-headline text-5xl md:text-7xl lg:text-8xl leading-tight mb-6">
+      {data.title}
+    </h1>
+    <p class="font-headline italic text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed">
+      {tagline}
+    </p>
+  </section>
+
+  <!-- YouTube Embed -->
+  {hasVideo && (
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-16">
+      <YouTubeEmbed playlistId={data.playlistId} videoId={embedVideoId} title={data.title} />
+    </section>
+  )}
+
+  <!-- Hero Image (projects without video) -->
+  {!hasVideo && data.heroImage && (
+    <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-16">
+      <div class="w-full aspect-video rounded-2xl overflow-hidden">
+        <img
+          src={data.heroImage}
+          alt={data.heroAlt || data.title}
+          class="w-full h-full object-cover"
+          loading="eager"
+        />
+      </div>
+    </section>
+  )}
+
+  <!-- Main Content Grid -->
+  <div class="max-w-[1440px] mx-auto px-6 md:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <!-- Main -->
+      <div class="lg:col-span-8 space-y-12">
+        {/* Description */}
+        <section class="space-y-6">
+          {description.split('\n\n').filter(Boolean).map((p, i) =>
+            i === 0 ? (
+              <p class="text-xl text-on-surface font-headline italic leading-relaxed border-l-2 border-warm/40 pl-6">
+                {p.trim()}
+              </p>
+            ) : (
+              <p class="text-on-surface-variant leading-relaxed text-lg">{p.trim()}</p>
+            )
+          )}
+        </section>
+
+        {/* Feature Cards */}
+        {data.featureCards && data.featureCards.length > 0 && (
+          <section class="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-8 border-t border-warm/10">
+            {data.featureCards.map((card) => {
+              const glyph = iconGlyphMap[card.icon] || '◆';
+              return (
+                <div class="group bg-surface-container-low p-8 rounded-xl border border-warm/10 hover:border-warm/30 transition-all duration-300">
+                  <span class="font-headline text-warm/60 text-4xl block mb-4 leading-none group-hover:text-warm transition-colors" aria-hidden="true">{glyph}</span>
+                  <h4 class="font-headline text-lg mb-3 group-hover:text-warm transition-colors">{t(card.title.es, card.title.en)}</h4>
+                  <p class="text-sm text-on-surface-variant leading-relaxed">{t(card.description.es, card.description.en)}</p>
+                </div>
+              );
+            })}
+          </section>
+        )}
+
+        {/* Voices */}
+        {data.voices && data.voices.length > 0 && (
+          <section class="pt-8 border-t border-warm/10">
+            <p class="font-bitacora italic text-warm text-sm mb-4">
+              // {u(ui?.data.voices_eyebrow) ?? t('voces destacadas', 'featured voices')}
+            </p>
+            <h3 class="font-headline text-2xl mb-6">{u(ui?.data.voices_title) ?? t('Voces Destacadas', 'Featured Voices')}</h3>
+            <div class="flex flex-wrap gap-2">
+              {data.voices.map((voice) => (
+                <span class="inline-block px-4 py-1.5 rounded-full text-xs font-body text-on-surface-variant border border-warm/20 bg-warm/[0.04]">
+                  {voice}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Phases (in development) */}
+        {data.phases && data.phases.length > 0 && (
+          <section class="pt-8 border-t border-warm/10">
+            <p class="font-bitacora italic text-warm text-sm mb-4">
+              // {u(ui?.data.phases_eyebrow) ?? t('fases del programa', 'program phases')}
+            </p>
+            <h3 class="font-headline text-2xl mb-8">{u(ui?.data.phases_title) ?? t('Fases del Programa', 'Program Phases')}</h3>
+            <div class="grid sm:grid-cols-2 gap-6">
+              {data.phases.map((phase) => (
+                <div class="group flex gap-4 p-6 bg-surface-container-low rounded-xl border border-warm/10 hover:border-warm/30 transition-all duration-300">
+                  <div class="w-10 h-10 rounded-full bg-warm/[0.08] border border-warm/25 flex items-center justify-center shrink-0 group-hover:bg-warm/[0.15] transition-colors">
+                    <span class="font-headline italic text-warm text-lg leading-none">{phase.letter}</span>
+                  </div>
+                  <div>
+                    <h4 class="font-headline text-base mb-2 group-hover:text-warm transition-colors">{t(phase.title.es, phase.title.en)}</h4>
+                    <p class="text-sm text-on-surface-variant leading-relaxed">{t(phase.description.es, phase.description.en)}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+
+      {/* Sidebar */}
+      <aside class="lg:col-span-4 space-y-8 lg:sticky lg:top-32">
+        {/* Episodes */}
+        {data.episodes && data.episodes.length > 0 && (
+          <EpisodeList
+            episodes={data.episodes.map((ep, i) => ({
+              number: ep.number,
+              title: t(ep.title.es, ep.title.en),
+              description: ep.description ? t(ep.description.es, ep.description.en) : undefined,
+              videoId: ep.videoId,
+              active: !data.featuredVideoId && i === 0,
+            }))}
+            trailer={data.featuredVideoId ? {
+              videoId: data.featuredVideoId,
+              active: true,
+              title: u(ui?.data.trailer_title) ?? t('Adelanto de la serie', 'Series trailer'),
+              label: u(ui?.data.trailer_label) ?? t('adelanto', 'trailer'),
+            } : undefined}
+            playlistId={data.playlistId}
+            title={u(ui?.data.episodes_title) ?? t('Episodios', 'Episodes')}
+            countLabel={`${data.episodes.length} ${u(ui?.data.episodes_count_label) ?? t('VIDEOS', 'VIDEOS')}`}
+            locale={locale}
+          />
+        )}
+
+        {/* CTA Box */}
+        {data.ctaText && (
+          <GlassPanel padding="md">
+            <div class="text-center">
+              <p class="font-bitacora italic text-warm/70 text-xs mb-3">
+                // {u(ui?.data.project_cta_eyebrow) ?? t('continuar la travesía', 'continue the voyage')}
+              </p>
+              <h4 class="font-headline italic text-xl text-warm mb-4">
+                {u(ui?.data.project_cta_title) ?? t('Explorá la Serie', 'Explore the Series')}
+              </h4>
+              <p class="text-xs text-on-surface-variant leading-relaxed mb-6">
+                {u(ui?.data.project_cta_text) ?? t(
+                  'Contenidos holísticos y sensitivos en armonía con el planeta.',
+                  'Holistic and sensitive content in harmony with the planet.'
+                )}
+              </p>
+              {data.ctaLink && (
+                <a
+                  href={data.ctaLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="group inline-flex w-full items-center justify-center gap-2 py-3 rounded-full bg-warm text-on-warm font-bitacora text-sm hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgb(from_var(--color-warm)_r_g_b_/_0.5)] transition-all"
+                >
+                  {t(data.ctaText.es, data.ctaText.en)}
+                  <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+                </a>
+              )}
+            </div>
+          </GlassPanel>
+        )}
+      </aside>
+    </div>
+
+    {/* Related Projects */}
+    {related.length > 0 && (
+      <section class="mt-32 mb-20">
+        <CelestialLine />
+        <p class="font-bitacora italic text-warm text-sm mb-4">
+          // {u(ui?.data.related_eyebrow) ?? t('mismas aguas', 'same waters')}
+        </p>
+        <h2 class="font-headline text-3xl md:text-4xl mb-10">
+          {u(ui?.data.related_title) ?? t('Producciones Relacionadas', 'Related Productions')}
+        </h2>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {related.map((p) => (
+            <a
+              href={`/${locale === 'en' ? 'en/' : ''}proyectos/${p.id}`}
+              class="group p-6 bg-surface-container-low rounded-xl border border-warm/10 hover:border-warm/30 hover:bg-surface-container-high hover:-translate-y-1 transition-all duration-300"
+            >
+              <div class="flex items-center gap-2 mb-3">
+                <PillarBadge pillar={p.data.pillar} locale={locale} />
+              </div>
+              <h3 class="font-headline text-xl group-hover:text-warm transition-colors">{p.data.title}</h3>
+              <p class="text-sm text-on-surface-variant mt-2 line-clamp-2">{t(p.data.tagline.es, p.data.tagline.en)}</p>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </div>
+</BaseLayout>

@@ -1,0 +1,51 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HeroSection from '../HeroSection.astro';
+import ProjectCard from '../ProjectCard.astro';
+import FilterBar from '../FilterBar.astro';
+import { getProjectCover } from '../../lib/projectCover';
+import { em } from '../../lib/emphasis';
+
+const locale = Astro.currentLocale || 'es';
+const page = await getEntry('pages', 'archivo');
+const d = page?.data;
+const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
+
+const projects = await getCollection('projects');
+---
+
+<BaseLayout
+  title={t(d?.title) ?? ''}
+  description={t(d?.description) ?? ''}
+  locale={locale}
+>
+  <HeroSection
+    variant="default"
+    title={em(t(d?.hero_title)) ?? ''}
+    subtitle={t(d?.hero_subtitle)}
+  />
+
+  <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-20">
+    <FilterBar locale={locale} />
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      {projects.map((p) => (
+        <div data-pillar={p.data.pillar} data-status={p.data.status}>
+          <ProjectCard
+            title={p.data.title}
+            slug={p.id}
+            kind={p.data.kind}
+            pillar={p.data.pillar}
+            tagline={locale === 'en' ? p.data.tagline.en : p.data.tagline.es}
+            year={p.data.year}
+            episodeCount={p.data.episodes?.length}
+            image={getProjectCover(p.data)}
+            status={p.data.status}
+            locale={locale}
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

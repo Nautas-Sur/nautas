@@ -20,10 +20,13 @@ export interface Props {
   playlistId?: string;
   title?: string;
   countLabel?: string;
+  separatorLabel?: string;
+  episodeLabel?: string;
+  nowPlayingLabel?: string;
   locale?: string;
 }
 
-const { episodes, trailer, playlistId, title, countLabel, locale = 'es' } = Astro.props;
+const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episodeLabel, nowPlayingLabel, locale = 'es' } = Astro.props;
 ---
 
 <div class="space-y-5">
@@ -101,7 +104,7 @@ const { episodes, trailer, playlistId, title, countLabel, locale = 'es' } = Astr
   {trailer && episodes.length > 0 && (
     <div class="flex items-center gap-3 pt-1">
       <span class="font-bitacora text-[10px] text-warm uppercase tracking-[0.2em]">
-        // {locale === 'en' ? 'episodes' : 'episodios'}
+        // {separatorLabel ?? (locale === 'en' ? 'episodes' : 'episodios')}
       </span>
       <div class="flex-1 h-px bg-on-surface/[0.08]"></div>
     </div>
@@ -143,7 +146,7 @@ const { episodes, trailer, playlistId, title, countLabel, locale = 'es' } = Astr
             <div class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5">
               {ep.active && (
                 <span class="font-bitacora text-[9px] text-warm uppercase tracking-[0.15em] bg-background/70 backdrop-blur px-2 py-0.5 rounded-full border border-warm/30">
-                  // {locale === 'en' ? 'now playing' : 'reproduciendo'}
+                  // {nowPlayingLabel ?? (locale === 'en' ? 'now playing' : 'reproduciendo')}
                 </span>
               )}
               <span
@@ -164,7 +167,7 @@ const { episodes, trailer, playlistId, title, countLabel, locale = 'es' } = Astr
                 ep.active ? 'text-warm' : 'text-on-surface/40'
               }`}
             >
-              // {locale === 'en' ? 'episode' : 'episodio'} {String(ep.number).padStart(2, '0')}
+              // {episodeLabel ?? (locale === 'en' ? 'episode' : 'episodio')} {String(ep.number).padStart(2, '0')}
             </span>
             {!ep.videoId && (
               <span class="material-symbols-outlined text-base text-on-surface/40 group-hover:text-warm transition-colors">

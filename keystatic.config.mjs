@@ -395,6 +395,27 @@ export default config({
           es: fields.text({ label: 'Español' }),
           en: fields.text({ label: 'English' }),
         }, { label: 'Leer más — Etiqueta para colapsar' }),
+        episodes_separator: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Episodios — separador debajo del adelanto',
+          description: 'Aparece entre el adelanto y la lista de episodios, sólo en proyectos que tienen adelanto. Se muestra en minúscula y precedido por //.',
+        }),
+        episode_item_label: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Episodios — etiqueta de cada ítem',
+          description: "La palabra que acompaña al número en cada episodio de la lista: '// episodio 01'. En singular.",
+        }),
+        now_playing_label: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Episodios — indicador del que se está viendo',
+          description: 'Etiqueta sobre la miniatura del episodio que se está reproduciendo.',
+        }),
       },
     }),
   },

@@ -135,6 +135,9 @@ const uiCollection = defineCollection({
     related_title: bi.optional(),
     read_more: bi.optional(),
     read_less: bi.optional(),
+    episodes_separator: bi.optional(),
+    episode_item_label: bi.optional(),
+    now_playing_label: bi.optional(),
   }),
 });
 

@@ -220,6 +220,9 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
             playlistId={data.playlistId}
             title={u(ui?.data.episodes_title) ?? t('Episodios', 'Episodes')}
             countLabel={`${data.episodes.length} ${u(ui?.data.episodes_count_label) ?? t('VIDEOS', 'VIDEOS')}`}
+            separatorLabel={u(ui?.data.episodes_separator) ?? t('episodios', 'episodes')}
+            episodeLabel={u(ui?.data.episode_item_label) ?? t('episodio', 'episode')}
+            nowPlayingLabel={u(ui?.data.now_playing_label) ?? t('reproduciendo', 'now playing')}
             locale={locale}
           />
         )}

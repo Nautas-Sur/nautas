@@ -46,3 +46,12 @@ read_more:
 read_less:
   es: leer menos
   en: read less
+episodes_separator:
+  es: episodios
+  en: episodes
+episode_item_label:
+  es: episodio
+  en: episode
+now_playing_label:
+  es: reproduciendo
+  en: now playing

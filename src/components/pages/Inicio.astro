@@ -6,12 +6,14 @@ import CelestialLine from '../CelestialLine.astro';
 import GlassPanel from '../GlassPanel.astro';
 import ProjectCard from '../ProjectCard.astro';
 import PillarBadge from '../PillarBadge.astro';
+import ReadMore from '../ReadMore.astro';
 import { getProjectCover } from '../../lib/projectCover';
 import { em } from '../../lib/emphasis';
 
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'inicio');
 const d = page?.data;
+const ui = await getEntry('ui', 'textos');
 const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
 
 const projects = await getCollection('projects');
@@ -163,7 +165,15 @@ const pillars = [
           </div>
           <h3 class="font-headline text-4xl md:text-5xl">{featured.data.title}</h3>
           <p class="text-lg text-on-surface-variant leading-relaxed">{locale === 'en' ? featured.data.tagline.en : featured.data.tagline.es}</p>
-          <p class="text-on-surface-variant/70 leading-relaxed line-clamp-3">{locale === 'en' ? featured.data.description.en : featured.data.description.es}</p>
+          <ReadMore
+            id="featured-description"
+            class="text-on-surface-variant/70 leading-relaxed"
+            lines={3}
+            moreLabel={t(ui?.data.read_more) ?? (locale === 'en' ? 'read more' : 'leer más')}
+            lessLabel={t(ui?.data.read_less) ?? (locale === 'en' ? 'read less' : 'leer menos')}
+          >
+            {locale === 'en' ? featured.data.description.en : featured.data.description.es}
+          </ReadMore>
           <a
             href={`/${locale === 'en' ? 'en/' : ''}proyectos/${featured.id}`}
             class="group inline-flex items-center gap-2 text-warm font-bitacora text-sm hover:gap-3 transition-all"

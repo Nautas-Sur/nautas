@@ -387,6 +387,14 @@ export default config({
           es: fields.text({ label: 'Español' }),
           en: fields.text({ label: 'English' }),
         }, { label: 'Relacionados — Título' }),
+        read_more: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Leer más — Etiqueta para expandir' }),
+        read_less: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, { label: 'Leer más — Etiqueta para colapsar' }),
       },
     }),
   },

@@ -48,11 +48,10 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
   {/* Trailer */}
   {trailer && (
     <div
-      class={`trailer-item group rounded-xl transition-all cursor-pointer overflow-hidden border ${
-        trailer.active
-          ? 'bg-surface-container-high border-warm/40 shadow-[0_8px_24px_rgba(212,165,116,0.08)]'
-          : 'bg-surface-container-low border-transparent hover:border-warm/20 hover:bg-surface-container-high hover:-translate-y-px'
-      }`}
+      class="trailer-item group rounded-xl transition-all cursor-pointer overflow-hidden border"
+      role="button"
+      tabindex="0"
+      aria-current={trailer.active ? 'true' : undefined}
       data-video-id={trailer.videoId}
       data-is-trailer="true"
     >
@@ -89,11 +88,7 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
 
       {/* Content */}
       <div class="p-4 md:p-5">
-        <h3
-          class={`font-headline text-base md:text-lg leading-tight transition-colors ${
-            trailer.active ? 'text-warm' : 'text-on-surface group-hover:text-warm'
-          }`}
-        >
+        <h3 class="trailer-title font-headline text-base md:text-lg leading-tight transition-colors">
           {trailer.title ?? (locale === 'en' ? 'Trailer' : 'Adelanto')}
         </h3>
       </div>
@@ -113,11 +108,10 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
   <div class="space-y-2 max-h-[680px] overflow-y-auto pr-1 scrollbar-thin">
     {episodes.map((ep, i) => (
       <div
-        class={`episode-item group rounded-xl transition-all cursor-pointer overflow-hidden border ${
-          ep.active
-            ? 'bg-surface-container-high border-warm/40 shadow-[0_8px_24px_rgba(212,165,116,0.08)]'
-            : 'bg-surface-container-low border-transparent hover:border-warm/20 hover:bg-surface-container-high hover:-translate-y-px'
-        }`}
+        class="episode-item group rounded-xl transition-all cursor-pointer overflow-hidden border"
+        role="button"
+        tabindex="0"
+        aria-current={ep.active ? 'true' : undefined}
         data-video-id={ep.videoId ?? ''}
         data-index={i}
       >
@@ -144,11 +138,9 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
 
             {/* Indicador de play en esquina inferior derecha */}
             <div class="absolute bottom-2.5 right-2.5 flex items-center gap-1.5">
-              {ep.active && (
-                <span class="font-bitacora text-[9px] text-warm uppercase tracking-[0.15em] bg-background/70 backdrop-blur px-2 py-0.5 rounded-full border border-warm/30">
-                  // {nowPlayingLabel ?? (locale === 'en' ? 'now playing' : 'reproduciendo')}
-                </span>
-              )}
+              <span class="now-playing-badge font-bitacora text-[9px] text-warm uppercase tracking-[0.15em] bg-background/70 backdrop-blur px-2 py-0.5 rounded-full border border-warm/30">
+                // {nowPlayingLabel ?? (locale === 'en' ? 'now playing' : 'reproduciendo')}
+              </span>
               <span
                 class="material-symbols-outlined text-2xl text-warm drop-shadow-md group-hover:scale-110 transition-transform"
                 style="font-variation-settings:'FILL' 1;"
@@ -162,11 +154,7 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
         {/* Content */}
         <div class="p-4 md:p-5">
           <div class="flex justify-between items-start mb-2 gap-3">
-            <span
-              class={`ep-num font-bitacora text-[10px] tracking-[0.15em] uppercase ${
-                ep.active ? 'text-warm' : 'text-on-surface/40'
-              }`}
-            >
+            <span class="ep-num font-bitacora text-[10px] tracking-[0.15em] uppercase">
               // {episodeLabel ?? (locale === 'en' ? 'episode' : 'episodio')} {String(ep.number).padStart(2, '0')}
             </span>
             {!ep.videoId && (
@@ -176,11 +164,7 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
             )}
           </div>
 
-          <h3
-            class={`ep-title font-headline text-base md:text-lg leading-tight mb-1.5 transition-colors ${
-              ep.active ? 'text-warm' : 'text-on-surface group-hover:text-warm'
-            }`}
-          >
+          <h3 class="ep-title font-headline text-base md:text-lg leading-tight mb-1.5 transition-colors">
             {ep.title}
           </h3>
 
@@ -214,6 +198,55 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
   .scrollbar-thin::-webkit-scrollbar-thumb:hover {
     background: rgba(212, 165, 116, 0.4);
   }
+
+  /* Estado activo: una sola fuente de verdad en el DOM (aria-current),
+     y el CSS deriva todo lo demás. Antes cada elemento visual tenía que
+     ser actualizado a mano por el script, y los que se olvidaban
+     quedaban congelados en el estado del build. */
+
+  .episode-item,
+  .trailer-item {
+    background-color: var(--color-surface-container-low);
+    border-color: transparent;
+  }
+
+  .episode-item:hover,
+  .trailer-item:hover {
+    border-color: rgb(from var(--color-warm) r g b / 0.2);
+    background-color: var(--color-surface-container-high);
+    transform: translateY(-1px);
+  }
+
+  .episode-item[aria-current='true'],
+  .trailer-item[aria-current='true'] {
+    background-color: var(--color-surface-container-high);
+    border-color: rgb(from var(--color-warm) r g b / 0.4);
+    box-shadow: 0 8px 24px rgba(212, 165, 116, 0.08);
+    transform: none;
+  }
+
+  .ep-num { color: rgb(from var(--color-on-surface) r g b / 0.4); }
+  .ep-title,
+  .trailer-title { color: var(--color-on-surface); }
+
+  .episode-item:hover .ep-title,
+  .trailer-item:hover .trailer-title { color: var(--color-warm); }
+
+  .episode-item[aria-current='true'] .ep-num,
+  .episode-item[aria-current='true'] .ep-title,
+  .trailer-item[aria-current='true'] .trailer-title { color: var(--color-warm); }
+
+  /* El badge existe en todos los ítems; sólo se ve en el activo.
+     display:none lo saca también del árbol de accesibilidad, así que un
+     lector de pantalla no lo lee 12 veces. */
+  .now-playing-badge { display: none; }
+  .episode-item[aria-current='true'] .now-playing-badge { display: inline-block; }
+
+  .episode-item:focus-visible,
+  .trailer-item:focus-visible {
+    outline: 2px solid var(--color-warm);
+    outline-offset: 2px;
+  }
 </style>
 
 {(playlistId || trailer) && (
@@ -225,26 +258,26 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
     const origin = window.location.origin;
 
     function activateItem(activeEl) {
-      // Deactivate all episodes
-      items.forEach((el) => {
-        el.classList.remove('bg-surface-container-high', 'border-warm/40', 'shadow-[0_8px_24px_rgba(212,165,116,0.08)]');
-        el.classList.add('bg-surface-container-low', 'border-transparent');
-        el.querySelector('.ep-num')?.classList.replace('text-warm', 'text-on-surface/40');
-        el.querySelector('.ep-title')?.classList.replace('text-warm', 'text-on-surface');
-      });
-      // Deactivate trailer
-      if (trailerItem) {
-        trailerItem.classList.remove('bg-surface-container-high', 'border-warm/40', 'shadow-[0_8px_24px_rgba(212,165,116,0.08)]');
-        trailerItem.classList.add('bg-surface-container-low', 'border-transparent');
-      }
+      // Un único marcador de estado: el CSS reacciona a aria-current.
+      // Cualquier elemento que deba cambiar con el estado activo se
+      // resuelve con una regla CSS, no tocándolo desde acá.
+      items.forEach((el) => el.removeAttribute('aria-current'));
+      trailerItem?.removeAttribute('aria-current');
+      activeEl.setAttribute('aria-current', 'true');
+    }
 
-      activeEl.classList.add('bg-surface-container-high', 'border-warm/40', 'shadow-[0_8px_24px_rgba(212,165,116,0.08)]');
-      activeEl.classList.remove('bg-surface-container-low', 'border-transparent');
+    function onKey(handler) {
+      return (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          handler();
+        }
+      };
     }
 
     // Episode clicks
     items.forEach((item) => {
-      item.addEventListener('click', () => {
+      const handleEpisodeActivate = () => {
         const videoId = item.dataset.videoId;
         const index = item.dataset.index;
 
@@ -257,18 +290,19 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
         }
 
         activateItem(item);
-        item.querySelector('.ep-num')?.classList.replace('text-on-surface/40', 'text-warm');
-        item.querySelector('.ep-title')?.classList.replace('text-on-surface', 'text-warm');
 
         if (window.innerWidth < 1024) {
           playerSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      });
+      };
+
+      item.addEventListener('click', handleEpisodeActivate);
+      item.addEventListener('keydown', onKey(handleEpisodeActivate));
     });
 
     // Trailer click
     if (trailerItem && trailerVideoId) {
-      trailerItem.addEventListener('click', () => {
+      const handleTrailerActivate = () => {
         if (!player) return;
 
         // Trailer is not part of the playlist — embed without list param
@@ -279,7 +313,10 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
         if (window.innerWidth < 1024) {
           playerSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-      });
+      };
+
+      trailerItem.addEventListener('click', handleTrailerActivate);
+      trailerItem.addEventListener('keydown', onKey(handleTrailerActivate));
     }
   </script>
 )}

@@ -51,6 +51,9 @@ const pillars = [
     eyebrow={t(d?.hero_eyebrow)}
     title={em(t(d?.hero_title)) ?? ''}
     subtitle={t(d?.hero_subtitle)}
+    subtitleReadMore={true}
+    readMoreLabel={t(ui?.data.read_more) ?? (locale === 'en' ? 'read more' : 'leer más')}
+    readLessLabel={t(ui?.data.read_less) ?? (locale === 'en' ? 'read less' : 'leer menos')}
   >
     <div class="flex flex-wrap gap-4 pt-4">
       <a
@@ -95,7 +98,7 @@ const pillars = [
       class="font-headline text-4xl md:text-5xl text-center mb-16 [&_em]:italic [&_em]:text-warm"
       set:html={em(t(d?.pillars_title)) ?? (locale === 'en' ? 'Three Pillars, One Universe' : 'Tres Pilares, Un Universo')}
     />
-    <div class="grid md:grid-cols-3 gap-8">
+    <div class="grid md:grid-cols-3 gap-8 items-start">
       {pillars.map((p) => {
         const pillarVar = `--color-pillar-${p.key}`;
         const iconWrapStyle = {
@@ -122,7 +125,14 @@ const pillars = [
               // {p.key === 'arte' ? '01' : p.key === 'ciencia' ? '02' : '03'}
             </p>
             <h3 class="font-headline text-2xl mb-4 group-hover:text-warm transition-colors">{p.title}</h3>
-            <p class="text-on-surface-variant leading-relaxed">{p.desc}</p>
+            <ReadMore
+              mode="paragraph"
+              id={`pillar-${p.key}-desc`}
+              text={p.desc}
+              class="text-on-surface-variant leading-relaxed"
+              moreLabel={t(ui?.data.read_more) ?? (locale === 'en' ? 'read more' : 'leer más')}
+              lessLabel={t(ui?.data.read_less) ?? (locale === 'en' ? 'read less' : 'leer menos')}
+            />
           </div>
         );
       })}

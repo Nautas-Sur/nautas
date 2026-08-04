@@ -6,6 +6,7 @@ interface Props {
   id?: string;                // Si se pasa, habilita aria-controls. Debe ser único en la página.
   text?: string;              // HTML ya procesado por em(); si no viene, se usa el slot
   lines?: 2 | 3 | 4 | 5 | 6;
+  mode?: 'clamp' | 'paragraph';
   moreLabel?: string;
   lessLabel?: string;
   class?: string;             // clases del texto (tipografía, color, opacidad)
@@ -16,6 +17,7 @@ const {
   id,
   text,
   lines = 3,
+  mode = 'clamp',
   moreLabel = 'leer más',
   lessLabel = 'leer menos',
   class: className = '',
@@ -33,33 +35,72 @@ const clampMap = {
   6: 'line-clamp-6',
 };
 const clampClass = clampMap[lines] ?? clampMap[3];
+
+// Modo párrafo: corta por unidad de sentido, no por líneas renderizadas.
+// Tolerante a las dos convenciones: \n\n (estándar) y \n suelto (lo que hay
+// hoy en el YAML). Si sale un solo párrafo, no hay nada que expandir.
+const rawText = typeof text === 'string' ? text : '';
+const paragraphs =
+  mode === 'paragraph'
+    ? rawText.split(/\n+/).map((p) => p.trim()).filter(Boolean)
+    : [];
+const firstParagraph = paragraphs[0] ?? '';
+const restParagraphs = paragraphs.slice(1);
+const hasRest = restParagraphs.length > 0;
 ---
 
-<div data-readmore>
-  <div
-    id={id}
-    data-readmore-content
-    data-clamp-class={clampClass}
-    class={`${clampClass} ${className}`}
-  >
-    {text ? <Fragment set:html={text} /> : <slot />}
-  </div>
+{mode === 'paragraph' ? (
+  <div data-readmore-paragraph>
+    <div class={className}>
+      <p set:html={firstParagraph} />
+      <div id={id} data-readmore-rest hidden>
+        {restParagraphs.map((p) => <p class="mt-4" set:html={p} />)}
+      </div>
+    </div>
 
-  <button
-    type="button"
-    hidden
-    data-readmore-toggle
-    aria-expanded="false"
-    aria-controls={id}
-    data-more-label={moreLabel}
-    data-less-label={lessLabel}
-    class={`mt-3 font-bitacora italic text-sm text-warm/70 transition-colors duration-200 hover:text-warm ${buttonClass}`}
-  >
-    <span aria-hidden="true">//</span>
-    <span data-readmore-label>{moreLabel}</span>
-    <span data-readmore-arrow>↓</span>
-  </button>
-</div>
+    {hasRest && (
+      <button
+        type="button"
+        data-readmore-p-toggle
+        aria-expanded="false"
+        aria-controls={id}
+        data-more-label={moreLabel}
+        data-less-label={lessLabel}
+        class={`mt-3 font-bitacora italic text-sm text-warm/70 transition-colors duration-200 hover:text-warm inline-flex items-center gap-[0.35rem] ${buttonClass}`}
+      >
+        <span aria-hidden="true">//</span>
+        <span data-readmore-p-label>{moreLabel}</span>
+        <span data-readmore-p-arrow class="inline-block transition-transform duration-200">↓</span>
+      </button>
+    )}
+  </div>
+) : (
+  <div data-readmore>
+    <div
+      id={id}
+      data-readmore-content
+      data-clamp-class={clampClass}
+      class={`${clampClass} ${className}`}
+    >
+      {text ? <Fragment set:html={text} /> : <slot />}
+    </div>
+
+    <button
+      type="button"
+      hidden
+      data-readmore-toggle
+      aria-expanded="false"
+      aria-controls={id}
+      data-more-label={moreLabel}
+      data-less-label={lessLabel}
+      class={`mt-3 font-bitacora italic text-sm text-warm/70 transition-colors duration-200 hover:text-warm ${buttonClass}`}
+    >
+      <span aria-hidden="true">//</span>
+      <span data-readmore-label>{moreLabel}</span>
+      <span data-readmore-arrow>↓</span>
+    </button>
+  </div>
+)}
 
 <style>
   /* El botón nace con el atributo [hidden]; el JS lo saca sólo si hace falta.
@@ -138,4 +179,25 @@ const clampClass = clampMap[lines] ?? clampMap[3];
   } else {
     initReadMore();
   }
+</script>
+
+<script>
+  document.querySelectorAll('[data-readmore-paragraph]').forEach((root) => {
+    const toggle = root.querySelector('[data-readmore-p-toggle]');
+    const rest = root.querySelector('[data-readmore-rest]');
+    const label = root.querySelector('[data-readmore-p-label]');
+    const arrow = root.querySelector('[data-readmore-p-arrow]');
+    if (!toggle || !rest || !label) return;
+
+    const moreLabel = toggle.dataset.moreLabel || 'leer más';
+    const lessLabel = toggle.dataset.lessLabel || 'leer menos';
+
+    toggle.addEventListener('click', () => {
+      const next = toggle.getAttribute('aria-expanded') !== 'true';
+      toggle.setAttribute('aria-expanded', String(next));
+      rest.hidden = !next;
+      label.textContent = next ? lessLabel : moreLabel;
+      if (arrow) arrow.style.transform = next ? 'rotate(180deg)' : '';
+    });
+  });
 </script>

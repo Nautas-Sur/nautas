@@ -133,6 +133,8 @@ const uiCollection = defineCollection({
     project_cta_text: bi.optional(),
     related_eyebrow: bi.optional(),
     related_title: bi.optional(),
+    read_more: bi.optional(),
+    read_less: bi.optional(),
   }),
 });
 

@@ -1,0 +1,141 @@
+---
+// Bloque de texto truncado con botón "// leer más".
+// El botón sólo aparece si el texto REALMENTE se corta: lo decide el JS midiendo
+// scrollHeight vs clientHeight. Sin JS no hay botón colgado sin función.
+interface Props {
+  id?: string;                // Si se pasa, habilita aria-controls. Debe ser único en la página.
+  text?: string;              // HTML ya procesado por em(); si no viene, se usa el slot
+  lines?: 2 | 3 | 4 | 5 | 6;
+  moreLabel?: string;
+  lessLabel?: string;
+  class?: string;             // clases del texto (tipografía, color, opacidad)
+  buttonClass?: string;
+}
+
+const {
+  id,
+  text,
+  lines = 3,
+  moreLabel = 'leer más',
+  lessLabel = 'leer menos',
+  class: className = '',
+  buttonClass = '',
+} = Astro.props;
+
+// Tailwind escanea el archivo como texto plano: la clase tiene que estar escrita
+// entera en el código para que se genere. Por eso el mapa literal y no
+// `line-clamp-${lines}`, que no se compilaría.
+const clampMap = {
+  2: 'line-clamp-2',
+  3: 'line-clamp-3',
+  4: 'line-clamp-4',
+  5: 'line-clamp-5',
+  6: 'line-clamp-6',
+};
+const clampClass = clampMap[lines] ?? clampMap[3];
+---
+
+<div data-readmore>
+  <div
+    id={id}
+    data-readmore-content
+    data-clamp-class={clampClass}
+    class={`${clampClass} ${className}`}
+  >
+    {text ? <Fragment set:html={text} /> : <slot />}
+  </div>
+
+  <button
+    type="button"
+    hidden
+    data-readmore-toggle
+    aria-expanded="false"
+    aria-controls={id}
+    data-more-label={moreLabel}
+    data-less-label={lessLabel}
+    class={`mt-3 font-bitacora italic text-sm text-warm/70 transition-colors duration-200 hover:text-warm ${buttonClass}`}
+  >
+    <span aria-hidden="true">//</span>
+    <span data-readmore-label>{moreLabel}</span>
+    <span data-readmore-arrow>↓</span>
+  </button>
+</div>
+
+<style>
+  /* El botón nace con el atributo [hidden]; el JS lo saca sólo si hace falta.
+     Usamos :not([hidden]) para no pelear con display:none. */
+  [data-readmore-toggle]:not([hidden]) {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+  }
+  [data-readmore-arrow] {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
+  [data-readmore-toggle][aria-expanded='true'] [data-readmore-arrow] {
+    transform: rotate(180deg);
+  }
+</style>
+
+<script>
+  // Astro deduplica scripts idénticos: aunque el componente se use N veces en una
+  // página, este bloque se incluye una sola vez. Por eso recorremos TODAS las
+  // instancias con querySelectorAll en vez de asumir que hay una.
+  function setupReadMore(root) {
+    const content = root.querySelector('[data-readmore-content]');
+    const toggle = root.querySelector('[data-readmore-toggle]');
+    const label = root.querySelector('[data-readmore-label]');
+    if (!content || !toggle || !label) return;
+
+    const clampClass = content.dataset.clampClass || 'line-clamp-3';
+    const moreLabel = toggle.dataset.moreLabel || 'leer más';
+    const lessLabel = toggle.dataset.lessLabel || 'leer menos';
+
+    const isExpanded = () => toggle.getAttribute('aria-expanded') === 'true';
+    // +1px de tolerancia: los redondeos subpíxel dan falsos positivos.
+    const overflows = () => content.scrollHeight > content.clientHeight + 1;
+
+    // Sólo re-evaluamos si está colapsado. Si el usuario expandió, respetamos
+    // su decisión aunque cambie el ancho de la ventana.
+    const sync = () => {
+      if (isExpanded()) return;
+      toggle.hidden = !overflows();
+    };
+
+    toggle.addEventListener('click', () => {
+      const next = !isExpanded();
+      toggle.setAttribute('aria-expanded', String(next));
+      content.classList.toggle(clampClass, !next);
+      label.textContent = next ? lessLabel : moreLabel;
+      if (!next) {
+        toggle.hidden = !overflows();
+        content.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+      }
+    });
+
+    sync();
+    return sync;
+  }
+
+  function initReadMore() {
+    const syncs = [];
+    document.querySelectorAll('[data-readmore]').forEach((root) => {
+      const s = setupReadMore(root);
+      if (s) syncs.push(s);
+    });
+    let t;
+    window.addEventListener('resize', () => {
+      clearTimeout(t);
+      t = setTimeout(() => syncs.forEach((s) => s()), 150);
+    });
+  }
+
+  // Medimos DESPUÉS de que carguen las fuentes: con la fuente fallback el texto
+  // ocupa otra altura y la medición sale mal.
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(initReadMore);
+  } else {
+    initReadMore();
+  }
+</script>

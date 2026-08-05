@@ -5,6 +5,7 @@ import HeroSection from '../HeroSection.astro';
 import CelestialLine from '../CelestialLine.astro';
 import ProjectCard from '../ProjectCard.astro';
 import { getProjectCover } from '../../lib/projectCover';
+import { sortProjects } from '../../lib/sortProjects';
 import { em } from '../../lib/emphasis';
 
 const locale = Astro.currentLocale || 'es';
@@ -12,7 +13,7 @@ const page = await getEntry('pages', 'proyectos');
 const d = page?.data;
 const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
 
-const projects = await getCollection('projects');
+const projects = sortProjects(await getCollection('projects'));
 const completed = projects.filter((p) => p.data.status === 'completed');
 const inDev = projects.filter((p) => p.data.status === 'in_development');
 ---

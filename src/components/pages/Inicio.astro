@@ -7,6 +7,7 @@ import GlassPanel from '../GlassPanel.astro';
 import ProjectCard from '../ProjectCard.astro';
 import ReadMore from '../ReadMore.astro';
 import { getProjectCover } from '../../lib/projectCover';
+import { sortProjects } from '../../lib/sortProjects';
 import { em } from '../../lib/emphasis';
 
 const locale = Astro.currentLocale || 'es';
@@ -15,7 +16,7 @@ const d = page?.data;
 const ui = await getEntry('ui', 'textos');
 const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
 
-const projects = await getCollection('projects');
+const projects = sortProjects(await getCollection('projects'));
 const completed = projects.filter((p) => p.data.status === 'completed');
 const inDev = projects.filter((p) => p.data.status === 'in_development');
 const featured = completed.find((p) => p.data.featured);

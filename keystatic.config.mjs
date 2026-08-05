@@ -500,7 +500,7 @@ export default config({
           ],
           defaultValue: 'in_development',
         }),
-        featured: fields.checkbox({ label: 'Destacado', defaultValue: false, description: 'Si está tildado, el proyecto aparece en la sección "Producción Destacada" del inicio. Solo funciona en proyectos con estado Completado, y si hay varios tildados se muestra únicamente el primero.' }),
+        featured: fields.checkbox({ label: 'Destacado', defaultValue: false, description: 'Si está tildado, el proyecto aparece en la sección "Producción Destacada" del inicio, sin importar su estado (completado o en desarrollo). Si hay varios tildados, se muestra el que tenga el número de Orden más alto.' }),
         year: fields.text({ label: 'Año', description: 'Ej: 2024, o un rango: 2023–2024.' }),
         tagline: fields.object({
           es: fields.text({ label: 'Español', validation: { isRequired: true } }),

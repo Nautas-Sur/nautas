@@ -5,7 +5,6 @@ import HeroSection from '../HeroSection.astro';
 import CelestialLine from '../CelestialLine.astro';
 import GlassPanel from '../GlassPanel.astro';
 import ProjectCard from '../ProjectCard.astro';
-import PillarBadge from '../PillarBadge.astro';
 import ReadMore from '../ReadMore.astro';
 import { getProjectCover } from '../../lib/projectCover';
 import { em } from '../../lib/emphasis';
@@ -170,7 +169,6 @@ const pillars = [
         </div>
         <div class="space-y-6">
           <div class="flex items-center gap-3">
-            <PillarBadge pillar={featured.data.pillar} locale={locale} />
             <span class="font-bitacora italic text-warm/70 text-xs">// {featured.data.kind}</span>
           </div>
           <h3 class="font-headline text-4xl md:text-5xl">{featured.data.title}</h3>

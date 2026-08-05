@@ -6,7 +6,6 @@ import CelestialLine from '../CelestialLine.astro';
 import GlassPanel from '../GlassPanel.astro';
 import YouTubeEmbed from '../YouTubeEmbed.astro';
 import EpisodeList from '../EpisodeList.astro';
-import PillarBadge from '../PillarBadge.astro';
 
 const { slug } = Astro.params;
 const locale = Astro.currentLocale || 'es';
@@ -83,7 +82,6 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
     </a>
 
     <div class="flex flex-wrap items-center gap-3 mb-6">
-      <PillarBadge pillar={data.pillar} locale={locale} />
       <span class="font-bitacora italic text-warm/70 text-xs">// {data.kind}</span>
       <span class={`px-2.5 py-0.5 rounded-full font-bitacora text-[10px] ${
         data.status === 'completed'
@@ -276,9 +274,6 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
               href={`/${locale === 'en' ? 'en/' : ''}proyectos/${p.id}`}
               class="group p-6 bg-surface-container-low rounded-xl border border-warm/10 hover:border-warm/30 hover:bg-surface-container-high hover:-translate-y-1 transition-all duration-300"
             >
-              <div class="flex items-center gap-2 mb-3">
-                <PillarBadge pillar={p.data.pillar} locale={locale} />
-              </div>
               <h3 class="font-headline text-xl group-hover:text-warm transition-colors">{p.data.title}</h3>
               <p class="text-sm text-on-surface-variant mt-2 line-clamp-2">{t(p.data.tagline.es, p.data.tagline.en)}</p>
             </a>

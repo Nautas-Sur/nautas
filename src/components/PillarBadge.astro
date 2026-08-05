@@ -1,4 +1,8 @@
 ---
+// Sin importadores a propósito desde Fase 3: se sacó la etiqueta de pilar
+// de la interfaz (el sitio ya no filtra ni muestra pilar al visitante), pero
+// el componente queda dormido en vez de borrarse porque se planea
+// reutilizarlo cuando se redefinan los tres conceptos.
 export interface Props {
   pillar: 'arte' | 'ciencia' | 'consciencia';
   locale?: string;

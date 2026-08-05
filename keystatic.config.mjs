@@ -102,6 +102,13 @@ export default config({
           en: fields.text({ label: 'English', multiline: true }),
         }, { label: 'Portada — Texto de presentación' }),
         // --- Misión ---
+        mission_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Misión — etiqueta sobre el título',
+          description: 'Texto chico en minúscula que aparece arriba del título de la sección, precedido por //. El título en sí es el campo de abajo.',
+        }),
         mission_title: fields.object({
           es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
           en: fields.text({ label: 'English', description: ASTERISK_HINT }),
@@ -131,6 +138,13 @@ export default config({
           en: fields.text({ label: 'English' }),
         }, { label: 'Misión — Frase de cierre' }),
         // --- Visión ---
+        vision_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Visión — etiqueta sobre el título',
+          description: 'Ídem, para la sección Visión.',
+        }),
         vision_title: fields.object({
           es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
           en: fields.text({ label: 'English', description: ASTERISK_HINT }),
@@ -160,6 +174,13 @@ export default config({
           en: fields.text({ label: 'English', multiline: true, description: ORDER_HINT }),
         }, { label: 'Visión — Párrafo 5' }),
         // --- Equipo ---
+        team_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Equipo — etiqueta sobre el título',
+          description: 'Ídem, para la sección Equipo.',
+        }),
         team_title: fields.object({
           es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
           en: fields.text({ label: 'English', description: ASTERISK_HINT }),
@@ -169,6 +190,13 @@ export default config({
           en: fields.text({ label: 'English' }),
         }, { label: 'Equipo — Subtítulo' }),
         // --- Llamado final ---
+        cta_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Cierre — etiqueta sobre el título',
+          description: 'Ídem, para la sección de cierre de la página.',
+        }),
         cta_title: fields.object({
           es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
           en: fields.text({ label: 'English', description: ASTERISK_HINT }),
@@ -177,6 +205,20 @@ export default config({
           es: fields.text({ label: 'Español' }),
           en: fields.text({ label: 'English' }),
         }, { label: 'Llamado final — Subtítulo' }),
+        cta_button_contact: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Cierre — texto del botón principal',
+          description: 'El botón sólido que lleva a la página de Contacto.',
+        }),
+        cta_button_projects: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Cierre — texto del botón secundario',
+          description: 'El botón con borde que lleva a la página de Proyectos.',
+        }),
         // --- SEO y metadatos ---
         title: fields.object({
           es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),
@@ -261,6 +303,13 @@ export default config({
       format: { data: 'yaml' },
       schema: {
         // --- Portada ---
+        contact_eyebrow: fields.object({
+          es: fields.text({ label: 'Español' }),
+          en: fields.text({ label: 'English' }),
+        }, {
+          label: 'Encabezado — etiqueta sobre el título',
+          description: "Texto chico en minúscula arriba del título de la página, precedido por //. OJO: es distinto del título principal, que también dice 'Escribinos.' — este es la línea chica de arriba.",
+        }),
         hero_title: fields.object({
           es: fields.text({ label: 'Español' }),
           en: fields.text({ label: 'English' }),

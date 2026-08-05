@@ -20,7 +20,7 @@ const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
       {/* Left: Info */}
       <div>
         <p class="font-bitacora italic text-warm text-sm mb-6">
-          // {locale === 'en' ? 'write to us' : 'escribínos'}
+          // {t(d?.contact_eyebrow) ?? (locale === 'en' ? 'write to us' : 'escribínos')}
         </p>
         <h1 class="font-headline text-5xl md:text-7xl leading-tight mb-4">
           {t(d?.hero_title) ?? ''}

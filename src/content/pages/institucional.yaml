@@ -9,6 +9,9 @@ hero_subtitle:
   en: >-
     NAUTAS is a non-profit association dedicated to audiovisual production and
     cultural research at the intersection of art, science, and consciousness.
+mission_eyebrow:
+  es: misión
+  en: mission
 mission_title:
   es: Nuestro *Propósito*
   en: Our *Purpose*
@@ -76,6 +79,9 @@ mission_cta:
     Los invitamos a participar activa y comprometidamente con nuestras
     propuestas.
   en: We invite you to participate actively and wholeheartedly in our proposals.
+vision_eyebrow:
+  es: visión
+  en: vision
 vision_title:
   es: Visión *Participativa*
   en: Participatory *Vision*
@@ -142,18 +148,30 @@ vision_p5:
     collective consciousness journey, but there are some variables that can make
     our journey a nightmare or a joint adventure in which we discover the best
     each one can give to themselves and their fellow travelers.
+team_eyebrow:
+  es: equipo
+  en: team
 team_title:
   es: Nuestro *Equipo*
   en: Our *Team*
 team_subtitle:
   es: Una tripulación multidisciplinaria unida por la misma órbita.
   en: A multidisciplinary crew united by the same orbit.
+cta_eyebrow:
+  es: embarcate
+  en: set sail
 cta_title:
   es: ¿Querés acompañar *el rumbo?*
   en: Ready to chart *the course?*
 cta_subtitle:
   es: Escribinos, sumate al equipo o explorá nuestros proyectos.
   en: Write to us, join the team, or explore our projects.
+cta_button_contact:
+  es: Contactanos
+  en: Contact us
+cta_button_projects:
+  es: Ver proyectos
+  en: View projects
 title:
   es: Nautas — Institucional
   en: Nautas — About

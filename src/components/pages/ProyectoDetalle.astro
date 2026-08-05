@@ -83,13 +83,6 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
 
     <div class="flex flex-wrap items-center gap-3 mb-6">
       <span class="font-bitacora italic text-warm/70 text-xs">// {data.kind}</span>
-      <span class={`px-2.5 py-0.5 rounded-full font-bitacora text-[10px] ${
-        data.status === 'completed'
-          ? 'text-warm border border-warm/30 bg-warm/[0.06]'
-          : 'text-warm/50 border border-warm/15 bg-warm/[0.03]'
-      }`}>
-        // {data.status === 'completed' ? t('terminado', 'completed') : t('en desarrollo', 'in progress')}
-      </span>
       {data.year && <span class="font-bitacora italic text-warm/70 text-xs ml-auto">{data.year}</span>}
     </div>
 

@@ -77,6 +77,7 @@ const projectsCollection = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/projects' }),
   schema: z.object({
     title: z.string(),
+    order: z.number(),
     kind: z.string(),
     pillar: z.enum(['arte', 'ciencia', 'consciencia']),
     status: z.enum(['completed', 'in_development']),

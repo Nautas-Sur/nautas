@@ -4,6 +4,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import HeroSection from '../HeroSection.astro';
 import ProjectCard from '../ProjectCard.astro';
 import { getProjectCover } from '../../lib/projectCover';
+import { sortProjects } from '../../lib/sortProjects';
 import { em } from '../../lib/emphasis';
 
 const locale = Astro.currentLocale || 'es';
@@ -11,7 +12,7 @@ const page = await getEntry('pages', 'archivo');
 const d = page?.data;
 const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
 
-const projects = await getCollection('projects');
+const projects = sortProjects(await getCollection('projects'));
 ---
 
 <BaseLayout

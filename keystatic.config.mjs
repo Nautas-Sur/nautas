@@ -476,6 +476,12 @@ export default config({
       format: { data: 'yaml' },
       schema: {
         title: fields.slug({ name: { label: 'Título', description: 'Este texto genera la dirección (URL) del proyecto. Evitá cambiarlo en un proyecto ya publicado: rompe los links que ya existen.' } }),
+        order: fields.integer({
+          label: 'Orden',
+          description: 'Número más alto = aparece primero en la grilla. Se recomienda numerar de 10 en 10 (10, 20, 30...) para poder insertar un proyecto en el medio más adelante sin tener que renumerar todo. Un proyecto nuevo nace en 100, arriba de todos, hasta que lo reacomodes. Si dos proyectos quedan con el mismo número, se ordenan alfabéticamente por título entre ellos.',
+          defaultValue: 100,
+          validation: { isRequired: true },
+        }),
         kind: fields.text({ label: 'Tipo', description: 'Categoría del proyecto que se muestra en la tarjeta. Ej: Serie Documental, Podcast, Programa Educativo.', validation: { isRequired: true } }),
         pillar: fields.select({
           label: 'Pilar',
@@ -494,7 +500,7 @@ export default config({
           ],
           defaultValue: 'in_development',
         }),
-        featured: fields.checkbox({ label: 'Destacado', defaultValue: false, description: 'Si está tildado, el proyecto aparece en la sección "Producción Destacada" del inicio. Solo funciona en proyectos con estado Completado, y si hay varios tildados se muestra únicamente el primero.' }),
+        featured: fields.checkbox({ label: 'Destacado', defaultValue: false, description: 'Si está tildado, el proyecto aparece en la sección "Producción Destacada" del inicio, sin importar su estado (completado o en desarrollo). Si hay varios tildados, se muestra el que tenga el número de Orden más alto.' }),
         year: fields.text({ label: 'Año', description: 'Ej: 2024, o un rango: 2023–2024.' }),
         tagline: fields.object({
           es: fields.text({ label: 'Español', validation: { isRequired: true } }),

@@ -11,6 +11,9 @@ export interface Props {
   episodeCount?: number;
   image?: string;
   imageAlt?: string;
+  // Sin badge visible en Fase 3 (decisión editorial: no se comunica el
+  // estado); sigue vivo en el modelo de datos y todavía gatilla si se
+  // muestran episodeCount/year en la variante 'card' (más abajo).
   status: 'completed' | 'in_development';
   locale?: string;
   variant?: 'card' | 'horizontal';
@@ -33,14 +36,6 @@ const {
 
 const href = `/${locale === 'en' ? 'en/' : ''}proyectos/${slug}`;
 const t = (es: string, en: string) => (locale === 'en' ? en : es);
-
-const statusLabel = status === 'completed'
-  ? t('terminado', 'completed')
-  : t('en desarrollo', 'in progress');
-
-const statusClasses = status === 'completed'
-  ? 'bg-background/70 text-warm border border-warm/30'
-  : 'bg-background/70 text-warm/50 border border-warm/15';
 ---
 
 {
@@ -62,9 +57,6 @@ const statusClasses = status === 'completed'
             <span class="font-headline text-warm/30 text-5xl leading-none" aria-hidden="true">▷</span>
           </div>
         )}
-        <span class={`absolute top-3 left-3 px-2.5 py-0.5 rounded-full font-bitacora text-[10px] backdrop-blur-md ${statusClasses}`}>
-          // {statusLabel}
-        </span>
       </div>
 
       <div class="flex flex-col justify-center gap-2 flex-1">
@@ -117,10 +109,6 @@ const statusClasses = status === 'completed'
           class="absolute inset-0 bg-gradient-to-t from-warm/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
           aria-hidden="true"
         ></div>
-
-        <span class={`absolute top-3 left-3 px-2.5 py-0.5 rounded-full font-bitacora text-[10px] backdrop-blur-md ${statusClasses}`}>
-          // {statusLabel}
-        </span>
       </div>
 
       <div class="space-y-2">

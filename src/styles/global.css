@@ -64,10 +64,9 @@
   --color-on-tertiary-fixed: #1a1408;
   --color-on-tertiary-fixed-variant: #6b4f2d;
 
-  /* ── COLORES: Áreas temáticas ── */
-  --color-pillar-arte: #d4a574;
-  --color-pillar-ciencia: #a3cce9;
-  --color-pillar-consciencia: #b8a4d4;
+  /* Los tokens de pilar viven en @theme static, más abajo: se arman en
+     runtime como `var(--color-pillar-${x})` y quedan invisibles al
+     escáner de Tailwind. */
 
   /* ── COLORES: Error ── */
   --color-error: #ffb4ab;
@@ -91,6 +90,19 @@
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-full: 9999px;
+}
+
+/* Tailwind solo emite las variables de @theme cuyo uso detecta escaneando
+   el código como texto. Estas se consumen armando el nombre en runtime
+   (`var(--color-pillar-${pillar})` en PillarBadge.astro e Inicio.astro),
+   así que el escáner nunca las ve — su presencia en el CSS quedaba librada
+   a que alguna mención suelta en un .md del repo las escribiera por casualidad
+   (así se rompió --color-pillar-ciencia en producción del 05/08 02:08 a 14:14 UTC).
+   @theme static las fuerza a emitirse siempre, sin depender de eso. */
+@theme static {
+  --color-pillar-arte: #d4a574;
+  --color-pillar-ciencia: #a3cce9;
+  --color-pillar-consciencia: #b8a4d4;
 }
 
 /* ════════════════════════════════════════════════════════════════

@@ -5,13 +5,6 @@ export interface Props {
 
 const { locale = 'es' } = Astro.props;
 
-const pillars = [
-  { key: 'all', es: 'Todos', en: 'All' },
-  { key: 'arte', es: 'Arte', en: 'Art' },
-  { key: 'ciencia', es: 'Ciencia', en: 'Science' },
-  { key: 'consciencia', es: 'Consciencia', en: 'Consciousness' },
-];
-
 const statuses = [
   { key: 'all', es: 'Emitidos y en desarrollo', en: 'Released and in development' },
   { key: 'completed', es: 'Emitido', en: 'Released' },
@@ -22,22 +15,6 @@ const t = (es: string, en: string) => (locale === 'en' ? en : es);
 ---
 
 <div id="filter-bar" class="flex flex-wrap gap-2 md:gap-3 items-center mb-12" data-locale={locale}>
-  {pillars.map((p, i) => (
-    <button
-      data-filter="pillar"
-      data-key={p.key}
-      class={`filter-btn font-bitacora text-xs px-4 py-1.5 rounded-full border transition-all ${
-        i === 0
-          ? 'border-warm text-warm bg-warm/[0.08]'
-          : 'border-on-surface/15 text-on-surface-variant hover:border-warm/40 hover:text-warm'
-      }`}
-    >
-      {t(p.es, p.en)}
-    </button>
-  ))}
-
-  <span class="w-px h-4 bg-on-surface/15 mx-2 hidden md:block" aria-hidden="true"></span>
-
   {statuses.map((s, i) => (
     <button
       data-filter="status"
@@ -63,7 +40,7 @@ const t = (es: string, en: string) => (locale === 'en' ? en : es);
 <script>
   function initFilters() {
     const bar = document.getElementById('filter-bar');
-    const cards = document.querySelectorAll<HTMLElement>('[data-pillar][data-status]');
+    const cards = document.querySelectorAll<HTMLElement>('[data-status]');
     const btns = document.querySelectorAll<HTMLButtonElement>('.filter-btn');
     const countEl = document.getElementById('filter-count');
 
@@ -73,7 +50,6 @@ const t = (es: string, en: string) => (locale === 'en' ? en : es);
         ? countEl?.dataset.resultsLabelEn || 'results'
         : countEl?.dataset.resultsLabelEs || 'resultados';
 
-    let activePillar = 'all';
     let activeStatus = 'all';
 
     const ACTIVE_CLASSES = 'border-warm text-warm bg-warm/[0.08]';
@@ -86,9 +62,7 @@ const t = (es: string, en: string) => (locale === 'en' ? en : es);
       btns.forEach((b) => {
         const filter = b.dataset.filter;
         const key = b.dataset.key;
-        const isActive =
-          (filter === 'pillar' && key === activePillar) ||
-          (filter === 'status' && key === activeStatus);
+        const isActive = filter === 'status' && key === activeStatus;
         b.className = `${BASE_CLASSES} ${isActive ? ACTIVE_CLASSES : INACTIVE_CLASSES}`;
       });
     }
@@ -96,11 +70,8 @@ const t = (es: string, en: string) => (locale === 'en' ? en : es);
     function filterCards() {
       let visible = 0;
       cards.forEach((card) => {
-        const pillar = card.dataset.pillar;
         const status = card.dataset.status;
-        const match =
-          (activePillar === 'all' || pillar === activePillar) &&
-          (activeStatus === 'all' || status === activeStatus);
+        const match = activeStatus === 'all' || status === activeStatus;
         card.style.display = match ? '' : 'none';
         if (match) visible++;
       });
@@ -111,7 +82,6 @@ const t = (es: string, en: string) => (locale === 'en' ? en : es);
       btn.addEventListener('click', () => {
         const filter = btn.dataset.filter;
         const key = btn.dataset.key!;
-        if (filter === 'pillar') activePillar = key;
         if (filter === 'status') activeStatus = key;
         updateBtnStyles();
         filterCards();

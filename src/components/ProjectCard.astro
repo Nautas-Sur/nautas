@@ -1,10 +1,10 @@
 ---
-import PillarBadge from './PillarBadge.astro';
-
 export interface Props {
   title: string;
   slug: string;
   kind: string;
+  // Sin uso visual en Fase 3 (se sacó PillarBadge); se conserva porque se
+  // planea reutilizar el campo con otros tres conceptos.
   pillar: 'arte' | 'ciencia' | 'consciencia';
   tagline?: string;
   year?: string;
@@ -69,7 +69,6 @@ const statusClasses = status === 'completed'
 
       <div class="flex flex-col justify-center gap-2 flex-1">
         <div class="flex items-center gap-3 flex-wrap">
-          <PillarBadge pillar={pillar} locale={locale} />
           <span class="font-bitacora italic text-warm/70 text-xs">// {kind}</span>
         </div>
 
@@ -126,7 +125,6 @@ const statusClasses = status === 'completed'
 
       <div class="space-y-2">
         <div class="flex items-center gap-3">
-          <PillarBadge pillar={pillar} locale={locale} />
           <span class="font-bitacora italic text-warm/70 text-xs">// {kind}</span>
         </div>
 

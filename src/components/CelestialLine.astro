@@ -1,1 +1,15 @@
-<div class="celestial-line max-w-4xl mx-auto my-16 md:my-24"></div>
+---
+export interface Props {
+  class?: string;
+}
+
+const { class: extraClass = '' } = Astro.props;
+// Mismo patrón que GlassPanel.astro (prop `class`, default si no se pasa).
+// A diferencia de GlassPanel -donde `class` es aditivo y no pisa nada-, acá
+// reemplaza el margen por completo: dejar "my-16 md:my-24" Y el override
+// juntos en el mismo atributo class dejaría dos utilidades de margen
+// compitiendo por la misma propiedad, sin garantía de qué gana.
+const margin = extraClass || 'my-16 md:my-24';
+---
+
+<div class={`celestial-line max-w-4xl mx-auto ${margin}`}></div>

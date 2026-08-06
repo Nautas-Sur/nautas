@@ -1,4 +1,7 @@
-@import 'tailwindcss';
+/* Escaneo de contenido limitado a src/: sin esto Tailwind 4 escanea todo el
+   repo (incluidos los .md de la raíz), lo que mantuvo viva una variable por
+   una mención accidental en docs y rompió la card de Ciencia el 05/08. */
+@import 'tailwindcss' source('../');
 
 /* ════════════════════════════════════════════════════════════════
    NAUTAS — SISTEMA DE DISEÑO "STELLAR HORIZON + CALIDEZ"

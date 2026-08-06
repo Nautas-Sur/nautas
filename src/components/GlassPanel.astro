@@ -5,7 +5,9 @@ export interface Props {
 }
 
 const { padding = 'lg', class: extraClass = '' } = Astro.props;
-const pad = { sm: 'p-4', md: 'p-6', lg: 'p-8 md:p-12', xl: 'p-12 md:p-20' }[padding];
+// xl: único uso es Vision Quote del Home — 80px de padding por lado (md:p-20)
+// era un tercio del alto de esa sección. Ver RELEVAMIENTO-ESPACIADO-HOME.md.
+const pad = { sm: 'p-4', md: 'p-6', lg: 'p-8 md:p-12', xl: 'p-12' }[padding];
 ---
 
 <div class={`glass-panel rounded-2xl ${pad} ${extraClass}`}>

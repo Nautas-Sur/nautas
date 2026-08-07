@@ -145,9 +145,20 @@ const {
         <Fragment set:html={title} />
       </h1>
       {subtitle && (
-        <p class="font-headline italic text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
-          {subtitle}
-        </p>
+        subtitleReadMore ? (
+          <ReadMore
+            mode="paragraph"
+            id="hero-subtitle"
+            text={subtitle}
+            class="font-headline italic text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed"
+            moreLabel={readMoreLabel}
+            lessLabel={readLessLabel}
+          />
+        ) : (
+          <p class="font-headline italic text-xl md:text-2xl text-on-surface-variant max-w-2xl mx-auto leading-relaxed">
+            {subtitle}
+          </p>
+        )
       )}
       <div class="mt-8">
         <slot />
@@ -166,9 +177,20 @@ const {
         <Fragment set:html={title} />
       </h1>
       {subtitle && (
-        <p class="font-headline italic text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed">
-          {subtitle}
-        </p>
+        subtitleReadMore ? (
+          <ReadMore
+            mode="paragraph"
+            id="hero-subtitle"
+            text={subtitle}
+            class="font-headline italic text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed"
+            moreLabel={readMoreLabel}
+            lessLabel={readLessLabel}
+          />
+        ) : (
+          <p class="font-headline italic text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed">
+            {subtitle}
+          </p>
+        )
       )}
       <div class="mt-8">
         <slot />

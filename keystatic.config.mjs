@@ -98,8 +98,8 @@ export default config({
           en: fields.text({ label: 'English', description: ASTERISK_HINT }),
         }, { label: 'Portada — Título principal' }),
         hero_subtitle: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Portada — Texto de presentación' }),
         // --- Misión ---
         mission_eyebrow: fields.object({
@@ -245,18 +245,9 @@ export default config({
           en: fields.text({ label: 'English', description: ASTERISK_HINT }),
         }, { label: 'Portada — Título principal' }),
         hero_subtitle: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Portada — Texto de presentación' }),
-        // --- Secciones ---
-        completed_title: fields.object({
-          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
-          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
-        }, { label: 'Secciones — Título de Producciones' }),
-        in_dev_title: fields.object({
-          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
-          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
-        }, { label: 'Secciones — Título de En Desarrollo' }),
         // --- SEO y metadatos ---
         title: fields.object({
           es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),
@@ -279,12 +270,12 @@ export default config({
           en: fields.text({ label: 'English' }),
         }, { label: 'Portada — Etiqueta superior' }),
         hero_title: fields.object({
-          es: fields.text({ label: 'Español' }),
-          en: fields.text({ label: 'English' }),
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
         }, { label: 'Portada — Título principal' }),
         hero_subtitle: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Portada — Texto de presentación' }),
         // --- SEO y metadatos ---
         title: fields.object({
@@ -311,8 +302,8 @@ export default config({
           description: "Texto chico en minúscula arriba del título de la página, precedido por //. OJO: es distinto del título principal, que también dice 'Escribinos.' — este es la línea chica de arriba.",
         }),
         hero_title: fields.object({
-          es: fields.text({ label: 'Español' }),
-          en: fields.text({ label: 'English' }),
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
         }, { label: 'Portada — Título principal' }),
         contact_tagline: fields.object({
           es: fields.text({ label: 'Español' }),
@@ -616,13 +607,22 @@ export default config({
           es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
           en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
         }, { label: 'Biografía' }),
-        order: fields.integer({ label: 'Orden', description: 'Define el orden de aparición en la página. Número más bajo = aparece primero.' }),
+        order: fields.integer({
+          label: 'Orden',
+          description: 'Número más alto = aparece primero en la página. Se recomienda numerar de 10 en 10 (10, 20, 30...) para poder insertar un miembro en el medio más adelante sin tener que renumerar todo. Un miembro nuevo nace en 100, arriba de todos, hasta que lo reacomodes. Si dos miembros quedan con el mismo número, se ordenan alfabéticamente por nombre entre ellos.',
+          defaultValue: 100,
+          validation: { isRequired: true },
+        }),
         photo: fields.image({
           label: 'Foto',
           directory: 'public/images/team',
           publicPath: '/images/team/',
           description: 'Retrato vertical 3:4 · mínimo 600×800 px (ideal 900×1200) · cara/torso centrados · JPG, menos de 500 KB',
           validation: { isRequired: false },
+        }),
+        photoAlt: fields.text({
+          label: 'Texto alternativo de la foto',
+          description: 'Descripción corta de lo que se ve en la foto. La leen los lectores de pantalla (personas no videntes) y aparece si la foto no carga. Ej: "Mujer sonriendo, retrato de estudio". Si se deja vacío, se usa el nombre de la persona.',
         }),
       },
     }),

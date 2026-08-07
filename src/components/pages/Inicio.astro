@@ -209,6 +209,7 @@ const pillars = [
             year={p.data.year}
             episodeCount={p.data.episodes?.length}
             image={getProjectCover(p.data)}
+            imageAlt={p.data.heroAlt || p.data.title}
             status={p.data.status}
             locale={locale}
           />

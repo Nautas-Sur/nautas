@@ -10,6 +10,7 @@ import { em } from '../../lib/emphasis';
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'archivo');
 const d = page?.data;
+const ui = await getEntry('ui', 'textos');
 const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
 
 const projects = sortProjects(await getCollection('projects'));
@@ -23,7 +24,10 @@ const projects = sortProjects(await getCollection('projects'));
   <HeroSection
     variant="default"
     title={em(t(d?.hero_title)) ?? ''}
-    subtitle={t(d?.hero_subtitle)}
+    subtitle={em(t(d?.hero_subtitle))}
+    subtitleReadMore={true}
+    readMoreLabel={t(ui?.data.read_more) ?? (locale === 'en' ? 'read more' : 'leer más')}
+    readLessLabel={t(ui?.data.read_less) ?? (locale === 'en' ? 'read less' : 'leer menos')}
   />
 
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-20">
@@ -42,6 +46,7 @@ const projects = sortProjects(await getCollection('projects'));
             year={p.data.year}
             episodeCount={p.data.episodes?.length}
             image={getProjectCover(p.data)}
+            imageAlt={p.data.heroAlt || p.data.title}
             status={p.data.status}
             locale={locale}
           />

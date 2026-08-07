@@ -54,9 +54,6 @@ const pagesCollection = defineCollection({
     cta_subtitle: bi.optional(),
     cta_button_contact: bi.optional(),
     cta_button_projects: bi.optional(),
-    // === PROYECTOS / ARCHIVO ===
-    completed_title: bi.optional(),
-    in_dev_title: bi.optional(),
     // === CONTACTO ===
     contact_eyebrow: bi.optional(),
     contact_tagline: bi.optional(),

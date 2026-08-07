@@ -3,6 +3,7 @@ import { getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ContactForm from '../ContactForm.astro';
 import CelestialLine from '../CelestialLine.astro';
+import { em } from '../../lib/emphasis';
 
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'contacto');
@@ -23,7 +24,7 @@ const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
           // {t(d?.contact_eyebrow) ?? (locale === 'en' ? 'write to us' : 'escribínos')}
         </p>
         <h1 class="font-headline text-5xl md:text-7xl leading-tight mb-4">
-          {t(d?.hero_title) ?? ''}
+          <Fragment set:html={em(t(d?.hero_title)) ?? ''} />
         </h1>
         <p class="font-headline italic text-xl text-on-surface-variant mb-12">
           {t(d?.contact_tagline) ?? ''}

@@ -248,15 +248,6 @@ export default config({
           es: fields.text({ label: 'Español', multiline: true }),
           en: fields.text({ label: 'English', multiline: true }),
         }, { label: 'Portada — Texto de presentación' }),
-        // --- Secciones ---
-        completed_title: fields.object({
-          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
-          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
-        }, { label: 'Secciones — Título de Producciones' }),
-        in_dev_title: fields.object({
-          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
-          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
-        }, { label: 'Secciones — Título de En Desarrollo' }),
         // --- SEO y metadatos ---
         title: fields.object({
           es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),

@@ -6,6 +6,7 @@ import CelestialLine from '../CelestialLine.astro';
 import GlassPanel from '../GlassPanel.astro';
 import YouTubeEmbed from '../YouTubeEmbed.astro';
 import EpisodeList from '../EpisodeList.astro';
+import { em, strip } from '../../lib/emphasis';
 
 const { slug } = Astro.params;
 const locale = Astro.currentLocale || 'es';
@@ -68,7 +69,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
 
 <BaseLayout
   title={data.title}
-  description={description.slice(0, 160)}
+  description={(strip(description) ?? description).slice(0, 160)}
   locale={locale}
 >
   <!-- Hero -->
@@ -90,7 +91,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
       {data.title}
     </h1>
     <p class="font-headline italic text-xl md:text-2xl text-on-surface-variant max-w-3xl leading-relaxed">
-      {tagline}
+      <Fragment set:html={em(tagline) ?? ''} />
     </p>
   </section>
 
@@ -125,10 +126,10 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
           {description.split('\n\n').filter(Boolean).map((p, i) =>
             i === 0 ? (
               <p class="text-xl text-on-surface font-headline italic leading-relaxed border-l-2 border-warm/40 pl-6">
-                {p.trim()}
+                <Fragment set:html={em(p.trim()) ?? ''} />
               </p>
             ) : (
-              <p class="text-on-surface-variant leading-relaxed text-lg">{p.trim()}</p>
+              <p class="text-on-surface-variant leading-relaxed text-lg" set:html={em(p.trim()) ?? ''} />
             )
           )}
         </section>
@@ -142,7 +143,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
                 <div class="group bg-surface-container-low p-8 rounded-xl border border-warm/10 hover:border-warm/30 transition-all duration-300">
                   <span class="font-headline text-warm/60 text-4xl block mb-4 leading-none group-hover:text-warm transition-colors" aria-hidden="true">{glyph}</span>
                   <h4 class="font-headline text-lg mb-3 group-hover:text-warm transition-colors">{t(card.title.es, card.title.en)}</h4>
-                  <p class="text-sm text-on-surface-variant leading-relaxed">{t(card.description.es, card.description.en)}</p>
+                  <p class="text-sm text-on-surface-variant leading-relaxed" set:html={em(t(card.description.es, card.description.en)) ?? ''} />
                 </div>
               );
             })}
@@ -181,7 +182,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
                   </div>
                   <div>
                     <h4 class="font-headline text-base mb-2 group-hover:text-warm transition-colors">{t(phase.title.es, phase.title.en)}</h4>
-                    <p class="text-sm text-on-surface-variant leading-relaxed">{t(phase.description.es, phase.description.en)}</p>
+                    <p class="text-sm text-on-surface-variant leading-relaxed" set:html={em(t(phase.description.es, phase.description.en)) ?? ''} />
                   </div>
                 </div>
               ))}
@@ -268,7 +269,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
               class="group p-6 bg-surface-container-low rounded-xl border border-warm/10 hover:border-warm/30 hover:bg-surface-container-high hover:-translate-y-1 transition-all duration-300"
             >
               <h3 class="font-headline text-xl group-hover:text-warm transition-colors">{p.data.title}</h3>
-              <p class="text-sm text-on-surface-variant mt-2 line-clamp-2">{t(p.data.tagline.es, p.data.tagline.en)}</p>
+              <p class="text-sm text-on-surface-variant mt-2 line-clamp-2" set:html={em(t(p.data.tagline.es, p.data.tagline.en)) ?? ''} />
             </a>
           ))}
         </div>

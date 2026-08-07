@@ -1,6 +1,6 @@
 import { config, collection, singleton, fields } from '@keystatic/core';
 
-const ASTERISK_HINT = 'Para poner una parte en itálica, encerrala entre asteriscos: *así*';
+const ASTERISK_HINT = 'Para poner una parte en itálica, encerrala entre asteriscos: *así*. Solo funciona en los campos que tienen esta indicación.';
 const SEO_HINT = 'No se ve en la página. Aparece en Google y al compartir el link.';
 const ORDER_HINT = 'Se muestran en orden, uno debajo del otro.';
 
@@ -30,8 +30,8 @@ export default config({
           en: fields.text({ label: 'English', description: ASTERISK_HINT }),
         }, { label: 'Portada — Título principal' }),
         hero_subtitle: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Portada — Texto de presentación' }),
         // --- Los tres pilares ---
         pillars_title: fields.object({
@@ -43,24 +43,24 @@ export default config({
           en: fields.text({ label: 'English' }),
         }, { label: 'Pilares — Arte: título' }),
         pillar_arte_desc: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Pilares — Arte: descripción' }),
         pillar_ciencia_title: fields.object({
           es: fields.text({ label: 'Español' }),
           en: fields.text({ label: 'English' }),
         }, { label: 'Pilares — Ciencia: título' }),
         pillar_ciencia_desc: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Pilares — Ciencia: descripción' }),
         pillar_consciencia_title: fields.object({
           es: fields.text({ label: 'Español' }),
           en: fields.text({ label: 'English' }),
         }, { label: 'Pilares — Consciencia: título' }),
         pillar_consciencia_desc: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Pilares — Consciencia: descripción' }),
         // --- Cita de visión ---
         vision_quote: fields.object({
@@ -503,12 +503,12 @@ export default config({
         featured: fields.checkbox({ label: 'Destacado', defaultValue: false, description: 'Si está tildado, el proyecto aparece en la sección "Producción Destacada" del inicio, sin importar su estado (completado o en desarrollo). Si hay varios tildados, se muestra el que tenga el número de Orden más alto.' }),
         year: fields.text({ label: 'Año', description: 'Ej: 2024, o un rango: 2023–2024.' }),
         tagline: fields.object({
-          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
-          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+          es: fields.text({ label: 'Español', validation: { isRequired: true }, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true }, description: ASTERISK_HINT }),
         }, { label: 'Frase / Lema', description: 'Frase corta que resume el proyecto. Aparece debajo del título.' }),
         description: fields.object({
-          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
-          en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
         }, { label: 'Descripción' }),
         heroImage: fields.image({
           label: 'Imagen de portada',
@@ -528,8 +528,8 @@ export default config({
               en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
             }, { label: 'Título' }),
             description: fields.object({
-              es: fields.text({ label: 'Español', multiline: true }),
-              en: fields.text({ label: 'Inglés', multiline: true }),
+              es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+              en: fields.text({ label: 'Inglés', multiline: true, description: ASTERISK_HINT }),
             }, { label: 'Descripción' }),
           }, { label: 'Episodio' }),
           { label: 'Episodios', itemLabel: (props) => props.fields.title.fields.es.value || 'Episodio' }
@@ -542,8 +542,8 @@ export default config({
               en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
             }, { label: 'Título' }),
             description: fields.object({
-              es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
-              en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
+              es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
+              en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
             }, { label: 'Descripción' }),
           }, { label: 'Fase' }),
           { label: 'Fases', itemLabel: (props) => props.fields.letter.value || 'Fase' }
@@ -584,8 +584,8 @@ export default config({
               en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
             }, { label: 'Título' }),
             description: fields.object({
-              es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
-              en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
+              es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
+              en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
             }, { label: 'Descripción' }),
           }, { label: 'Tarjeta' }),
           { label: 'Tarjetas destacadas', itemLabel: (props) => props.fields.title.fields.es.value || 'Card' }

@@ -25,17 +25,17 @@ const featured = projects.find((p) => p.data.featured);
 const pillars = [
   {
     title: t(d?.pillar_arte_title) ?? (locale === 'en' ? 'Art' : 'Arte'),
-    desc: t(d?.pillar_arte_desc) ?? '',
+    desc: em(t(d?.pillar_arte_desc)) ?? '',
     key: 'arte' as const,
   },
   {
     title: t(d?.pillar_ciencia_title) ?? (locale === 'en' ? 'Science' : 'Ciencia'),
-    desc: t(d?.pillar_ciencia_desc) ?? '',
+    desc: em(t(d?.pillar_ciencia_desc)) ?? '',
     key: 'ciencia' as const,
   },
   {
     title: t(d?.pillar_consciencia_title) ?? (locale === 'en' ? 'Consciousness' : 'Consciencia'),
-    desc: t(d?.pillar_consciencia_desc) ?? '',
+    desc: em(t(d?.pillar_consciencia_desc)) ?? '',
     key: 'consciencia' as const,
   },
 ];
@@ -51,7 +51,7 @@ const pillars = [
     variant="split"
     eyebrow={t(d?.hero_eyebrow)}
     title={em(t(d?.hero_title)) ?? ''}
-    subtitle={t(d?.hero_subtitle)}
+    subtitle={em(t(d?.hero_subtitle))}
     subtitleReadMore={true}
     readMoreLabel={t(ui?.data.read_more) ?? (locale === 'en' ? 'read more' : 'leer más')}
     readLessLabel={t(ui?.data.read_less) ?? (locale === 'en' ? 'read less' : 'leer menos')}
@@ -174,16 +174,15 @@ const pillars = [
             <span class="font-bitacora italic text-warm/70 text-xs">// {featured.data.kind}</span>
           </div>
           <h3 class="font-headline text-4xl md:text-5xl">{featured.data.title}</h3>
-          <p class="text-lg text-on-surface-variant leading-relaxed">{locale === 'en' ? featured.data.tagline.en : featured.data.tagline.es}</p>
+          <p class="text-lg text-on-surface-variant leading-relaxed" set:html={em(locale === 'en' ? featured.data.tagline.en : featured.data.tagline.es) ?? ''} />
           <ReadMore
             id="featured-description"
             class="text-on-surface-variant/70 leading-relaxed"
             lines={3}
+            text={em(locale === 'en' ? featured.data.description.en : featured.data.description.es)}
             moreLabel={t(ui?.data.read_more) ?? (locale === 'en' ? 'read more' : 'leer más')}
             lessLabel={t(ui?.data.read_less) ?? (locale === 'en' ? 'read less' : 'leer menos')}
-          >
-            {locale === 'en' ? featured.data.description.en : featured.data.description.es}
-          </ReadMore>
+          />
           <a
             href={`/${locale === 'en' ? 'en/' : ''}proyectos/${featured.id}`}
             class="group inline-flex items-center gap-2 text-warm font-bitacora text-sm hover:gap-3 transition-all"

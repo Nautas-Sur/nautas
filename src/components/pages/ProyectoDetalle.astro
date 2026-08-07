@@ -6,6 +6,7 @@ import CelestialLine from '../CelestialLine.astro';
 import GlassPanel from '../GlassPanel.astro';
 import YouTubeEmbed from '../YouTubeEmbed.astro';
 import EpisodeList from '../EpisodeList.astro';
+import { strip } from '../../lib/emphasis';
 
 const { slug } = Astro.params;
 const locale = Astro.currentLocale || 'es';
@@ -68,7 +69,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
 
 <BaseLayout
   title={data.title}
-  description={description.slice(0, 160)}
+  description={(strip(description) ?? description).slice(0, 160)}
   locale={locale}
 >
   <!-- Hero -->

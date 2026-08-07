@@ -624,6 +624,10 @@ export default config({
           description: 'Retrato vertical 3:4 · mínimo 600×800 px (ideal 900×1200) · cara/torso centrados · JPG, menos de 500 KB',
           validation: { isRequired: false },
         }),
+        photoAlt: fields.text({
+          label: 'Texto alternativo de la foto',
+          description: 'Descripción corta de lo que se ve en la foto. La leen los lectores de pantalla (personas no videntes) y aparece si la foto no carga. Ej: "Mujer sonriendo, retrato de estudio". Si se deja vacío, se usa el nombre de la persona.',
+        }),
       },
     }),
   },

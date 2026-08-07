@@ -98,8 +98,8 @@ export default config({
           en: fields.text({ label: 'English', description: ASTERISK_HINT }),
         }, { label: 'Portada — Título principal' }),
         hero_subtitle: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Portada — Texto de presentación' }),
         // --- Misión ---
         mission_eyebrow: fields.object({
@@ -245,8 +245,8 @@ export default config({
           en: fields.text({ label: 'English', description: ASTERISK_HINT }),
         }, { label: 'Portada — Título principal' }),
         hero_subtitle: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Portada — Texto de presentación' }),
         // --- SEO y metadatos ---
         title: fields.object({
@@ -270,12 +270,12 @@ export default config({
           en: fields.text({ label: 'English' }),
         }, { label: 'Portada — Etiqueta superior' }),
         hero_title: fields.object({
-          es: fields.text({ label: 'Español' }),
-          en: fields.text({ label: 'English' }),
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
         }, { label: 'Portada — Título principal' }),
         hero_subtitle: fields.object({
-          es: fields.text({ label: 'Español', multiline: true }),
-          en: fields.text({ label: 'English', multiline: true }),
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', multiline: true, description: ASTERISK_HINT }),
         }, { label: 'Portada — Texto de presentación' }),
         // --- SEO y metadatos ---
         title: fields.object({
@@ -302,8 +302,8 @@ export default config({
           description: "Texto chico en minúscula arriba del título de la página, precedido por //. OJO: es distinto del título principal, que también dice 'Escribinos.' — este es la línea chica de arriba.",
         }),
         hero_title: fields.object({
-          es: fields.text({ label: 'Español' }),
-          en: fields.text({ label: 'English' }),
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'English', description: ASTERISK_HINT }),
         }, { label: 'Portada — Título principal' }),
         contact_tagline: fields.object({
           es: fields.text({ label: 'Español' }),

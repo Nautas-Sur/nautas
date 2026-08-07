@@ -607,7 +607,12 @@ export default config({
           es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
           en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
         }, { label: 'Biografía' }),
-        order: fields.integer({ label: 'Orden', description: 'Define el orden de aparición en la página. Número más bajo = aparece primero.' }),
+        order: fields.integer({
+          label: 'Orden',
+          description: 'Número más alto = aparece primero en la página. Se recomienda numerar de 10 en 10 (10, 20, 30...) para poder insertar un miembro en el medio más adelante sin tener que renumerar todo. Un miembro nuevo nace en 100, arriba de todos, hasta que lo reacomodes. Si dos miembros quedan con el mismo número, se ordenan alfabéticamente por nombre entre ellos.',
+          defaultValue: 100,
+          validation: { isRequired: true },
+        }),
         photo: fields.image({
           label: 'Foto',
           directory: 'public/images/team',

@@ -1,4 +1,6 @@
 ---
+import { em } from '../lib/emphasis';
+
 export interface Trailer {
   videoId: string;
   label?: string;
@@ -170,7 +172,7 @@ const { episodes, trailer, playlistId, title, countLabel, separatorLabel, episod
 
           {ep.description && (
             <p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed font-body">
-              {ep.description}
+              <Fragment set:html={em(ep.description) ?? ''} />
             </p>
           )}
         </div>

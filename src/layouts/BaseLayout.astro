@@ -38,7 +38,7 @@ const canonical = locale === 'es' ? esPath : enPath;
     <meta property="og:title" content={`${title} — NAUTAS`} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content={image} />
+    <meta property="og:image" content={new URL(image, Astro.site).href} />
     <meta property="og:site_name" content="NAUTAS" />
     <meta property="og:locale" content={locale === 'es' ? 'es_AR' : 'en_US'} />
 

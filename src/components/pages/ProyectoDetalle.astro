@@ -70,6 +70,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
 <BaseLayout
   title={data.title}
   description={(strip(description) ?? description).slice(0, 160)}
+  image={data.heroImage}
   locale={locale}
 >
   <!-- Hero -->

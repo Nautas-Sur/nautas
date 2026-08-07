@@ -6,14 +6,14 @@ import CelestialLine from '../CelestialLine.astro';
 import GlassPanel from '../GlassPanel.astro';
 import TeamCard from '../TeamCard.astro';
 import { em } from '../../lib/emphasis';
+import { sortTeam } from '../../lib/sortTeam';
 
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'institucional');
 const d = page?.data;
 const t = (f?: { es: string; en: string }) => f?.[locale] || undefined;
 
-const team = await getCollection('team');
-team.sort((a, b) => a.data.order - b.data.order);
+const team = sortTeam(await getCollection('team'));
 ---
 
 <BaseLayout title={t(d?.title) ?? ''} description={t(d?.description) ?? ''} locale={locale}>

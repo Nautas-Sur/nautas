@@ -21,7 +21,7 @@ const {
 
 const currentPath = Astro.url.pathname;
 const canonicalPath = currentPath.replace(/^\/(en|es)(\/|$)/, '$2') || '/';
-const enPath = `/en${canonicalPath}`.replace(/\/$/, '') || '/en';
+const enPath = canonicalPath === '/' ? '/en/' : `/en${canonicalPath}`.replace(/\/$/, '');
 const esPath = canonicalPath.replace(/\/$/, '') || '/';
 const canonical = locale === 'es' ? esPath : enPath;
 ---

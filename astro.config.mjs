@@ -8,7 +8,7 @@ import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://project-43ure.vercel.app',
+  site: 'https://nautas.org.ar',
   publicDir: './public',
   integrations: [react(), keystatic()],
 

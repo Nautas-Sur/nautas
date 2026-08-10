@@ -2,7 +2,7 @@ export default function handler(req, res) {
   const params = new URLSearchParams({
     client_id: process.env.GITHUB_CLIENT_ID,
     scope: 'repo,user',
-    redirect_uri: 'https://nautas.org.ar/api/callback',
+    redirect_uri: 'https://project-43ure.vercel.app/api/callback',
   });
   res.redirect(`https://github.com/login/oauth/authorize?${params}`);
 }

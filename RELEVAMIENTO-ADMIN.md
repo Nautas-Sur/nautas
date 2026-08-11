@@ -405,6 +405,117 @@ el código, borrar también las 5 variables de entorno en Vercel (no solo las
 2 que lee el código — las 3 huérfanas quedan igual de expuestas si no se
 limpian) y dar de baja el GitHub OAuth App.
 
+## Agregado — reconstruir el uso reciente de la OAuth App
+
+Santos encontró dos OAuth Apps "Nautas CMS" en GitHub, ambas del 11/05:
+`Ov23litF6zx43dhwfbDt` (0 users, never used) y `Ov23linoBnGUKNDCaul0` (2
+users, usada en la última semana). Antes de tocar nada hay que explicar ese
+uso reciente.
+
+### 14. Qué Client ID está cargado en `GITHUB_CLIENT_ID`
+
+`GET https://nautas.org.ar/api/auth` → 307, `Location` contiene
+`client_id=Ov23linoBnGUKNDCaul0`. Repetido dos veces en este relevamiento
+(sesión anterior y esta), mismo valor las dos veces.
+
+**Es `Ov23linoBnGUKNDCaul0` — la app con 2 users y uso reciente.** La otra
+(`Ov23litF6zx43dhwfbDt`, 0 users) no está referenciada en ningún lado del
+código ni de la config actual: es un OAuth App huérfano, casi seguro del
+mismo vaivén de intentos del 11/05 documentado en el punto 6 (a la par de
+las 3 variables `OAUTH_*` huérfanas del punto 10 — incluso podrían ser del
+mismo intento abandonado).
+
+### 15. ¿Mis propias verificaciones cuentan como "uso"?
+
+Método: `web_fetch_vercel_url` (fetch HTTP server-to-server, sin sesión de
+navegador, sin cookies, sin ejecutar JavaScript ni renderizar nada). Se
+hicieron 3 llamadas en total, contando la ronda anterior de este
+relevamiento y la de ahora:
+
+- `GET /api/auth` → recibí el 307 con la URL de autorización de GitHub, pero
+  **nunca navegué a esa URL** — el fetch no sigue redirects hacia dominios
+  externos vía este tool, y aunque los siguiera, no hay una sesión de
+  navegador logueada en GitHub detrás para completar el consentimiento.
+- `GET /api/callback` (sin parámetro `code`) → `api/callback.js` igual le
+  pegó a la API real de GitHub (`POST
+  https://github.com/login/oauth/access_token`) con `code: undefined`, y
+  GitHub devolvió el error esperado de código inválido/expirado.
+
+**Ninguna de las dos completó un intercambio de token.** Un `GET` a
+`/api/auth` que no se sigue no es una autorización — GitHub solo suma un
+"user" al OAuth App cuando una cuenta real completa la pantalla de
+consentimiento y `/api/callback` recibe un `code` válido a cambio. Mis
+llamadas no pudieron generar ni el "2 users" ni el "usada en la última
+semana" que vio Santos — y cronológicamente tampoco pueden explicarlo:
+Santos reportó esa observación **antes** de la ronda de pruebas de este
+mensaje, así que a lo sumo mis pruebas de la ronda anterior podrían haber
+quedado adentro de la ventana que Santos miró, pero por lo ya explicado no
+producen ni un login ni un token.
+
+### 16. Logs de runtime de Vercel — últimos 30 días
+
+Consultado vía MCP (`get_runtime_logs`, ventana 2026-07-12→2026-08-11):
+
+```
+/api/auth     → 2 invocaciones: 00:03:54 y 00:28:29 (11/08)
+/api/callback → 1 invocación:  00:04:18 (11/08)
+```
+
+**Las 3 coinciden exactamente, minuto a minuto, con las 3 llamadas de
+verificación del punto 15** (2 de esta sesión + 1 de la sesión anterior de
+este mismo relevamiento). **No hay ninguna otra invocación de `api/auth` ni
+`api/callback` en los últimos 30 días.** Cero tráfico orgánico, cero
+tráfico de terceros, cero tráfico previo a este relevamiento.
+
+Esto es el hallazgo clave: **el "usado en la última semana" que ve GitHub
+no puede venir de pegarle a nuestros propios endpoints**, porque no le pegó
+nadie más que yo, y recién hoy. La explicación que sí es coherente con toda
+la evidencia junta: Decap CMS, una vez que un usuario completa el login,
+guarda el `access_token` de GitHub en el navegador (`localStorage`) y lo
+usa para pegarle **directo a `api.github.com`** en cada operación
+siguiente (listar archivos, leer, commitear) — sin volver a pasar por
+`/api/auth` ni `/api/callback`, que solo intervienen en el handshake
+inicial. El contador de "last used" de un GitHub OAuth App mide el uso del
+*token* contra la API de GitHub, no el tráfico contra nuestros endpoints de
+login. Es decir: **es compatible con que alguien haya abierto `/admin` en
+un navegador con un login viejo (de la sesión original del 11/05) todavía
+cacheado, y que ese token se haya usado contra `api.github.com` en la
+última semana sin dejar ningún rastro en los logs de Vercel.**
+
+Esto **no lo puedo verificar** desde acá — Vercel no tiene visibilidad de
+llamadas navegador→`api.github.com` que no pasan por sus funciones. Es una
+pregunta para Santos: ¿alguien (él mismo, Caro, Javier) abrió `/admin` en
+los últimos días, aunque sea por curiosidad o por un bookmark viejo?
+
+### 17. Commits en `main` fuera de Keystatic Cloud, últimos 30 días
+
+```
+git log main --since="30 days ago" --format="%an <%ae>" | sort -u
+→ Surem748 <142060268+santos480@users.noreply.github.com>   (merges de PR, Santos)
+→ keystatic-cloud[bot] <127914443+...>                       (CMS de Caro/Javier)
+→ santos480 <numero170@gmail.com>                             (commits directos, Santos)
+```
+
+Tres identidades, todas explicadas: Santos (dos formas de aparecer en el
+historial, merge por la UI de GitHub vs. push directo) y el bot de
+Keystatic Cloud. **Ninguna commitea ni firma como una cuenta de GitHub
+externa o desconocida.**
+
+Además, específicamente por si Decap hubiera llegado a crear algo: cero
+archivos `.md` nuevos bajo `src/content/` en los últimos 30 días
+(`git log --diff-filter=A --since="30 days ago" -- 'src/content/**/*.md'`
+sin resultados). Si alguien hubiera guardado algo a través de Decap en este
+período, habría quedado como un `.md` nuevo — no apareció ninguno.
+
+**Conclusión de este agregado:** el acceso reciente a la OAuth App es real
+y explicable (token cacheado de una sesión vieja, usado contra la API de
+GitHub por fuera de nuestros endpoints) pero **no escribió nada** en el
+repo — ni en `main` en general, ni en forma de archivos `.md` nuevos en
+`src/content` en particular. No cambia la clasificación de urgencia del
+borrado (sigue prioritaria: hay un token vivo dando vueltas), pero sí
+confirma que, hasta donde se puede ver desde el repo, no hubo impacto en el
+contenido publicado.
+
 ## Aclaración — discrepancia 24 vs. 25 páginas
 
 El reporte de `dominio-propio-site` habla de **24** páginas de contenido; el

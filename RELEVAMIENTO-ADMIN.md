@@ -282,6 +282,129 @@ expuesta campo por campo, y un flujo de OAuth activo con un GitHub OAuth
 App real detrás, que nadie está monitoreando y que no cumple ninguna
 función desde que existe Keystatic.
 
+## Agregado — variables de entorno confirmadas por Santos en Vercel
+
+Santos confirmó directamente en el dashboard de Vercel: existen
+`GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `OAUTH_CLIENT_ID`,
+`OAUTH_CLIENT_SECRET` y `OAUTH_HOST`, las 5 marcadas *Sensitive*, en
+Production y Preview, cargadas el 11/05/2026 (mismo día que el resto del
+panel, según el punto 6).
+
+### 10. `grep -rn` de las 5 en todo el repo
+
+```
+GITHUB_CLIENT_ID     → api/auth.js:3, api/callback.js:8
+GITHUB_CLIENT_SECRET → api/callback.js:9
+OAUTH_CLIENT_ID      → sin coincidencias en ningún archivo del repo
+OAUTH_CLIENT_SECRET  → sin coincidencias en ningún archivo del repo
+OAUTH_HOST           → sin coincidencias en ningún archivo del repo
+```
+
+(búsqueda sobre todo el repo salvo `node_modules`, `.git`, `dist`,
+`.vercel`, `.astro` — y aparte, ampliada a `node_modules` completo para
+`OAUTH_CLIENT_ID` y `OAUTH_HOST`, también sin coincidencias: ninguna
+dependencia instalada las lee tampoco.)
+
+**Quién lee realmente qué:**
+
+- `api/auth.js` lee `GITHUB_CLIENT_ID` (línea 3, arma el querystring de
+  autorización).
+- `api/callback.js` lee `GITHUB_CLIENT_ID` (línea 8) y `GITHUB_CLIENT_SECRET`
+  (línea 9), para el intercambio código→token con GitHub.
+- `OAUTH_CLIENT_ID`, `OAUTH_CLIENT_SECRET` y `OAUTH_HOST` **no las lee
+  ningún archivo del repo, ni ningún paquete instalado.** Están cargadas en
+  Vercel pero huérfanas de código.
+
+**Hipótesis sobre el origen de las 3 huérfanas** (no verificable con certeza
+sin acceso al historial de creación de env vars en Vercel, así que se marca
+como hipótesis, no como hecho): el nombre `OAUTH_CLIENT_ID` /
+`OAUTH_CLIENT_SECRET` / `OAUTH_HOST` es exactamente la convención que usan
+los proxies OAuth genéricos para Decap/Netlify CMS más comunes en la
+comunidad (del estilo `netlify-cms-oauth-provider-node`). El punto 6 mostró
+que la sesión del 11/05 probó al menos dos enfoques distintos antes de
+quedarse con el actual: `8b753a4a` usaba `auth_type: implicit/pkce` contra
+`api.netlify.com`, se borró en `bc27a5ad`, y recién en `459079b6` apareció
+el proxy propio que sí quedó (con los nombres `GITHUB_CLIENT_ID` /
+`GITHUB_CLIENT_SECRET`). Es consistente que `OAUTH_CLIENT_ID` /
+`OAUTH_CLIENT_SECRET` / `OAUTH_HOST` se hayan cargado para uno de los
+enfoques intermedios que se abandonó el mismo día, y que nadie los haya
+borrado de Vercel al abandonar ese enfoque.
+
+### 11. Keystatic NO lee ninguna de las 5 — verificado, no asumido
+
+- `keystatic.config.mjs`: el único `env` que lee en todo el archivo es
+  `import.meta.env.DEV` (línea 8, flag de build de Vite/Astro para elegir
+  `storage: local` vs `storage: cloud` — no es ninguna de las 5, ni un
+  secreto).
+- `astro.config.mjs`: cero lecturas de `process.env` o `import.meta.env` en
+  todo el archivo.
+- Código instalado de Keystatic (`node_modules/@keystatic/core/dist/*.js`,
+  `@keystatic/astro`): los únicos `process.env` que lee, en cualquiera de
+  sus builds (node, react-server, worker), son `KEYSTATIC_GITHUB_CLIENT_ID`,
+  `KEYSTATIC_GITHUB_CLIENT_SECRET`, `KEYSTATIC_SECRET` y `NODE_ENV` — nombres
+  **distintos** a los 5 relevados, y ni siquiera esos tres se llegan a usar
+  acá: son parte del flujo de storage `kind: 'github'` (self-hosted), y este
+  proyecto usa `kind: 'cloud'` (`keystatic.config.mjs:8`), que delega todo el
+  login en la infraestructura de Keystatic Cloud/Thinkmill y no pasa por
+  ese código en absoluto.
+
+Confirmado: **borrar las 5 variables no rompe el CMS de Caro y Javier.**
+Ninguna la lee Keystatic, ni en config propio ni en el paquete instalado.
+
+### 12. Scope del flujo de OAuth de `api/auth.js`
+
+```js
+const params = new URLSearchParams({
+  client_id: process.env.GITHUB_CLIENT_ID,
+  scope: 'repo,user',
+  redirect_uri: 'https://project-43ure.vercel.app/api/callback',
+});
+```
+
+(`api/auth.js:2-6`). Pide `scope: 'repo,user'` — acceso de lectura/escritura
+a los repos a los que ya tenga acceso la cuenta de GitHub que completa el
+login, más datos de perfil de usuario. Es el scope estándar que pide Decap
+CMS para poder commitear vía la API de GitHub — no es un scope inusualmente
+amplio para este tipo de integración, pero sigue siendo "repo" completo, no
+acotado a `Nautas-Sur/nautas`.
+
+### 13. `redirect_uri` — ¿lista blanca o abierto?
+
+Ninguna de las dos: **está hardcodeado como string literal**
+(`'https://project-43ure.vercel.app/api/callback'`, línea 5), no se arma a
+partir de ningún parámetro de la request. `api/auth.js` no lee `req.query`
+ni ningún otro dato de la request entrante — la función ni siquiera usa el
+parámetro `req` en el cuerpo. `api/callback.js` solo lee `code` de
+`req.query` (línea 2); no hay ningún `res.redirect()` en ese archivo, solo
+`res.send()` de un HTML con `postMessage` al `window.opener`, dirigido al
+`e.origin` del propio evento (patrón estándar y seguro para este tipo de
+callback OAuth vía popup, no a una URL controlada por el atacante).
+
+**No hay riesgo de redirect abierto en este flujo.** El único dato "viejo"
+que quedó en el código es el propio `redirect_uri` apuntando a
+`project-43ure.vercel.app` (revertido a propósito en `dominio-propio-site`,
+ver esa branch) — pero es un valor fijo, no una vulnerabilidad de
+parámetro.
+
+### Actualización del punto 9 — urgencia
+
+Con esto, la clasificación deja de tener margen: **no es una lectura
+abierta, es un cierre.** El endpoint no solo responde (punto 4) — tiene sus
+dos secretos activos y confirmados por Santos directamente en el dashboard
+de Vercel (no solo inferidos por comportamiento HTTP, como en la primera
+ronda de este relevamiento). El scope pedido es `repo,user` (punto 12), sin
+restricción de redirect explotable (punto 13), sobre una superficie
+100% pública (punto 4) que además carga 3 variables sensibles adicionales
+sin ningún consumidor en el código (`OAUTH_CLIENT_ID/SECRET/HOST`, punto
+10) — huérfanas pero igual de expuestas a cualquiera con acceso al
+dashboard de Vercel.
+
+**Borrado prioritario, confirmado.** Sigue sin ejecutarse en esta branch —
+el plan queda en el punto 7, y ahora se le suma explícitamente: al borrar
+el código, borrar también las 5 variables de entorno en Vercel (no solo las
+2 que lee el código — las 3 huérfanas quedan igual de expuestas si no se
+limpian) y dar de baja el GitHub OAuth App.
+
 ## Aclaración — discrepancia 24 vs. 25 páginas
 
 El reporte de `dominio-propio-site` habla de **24** páginas de contenido; el

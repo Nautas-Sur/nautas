@@ -34,7 +34,19 @@ export default config({
           es: fields.text({ label: 'Español', multiline: true, description: READ_MORE_HINT }),
           en: fields.text({ label: 'Inglés', multiline: true, description: READ_MORE_HINT }),
         }, { label: 'Portada — Texto de presentación' }),
+        hero_cta_primary: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, { label: 'Portada — Botón principal' }),
+        hero_cta_secondary: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, { label: 'Portada — Botón secundario' }),
         // --- Los tres pilares ---
+        pillars_eyebrow: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, { label: 'Pilares — Etiqueta superior' }),
         pillars_title: fields.object({
           es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
           en: fields.text({ label: 'Inglés', description: ASTERISK_HINT }),
@@ -63,12 +75,33 @@ export default config({
           es: fields.text({ label: 'Español', multiline: true, description: READ_MORE_HINT }),
           en: fields.text({ label: 'Inglés', multiline: true, description: READ_MORE_HINT }),
         }, { label: 'Pilares — Consciencia: descripción' }),
+        // --- Producción Destacada ---
+        featured_eyebrow: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, { label: 'Producción Destacada — Etiqueta superior' }),
+        featured_title: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true }, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true }, description: ASTERISK_HINT }),
+        }, { label: 'Producción Destacada — Título' }),
+        featured_cta: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, { label: 'Producción Destacada — Texto del link' }),
         // --- Cita de visión ---
+        vision_eyebrow: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, { label: 'Visión — Etiqueta superior' }),
         vision_quote: fields.object({
           es: fields.text({ label: 'Español', multiline: true }),
           en: fields.text({ label: 'Inglés', multiline: true }),
         }, { label: 'Cita de visión' }),
         // --- Newsletter ---
+        newsletter_eyebrow: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, { label: 'Newsletter — Etiqueta superior' }),
         newsletter_title: fields.object({
           es: fields.text({ label: 'Español' }),
           en: fields.text({ label: 'Inglés' }),
@@ -77,6 +110,14 @@ export default config({
           es: fields.text({ label: 'Español', multiline: true }),
           en: fields.text({ label: 'Inglés', multiline: true }),
         }, { label: 'Newsletter — Subtítulo' }),
+        newsletter_placeholder: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, { label: 'Newsletter — Ejemplo dentro del campo de email' }),
+        newsletter_cta: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, { label: 'Newsletter — Texto del botón' }),
         // --- SEO y metadatos ---
         title: fields.object({
           es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),

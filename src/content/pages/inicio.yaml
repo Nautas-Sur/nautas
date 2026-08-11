@@ -53,6 +53,15 @@ hero_subtitle:
 
     • The third enigma: of the Heart of Art—primarily expressed through
     creativity.
+hero_cta_primary:
+  es: Ver proyectos
+  en: View projects
+hero_cta_secondary:
+  es: Quiénes somos
+  en: About us
+pillars_eyebrow:
+  es: tres caminos, un horizonte
+  en: three paths, one horizon
 pillars_title:
   es: Diferentes Dimensiones, *una misma Fuente.*
   en: Different Dimensions, *One Source.*
@@ -201,6 +210,18 @@ pillar_consciencia_desc:
     scientific, philosophical, ethical, metaphysical, and religious inquiry,
     including the sciences of meditation and research on physical vitality, the
     energy field, health, and individual and collective dysfunction.
+featured_eyebrow:
+  es: destacado
+  en: featured
+featured_title:
+  es: Producción *Destacada*
+  en: Featured *Production*
+featured_cta:
+  es: Ver proyecto
+  en: View project
+vision_eyebrow:
+  es: visión
+  en: vision
 vision_quote:
   es: >-
     "Observar es participar. Somos expresiones del universo experimentándose a
@@ -208,6 +229,9 @@ vision_quote:
   en: >-
     "To observe is to participate. We are the universe experiencing itself
     through the lens of science and the soul."
+newsletter_eyebrow:
+  es: bitácora
+  en: logbook
 newsletter_title:
   es: ¿Listo para mapear lo desconocido?
   en: Ready to map the unknown?
@@ -218,6 +242,12 @@ newsletter_subtitle:
   en: >-
     Subscribe to our newsletter for monthly celestial logs, scientific
     breakthroughs, and invitations to exclusive events.
+newsletter_placeholder:
+  es: estelar@navegante.com
+  en: stellar@navigator.com
+newsletter_cta:
+  es: embarcate
+  en: embark
 title:
   es: Nautas — Inicio
   en: Nautas — Home

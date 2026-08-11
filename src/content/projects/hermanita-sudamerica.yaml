@@ -46,7 +46,21 @@ episodes:
     title:
       es: Hermanita Sudamérica - Argentina
       en: South America little sister
-    description: {}
+    description:
+      es: >-
+        Hermanita Sudamérica (South América Little Sister) profundiza en la en
+        esencia cultural de cada país de  Sudamérica a la vez que  construye un
+        puente con el desarrollo tecnológico y sociológico actual. Propone la
+        creación de una identidad primordialmente Sudamericana, basándose en la
+        documentación etnográfica y antropológica de pueblos originarios,
+        escenarios urbanos, reseñas históricas y geopolíticas de cada país. 
+      en: >-
+        Hermanita Sudamérica (South America Little Sister) delves into the
+        cultural essence of each South American country while building a bridge
+        to current technological and sociological developments. It proposes the
+        creation of a primarily South American identity, based on ethnographic
+        and anthropological documentation of indigenous peoples, urban
+        landscapes, and historical and geopolitical overviews of each country.
 phases:
   - letter: A
     title:

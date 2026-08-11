@@ -1,13 +1,9 @@
 name: Santos Tiscornia
 role:
-  es: Presidente de Nautas. Coordinación estratégica y producción general.
-  en: President of Nautas. Strategic coordination and general production.
+  es: Presidente de Nautas
+  en: President of Nautas
 bio:
-  es: >-
-    Selección de pensadores, artistas y científicos. Desarrollo de líneas
-    temáticas y contenidos editoriales.
-  en: >-
-    Selection of thinkers, artists, and scientists. Development of thematic
-    lines and editorial content.
+  es: Coordinación estratégica y producción general.
+  en: Strategic coordination and general production.
 order: 30
 photo: /images/team/santos-tiscornia/photo.jpg

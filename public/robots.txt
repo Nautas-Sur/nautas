@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /keystatic
+
+Sitemap: https://nautas.org.ar/sitemap-index.xml

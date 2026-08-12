@@ -32,7 +32,7 @@ const team = sortTeam(await getCollection('team'));
   <CelestialLine class="mt-4 mb-8 md:mt-6 md:mb-12" />
 
   <!-- Mission / Propósito -->
-  <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
+  <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-20">
     <p class="font-bitacora italic text-warm text-sm mb-6">
       // {t(d?.mission_eyebrow) ?? (locale === 'en' ? 'mission' : 'misión')}
     </p>
@@ -67,17 +67,17 @@ const team = sortTeam(await getCollection('team'));
     </div>
   </section>
 
-  <CelestialLine />
+  <CelestialLine class="my-12" />
 
   <!-- Vision -->
-  <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
+  <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-20">
     <p class="font-bitacora italic text-warm text-sm mb-6">
       // {t(d?.vision_eyebrow) ?? (locale === 'en' ? 'vision' : 'visión')}
     </p>
     <div class="bg-surface-container-lowest rounded-3xl overflow-hidden border border-warm/10">
       <div class="grid md:grid-cols-2">
         <div class="p-8 md:p-16 lg:p-20 flex flex-col justify-center">
-          <h2 class="font-headline text-4xl md:text-5xl mb-10 [&_em]:italic [&_em]:text-warm">
+          <h2 class="font-headline text-4xl md:text-5xl mb-8 [&_em]:italic [&_em]:text-warm">
             <Fragment set:html={em(t(d?.vision_title)) ?? ''} />
           </h2>
           <div class="space-y-6 text-on-surface-variant leading-relaxed text-base md:text-lg">
@@ -87,7 +87,7 @@ const team = sortTeam(await getCollection('team'));
           </div>
         </div>
         <div class="relative bg-surface-container-high flex flex-col items-center justify-center p-8 md:p-16 lg:p-20 text-center border-l border-warm/10">
-          <div class="mb-10 relative z-10">
+          <div class="mb-8 relative z-10">
             <span class="font-headline text-warm/50 text-6xl block mb-6 leading-none" aria-hidden="true">⊙</span>
             {d?.vision_blockquote && (
               <blockquote class="font-headline text-2xl md:text-3xl italic text-on-surface mb-6">
@@ -110,14 +110,14 @@ const team = sortTeam(await getCollection('team'));
     </div>
   </section>
 
-  <CelestialLine />
+  <CelestialLine class="my-12" />
 
   <!-- Team -->
-  <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-32">
+  <section class="max-w-[1440px] mx-auto px-6 md:px-12 mb-20">
     <p class="font-bitacora italic text-warm text-sm mb-6">
       // {t(d?.team_eyebrow) ?? (locale === 'en' ? 'team' : 'equipo')}
     </p>
-    <div class="flex flex-col md:flex-row justify-between items-end mb-14">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12">
       <div class="max-w-xl">
         <h2 class="font-headline text-4xl md:text-5xl mb-4 [&_em]:italic [&_em]:text-warm">
           <Fragment set:html={em(t(d?.team_title)) ?? ''} />
@@ -141,10 +141,10 @@ const team = sortTeam(await getCollection('team'));
     </div>
   </section>
 
-  <CelestialLine />
+  <CelestialLine class="my-12" />
 
   <!-- CTA -->
-  <section class="max-w-[1200px] mx-auto px-6 md:px-12 mb-20 text-center py-24 md:py-32 bg-nebula rounded-3xl relative overflow-hidden">
+  <section class="max-w-[1200px] mx-auto px-6 md:px-12 mb-20 text-center py-20 md:py-20 bg-nebula rounded-3xl relative overflow-hidden">
     <div class="relative z-10">
       <p class="font-bitacora italic text-warm text-sm mb-6">
         // {t(d?.cta_eyebrow) ?? (locale === 'en' ? 'set sail' : 'embarcate')}
@@ -152,7 +152,7 @@ const team = sortTeam(await getCollection('team'));
       <h2 class="font-headline text-4xl md:text-5xl mb-8 [&_em]:italic [&_em]:text-warm">
         <Fragment set:html={em(t(d?.cta_title)) ?? ''} />
       </h2>
-      <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-10">
+      <p class="text-on-surface-variant text-lg md:text-xl max-w-2xl mx-auto mb-8">
         {t(d?.cta_subtitle) ?? ''}
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">

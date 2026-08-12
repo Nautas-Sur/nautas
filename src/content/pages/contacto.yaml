@@ -1,9 +1,3 @@
-title:
-  es: Nautas — Contacto
-  en: Nautas — Contact
-description:
-  es: Contactá a NAUTAS. Escribinos para consultas, colaboraciones, prensa o sumarte al equipo.
-  en: Contact NAUTAS. Write to us for inquiries, collaborations, press, or joining the team.
 contact_eyebrow:
   es: escribínos
   en: write to us
@@ -17,8 +11,8 @@ email_label:
   es: Correo Electrónico
   en: Email
 email:
-  es: contacto@nautas.org
-  en: contacto@nautas.org
+  es: nautas.org@gmail.com
+  en: nautas.org@gmail.com
 youtube_label:
   es: YouTube
   en: YouTube
@@ -43,3 +37,13 @@ response_time:
 form_title:
   es: Enviá tu mensaje
   en: Send your message
+title:
+  es: Nautas — Contacto
+  en: Nautas — Contact
+description:
+  es: >-
+    Contactá a NAUTAS. Escribinos para consultas, colaboraciones, prensa o
+    sumarte al equipo.
+  en: >-
+    Contact NAUTAS. Write to us for inquiries, collaborations, press, or joining
+    the team.

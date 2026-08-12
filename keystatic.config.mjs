@@ -551,14 +551,14 @@ export default config({
         episodes: fields.array(
           fields.object({
             number: fields.integer({ label: 'Número', validation: { isRequired: true } }),
-            videoId: fields.text({ label: 'ID de video YouTube', description: 'ID del video del episodio en YouTube: la parte después de "v=" en la URL (o después de "youtu.be/"). Ejemplo: en youtube.com/watch?v=abc123, el ID es abc123.' }),
+            videoId: fields.text({ label: 'ID de video YouTube', description: 'ID del video del episodio en YouTube: la parte después de "v=" en la URL (o después de "youtu.be/"). Ejemplo: en youtube.com/watch?v=abc123, el ID es abc123.', validation: { isRequired: true } }),
             title: fields.object({
               es: fields.text({ label: 'Español', validation: { isRequired: true } }),
               en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
             }, { label: 'Título' }),
             description: fields.object({
-              es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
-              en: fields.text({ label: 'Inglés', multiline: true, description: ASTERISK_HINT }),
+              es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
+              en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
             }, { label: 'Descripción' }),
           }, { label: 'Episodio' }),
           { label: 'Episodios', itemLabel: (props) => props.fields.title.fields.es.value || 'Episodio' }
@@ -620,7 +620,7 @@ export default config({
           { label: 'Tarjetas destacadas', itemLabel: (props) => props.fields.title.fields.es.value || 'Card' }
         ),
         voices: fields.array(
-          fields.text({ label: 'Voz' }),
+          fields.text({ label: 'Voz', validation: { isRequired: true } }),
           { label: 'Voces', itemLabel: (props) => props.value || 'Voz', description: 'Nombres de los protagonistas o entrevistados del proyecto. Aparecen como etiquetas en la página del proyecto. Sumá uno por cada persona (por ejemplo, los 12 entrevistados de Voces de la Tierra).' }
         ),
         ctaText: fields.object({

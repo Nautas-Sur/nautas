@@ -323,6 +323,6 @@ featureCards:
         learning.
 voices: []
 ctaText:
-  es: Explorar la Serie
-  en: Explore the Series
+  es: Explorar la Playlist del Podcast
+  en: Explore the Podcast Playlist
 ctaLink: https://www.youtube.com/playlist?list=PLxKjsdwjZB4yepe57mkKaaEoBkvJuHEzU

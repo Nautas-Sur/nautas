@@ -29,13 +29,12 @@ export default defineConfig({
         !page.includes('/keystatic') && !page.includes('/en/producciones'),
       serialize(item) {
         const path = new URL(item.url).pathname;
-        const withSlash = (p) => (p.endsWith('/') ? p : p + '/');
         const site = 'https://nautas.org.ar';
         return {
           ...item,
           links: [
-            { lang: 'es-AR', url: site + withSlash(alternatePath(path, 'es')) },
-            { lang: 'en', url: site + withSlash(alternatePath(path, 'en')) },
+            { lang: 'es-AR', url: site + alternatePath(path, 'es') },
+            { lang: 'en', url: site + alternatePath(path, 'en') },
           ],
         };
       },

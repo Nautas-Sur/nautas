@@ -1,5 +1,5 @@
 ---
-import { productionsPath } from '../lib/routes';
+import { productionsPath, alternatePath } from '../lib/routes';
 
 interface Props {
   currentPath: string;
@@ -20,7 +20,7 @@ const navLinks = [
 
 const resolveHref = (link: (typeof navLinks)[number]) =>
   locale === 'en'
-    ? (link.enHref ?? (link.href === '/' ? '/en' : `/en${link.href}`))
+    ? (link.enHref ?? (link.href === '/' ? alternatePath('/', 'en') : `/en${link.href}`))
     : link.href;
 
 function isActive(link: (typeof navLinks)[number], resolvedHref: string): boolean {
@@ -38,7 +38,7 @@ const label = (es: string, en: string) => (locale === 'en' ? en : es);
   <nav class="flex justify-between items-center px-6 md:px-10 py-4 md:py-5 max-w-[1440px] mx-auto">
     <!-- Logo -->
     <a
-      href={locale === 'en' ? '/en' : '/'}
+      href={alternatePath('/', locale)}
       class="shrink-0 transition-opacity hover:opacity-80"
       aria-label="NAUTAS — Inicio"
     >

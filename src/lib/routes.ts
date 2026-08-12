@@ -25,6 +25,6 @@ export function alternatePath(currentPath: string, target: 'es' | 'en'): string 
   }
 
   if (segments.length === 0) return target === 'en' ? '/en/' : '/';
-  const path = '/' + segments.join('/');
+  const path = '/' + segments.join('/') + '/';
   return target === 'en' ? '/en' + path : path;
 }

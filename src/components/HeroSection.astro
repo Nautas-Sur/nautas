@@ -31,7 +31,7 @@ const {
 {
   variant === 'split' ? (
     <section
-      class={`relative max-w-[1440px] mx-auto px-6 md:px-12 pt-32 pb-12 lg:pb-12 grid lg:grid-cols-2 gap-12 lg:gap-12 items-center ${extraClass}`}
+      class={`relative max-w-[1440px] mx-auto px-6 md:px-12 pt-hero pb-12 lg:pb-12 grid lg:grid-cols-2 gap-12 lg:gap-12 items-center ${extraClass}`}
     >
       {/* Star field (intacto, sigue siendo la firma celestial) */}
       <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -134,7 +134,7 @@ const {
     </section>
   ) : variant === 'centered' ? (
     <section
-      class={`relative max-w-[1440px] mx-auto px-6 md:px-12 pt-32 pb-20 text-center ${extraClass}`}
+      class={`relative max-w-[1440px] mx-auto px-6 md:px-12 pt-hero pb-section text-center ${extraClass}`}
     >
       {eyebrow && (
         <span class="font-bitacora italic text-warm text-sm tracking-wide block mb-6">
@@ -166,7 +166,7 @@ const {
     </section>
   ) : (
     <section
-      class={`relative max-w-[1440px] mx-auto px-6 md:px-12 pt-32 pb-20 ${extraClass}`}
+      class={`relative max-w-[1440px] mx-auto px-6 md:px-12 pt-hero pb-section ${extraClass}`}
     >
       {eyebrow && (
         <span class="font-bitacora italic text-warm text-sm tracking-wide block mb-6">

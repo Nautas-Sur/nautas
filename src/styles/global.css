@@ -93,6 +93,14 @@
   --radius-lg: 1rem;
   --radius-xl: 1.5rem;
   --radius-full: 9999px;
+
+  /* ── ESPACIADO: los tres roles con nombre (deuda 20) ──
+     Solo se nombra lo que existe por una razón y cambia todo junto —
+     no los 123 valores de la escala, solo estos tres. Ver
+     RELEVAMIENTO-ESCALA.md para el inventario completo. */
+  --spacing-hero: 8rem;       /* 128px — despeja el header fijo */
+  --spacing-section: 5rem;    /* 80px  — separa secciones de una página */
+  --spacing-separator: 3rem;  /* 48px  — a cada lado de un CelestialLine */
 }
 
 /* Tailwind solo emite las variables de @theme cuyo uso detecta escaneando

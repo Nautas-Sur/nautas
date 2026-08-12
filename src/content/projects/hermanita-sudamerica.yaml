@@ -41,7 +41,7 @@ description:
 heroImage: /images/projects/hermanita-sudamerica/heroImage.jpg
 playlistId: PLcx38Bybj97g&si=1llwkSb2nfVshOWg
 episodes:
-  - number: 1
+  - number: 3
     videoId: GFt9Q4FwaWMKHHio
     title:
       es: Hermanita Sudamérica - Argentina
@@ -61,6 +61,24 @@ episodes:
         creation of a primarily South American identity, based on ethnographic
         and anthropological documentation of indigenous peoples, urban
         landscapes, and historical and geopolitical overviews of each country.
+  - number: 1
+    videoId: bcb8oPQM2RQ
+    title:
+      es: Hermanita Sudamérica - Bolivia
+      en: South América Little Sister - Bolivia
+    description:
+      es: >-
+        El propósito último de esta serie documental considera que la plenitud y
+        dignidad de los habitantes de todo el continente depende de distintos
+        factores y de la posibilidad de cubrir sus necesidades básicas, los
+        pueblos viven más dichosamente si se nutren también cultural y
+        espiritualmente.
+      en: >-
+        The ultimate purpose of this documentary series considers that the
+        fulfillment and dignity of the inhabitants of the entire continent
+        depends on various factors and the possibility of meeting their basic
+        needs; people live more happily if they are also nourished culturally
+        and spiritually.
 phases:
   - letter: A
     title:

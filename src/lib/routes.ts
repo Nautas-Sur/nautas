@@ -1,9 +1,9 @@
 export function productionsPath(locale: string): string {
-  return locale === 'en' ? '/en/productions' : '/producciones';
+  return locale === 'en' ? '/en/productions/' : '/producciones/';
 }
 
 export function productionPath(locale: string, id: string): string {
-  return `${productionsPath(locale)}/${id}`;
+  return `${productionsPath(locale)}${id}/`;
 }
 
 const SEGMENTS_ES_TO_EN: Record<string, string> = {
@@ -25,6 +25,6 @@ export function alternatePath(currentPath: string, target: 'es' | 'en'): string 
   }
 
   if (segments.length === 0) return target === 'en' ? '/en/' : '/';
-  const path = '/' + segments.join('/');
+  const path = '/' + segments.join('/') + '/';
   return target === 'en' ? '/en' + path : path;
 }

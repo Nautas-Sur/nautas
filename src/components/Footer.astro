@@ -1,5 +1,5 @@
 ---
-import { productionsPath } from '../lib/routes';
+import { productionsPath, alternatePath } from '../lib/routes';
 
 interface Props {
   locale: string;
@@ -25,8 +25,8 @@ const navLinks = [
 
 const resolveHref = (link: (typeof navLinks)[number]) =>
   locale === 'en'
-    ? (link.enHref ?? (link.href === '/' ? '/en' : `/en${link.href}`))
-    : link.href;
+    ? alternatePath(link.enHref ?? link.href, 'en')
+    : alternatePath(link.href, 'es');
 
 const year = new Date().getFullYear();
 ---

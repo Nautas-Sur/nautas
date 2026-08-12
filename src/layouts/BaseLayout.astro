@@ -44,7 +44,7 @@ const canonical = locale === 'es' ? esPath : enPath;
 
     <!-- Canonical + alternates -->
     <link rel="canonical" href={new URL(canonical, Astro.site).href} />
-    <link rel="alternate" hreflang="es" href={new URL(esPath, Astro.site).href} />
+    <link rel="alternate" hreflang="es-AR" href={new URL(esPath, Astro.site).href} />
     <link rel="alternate" hreflang="en" href={new URL(enPath, Astro.site).href} />
     <link rel="alternate" hreflang="x-default" href={new URL(esPath, Astro.site).href} />
 

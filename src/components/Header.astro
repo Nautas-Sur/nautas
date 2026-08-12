@@ -20,12 +20,12 @@ const navLinks = [
 
 const resolveHref = (link: (typeof navLinks)[number]) =>
   locale === 'en'
-    ? (link.enHref ?? (link.href === '/' ? alternatePath('/', 'en') : `/en${link.href}`))
-    : link.href;
+    ? alternatePath(link.enHref ?? link.href, 'en')
+    : alternatePath(link.href, 'es');
 
 function isActive(link: (typeof navLinks)[number], resolvedHref: string): boolean {
   if (link.href === '/') return currentPath === '/' || currentPath === '/en' || currentPath === '/en/';
-  return currentPath.includes(resolvedHref);
+  return currentPath.includes(resolvedHref.replace(/\/$/, ''));
 }
 
 const label = (es: string, en: string) => (locale === 'en' ? en : es);

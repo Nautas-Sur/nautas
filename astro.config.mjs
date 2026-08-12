@@ -6,11 +6,41 @@ import keystatic from '@keystatic/astro';
 
 import vercel from '@astrojs/vercel';
 
+import sitemap from '@astrojs/sitemap';
+
+import { alternatePath } from './src/lib/routes';
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://nautas.org.ar',
   publicDir: './public',
-  integrations: [react(), keystatic()],
+  integrations: [
+    react(),
+    keystatic(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: {
+          es: 'es-AR',
+          en: 'en',
+        },
+      },
+      filter: (page) =>
+        !page.includes('/keystatic') && !page.includes('/en/producciones'),
+      serialize(item) {
+        const path = new URL(item.url).pathname;
+        const withSlash = (p) => (p.endsWith('/') ? p : p + '/');
+        const site = 'https://nautas.org.ar';
+        return {
+          ...item,
+          links: [
+            { lang: 'es-AR', url: site + withSlash(alternatePath(path, 'es')) },
+            { lang: 'en', url: site + withSlash(alternatePath(path, 'en')) },
+          ],
+        };
+      },
+    }),
+  ],
 
   i18n: {
     defaultLocale: 'es',

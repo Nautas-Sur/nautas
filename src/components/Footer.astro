@@ -1,4 +1,6 @@
 ---
+import { productionsPath } from '../lib/routes';
+
 interface Props {
   locale: string;
 }
@@ -17,9 +19,14 @@ const socialLinks = [
 const navLinks = [
   { es: 'Inicio', en: 'Home', href: '/' },
   { es: 'Institucional', en: 'About', href: '/institucional' },
-  { es: 'Proyectos', en: 'Projects', href: '/proyectos' },
+  { es: 'Producciones', en: 'Productions', href: productionsPath('es'), enHref: productionsPath('en') },
   { es: 'Archivo', en: 'Archive', href: '/archivo' },
 ];
+
+const resolveHref = (link: (typeof navLinks)[number]) =>
+  locale === 'en'
+    ? (link.enHref ?? (link.href === '/' ? '/en' : `/en${link.href}`))
+    : link.href;
 
 const year = new Date().getFullYear();
 ---
@@ -102,7 +109,7 @@ const year = new Date().getFullYear();
           {navLinks.map((link) => (
             <li>
               <a
-                href={locale === 'en' ? (link.href === '/' ? '/en' : `/en${link.href}`) : link.href}
+                href={resolveHref(link)}
                 class="font-body text-sm text-on-surface/70 hover:text-warm transition-colors"
               >
                 {label(link.es, link.en)}

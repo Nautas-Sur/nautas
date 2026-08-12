@@ -7,6 +7,7 @@ import GlassPanel from '../GlassPanel.astro';
 import YouTubeEmbed from '../YouTubeEmbed.astro';
 import EpisodeList from '../EpisodeList.astro';
 import { em, strip } from '../../lib/emphasis';
+import { productionPath } from '../../lib/routes';
 
 const { slug } = Astro.params;
 const locale = Astro.currentLocale || 'es';
@@ -266,7 +267,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
         <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {related.map((p) => (
             <a
-              href={`/${locale === 'en' ? 'en/' : ''}proyectos/${p.id}`}
+              href={productionPath(locale, p.id)}
               class="group p-6 bg-surface-container-low rounded-xl border border-warm/10 hover:border-warm/30 hover:bg-surface-container-high hover:-translate-y-1 transition-all duration-300"
             >
               <h3 class="font-headline text-xl group-hover:text-warm transition-colors">{p.data.title}</h3>

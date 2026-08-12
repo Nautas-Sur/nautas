@@ -54,8 +54,8 @@ hero_subtitle:
     • The third enigma: of the Heart of Art—primarily expressed through
     creativity.
 hero_cta_primary:
-  es: Ver proyectos
-  en: View projects
+  es: Ver producciones
+  en: View productions
 hero_cta_secondary:
   es: Quiénes somos
   en: About us
@@ -217,8 +217,8 @@ featured_title:
   es: Producción *Destacada*
   en: Featured *Production*
 featured_cta:
-  es: Ver proyecto
-  en: View project
+  es: Ver producciones
+  en: View productions
 vision_eyebrow:
   es: visión
   en: vision
@@ -237,7 +237,7 @@ newsletter_title:
   en: Ready to map the unknown?
 newsletter_subtitle:
   es: >-
-    Suscríbete a nuestro boletín para recibir bitácoras de navegación mensuales,
+    Suscribite a nuestro boletín para recibir bitácoras de navegación mensuales,
     avances científicos e invitaciones a eventos exclusivos.
   en: >-
     Subscribe to our newsletter for monthly celestial logs, scientific

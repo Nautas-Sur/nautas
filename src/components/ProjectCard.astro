@@ -1,5 +1,6 @@
 ---
 import { em } from '../lib/emphasis';
+import { productionPath } from '../lib/routes';
 
 export interface Props {
   title: string;
@@ -36,7 +37,7 @@ const {
   variant = 'card',
 } = Astro.props;
 
-const href = `/${locale === 'en' ? 'en/' : ''}proyectos/${slug}`;
+const href = productionPath(locale, slug);
 const t = (es: string, en: string) => (locale === 'en' ? en : es);
 const taglineHtml = em(tagline) ?? '';
 ---

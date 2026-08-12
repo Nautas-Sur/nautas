@@ -24,6 +24,13 @@ export default defineConfig({
     },
   },
 
+  redirects: {
+    '/proyectos': '/producciones',
+    '/en/proyectos': '/en/productions',
+    '/proyectos/[...slug]': '/producciones/[...slug]',
+    '/en/proyectos/[...slug]': '/en/productions/[...slug]',
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

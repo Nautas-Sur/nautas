@@ -9,6 +9,7 @@ import ReadMore from '../ReadMore.astro';
 import { getProjectCover } from '../../lib/projectCover';
 import { sortProjects } from '../../lib/sortProjects';
 import { em } from '../../lib/emphasis';
+import { productionsPath, productionPath } from '../../lib/routes';
 
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'inicio');
@@ -58,7 +59,7 @@ const pillars = [
   >
     <div class="flex flex-wrap gap-4 pt-4">
       <a
-        href={`/${locale === 'en' ? 'en/' : ''}proyectos`}
+        href={productionsPath(locale)}
         class="group inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-warm text-on-warm font-bitacora text-sm hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgb(from_var(--color-warm)_r_g_b_/_0.5)] active:scale-95 transition-all"
       >
         {t(d?.hero_cta_primary)}
@@ -184,7 +185,7 @@ const pillars = [
             lessLabel={t(ui?.data.read_less) ?? (locale === 'en' ? 'read less' : 'leer menos')}
           />
           <a
-            href={`/${locale === 'en' ? 'en/' : ''}proyectos/${featured.id}`}
+            href={productionPath(locale, featured.id)}
             class="group inline-flex items-center gap-2 text-warm font-bitacora text-sm hover:gap-3 transition-all"
           >
             {t(d?.featured_cta)}

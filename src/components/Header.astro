@@ -1,4 +1,6 @@
 ---
+import { productionsPath } from '../lib/routes';
+
 interface Props {
   currentPath: string;
   locale: string;
@@ -11,14 +13,19 @@ const { currentPath, locale, esPath, enPath } = Astro.props;
 const navLinks = [
   { es: 'Inicio', en: 'Home', href: '/' },
   { es: 'Institucional', en: 'About', href: '/institucional' },
-  { es: 'Proyectos', en: 'Projects', href: '/proyectos' },
+  { es: 'Producciones', en: 'Productions', href: productionsPath('es'), enHref: productionsPath('en') },
   { es: 'Contacto', en: 'Contact', href: '/contacto' },
   { es: 'Archivo', en: 'Archive', href: '/archivo' },
 ];
 
-function isActive(href: string): boolean {
-  if (href === '/') return currentPath === '/' || currentPath === '/en' || currentPath === '/en/';
-  return currentPath.includes(href);
+const resolveHref = (link: (typeof navLinks)[number]) =>
+  locale === 'en'
+    ? (link.enHref ?? (link.href === '/' ? '/en' : `/en${link.href}`))
+    : link.href;
+
+function isActive(link: (typeof navLinks)[number], resolvedHref: string): boolean {
+  if (link.href === '/') return currentPath === '/' || currentPath === '/en' || currentPath === '/en/';
+  return currentPath.includes(resolvedHref);
 }
 
 const label = (es: string, en: string) => (locale === 'en' ? en : es);
@@ -47,15 +54,15 @@ const label = (es: string, en: string) => (locale === 'en' ? en : es);
       {
         navLinks.map((link) => (
           <a
-            href={locale === 'en' ? (link.href === '/' ? '/en' : `/en${link.href}`) : link.href}
+            href={resolveHref(link)}
             class={`relative font-body text-sm tracking-wide transition-all duration-300 px-3 py-2 rounded ${
-              isActive(link.href)
+              isActive(link, resolveHref(link))
                 ? 'text-on-surface'
                 : 'text-on-surface/60 hover:text-on-surface'
             }`}
           >
             {label(link.es, link.en)}
-            {isActive(link.href) && (
+            {isActive(link, resolveHref(link)) && (
               <span class="absolute -bottom-0.5 left-3 right-3 h-px bg-warm" aria-hidden="true"></span>
             )}
           </a>
@@ -107,9 +114,9 @@ const label = (es: string, en: string) => (locale === 'en' ? en : es);
         navLinks.map((link) => (
           <li>
             <a
-              href={locale === 'en' ? (link.href === '/' ? '/en' : `/en${link.href}`) : link.href}
+              href={resolveHref(link)}
               class={`flex justify-between items-center font-headline text-2xl tracking-wide transition-colors ${
-                isActive(link.href) ? 'text-warm' : 'text-on-surface hover:text-warm'
+                isActive(link, resolveHref(link)) ? 'text-warm' : 'text-on-surface hover:text-warm'
               }`}
             >
               <span>{label(link.es, link.en)}</span>

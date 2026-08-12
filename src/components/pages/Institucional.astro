@@ -7,6 +7,7 @@ import GlassPanel from '../GlassPanel.astro';
 import TeamCard from '../TeamCard.astro';
 import { em } from '../../lib/emphasis';
 import { sortTeam } from '../../lib/sortTeam';
+import { productionsPath } from '../../lib/routes';
 
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'institucional');
@@ -163,10 +164,10 @@ const team = sortTeam(await getCollection('team'));
           <span class="transition-transform group-hover:translate-x-1">→</span>
         </a>
         <a
-          href={`/${locale === 'en' ? 'en/' : ''}proyectos`}
+          href={productionsPath(locale)}
           class="group inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border border-warm/40 text-warm font-bitacora text-sm hover:border-warm hover:bg-warm/[0.06] hover:-translate-y-0.5 transition-all"
         >
-          {t(d?.cta_button_projects) ?? (locale === 'en' ? 'View projects' : 'Ver proyectos')}
+          {t(d?.cta_button_projects) ?? (locale === 'en' ? 'View productions' : 'Ver producciones')}
           <span class="transition-transform group-hover:translate-x-1">→</span>
         </a>
       </div>

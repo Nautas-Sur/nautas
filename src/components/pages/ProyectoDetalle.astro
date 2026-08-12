@@ -222,7 +222,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
         )}
 
         {/* CTA Box */}
-        {data.ctaText && (
+        {data.ctaLink && data.ctaText && (
           <GlassPanel padding="md">
             <div class="text-center">
               <p class="font-bitacora italic text-warm/70 text-xs mb-3">
@@ -237,17 +237,15 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
                   'Holistic and sensitive content in harmony with the planet.'
                 )}
               </p>
-              {data.ctaLink && (
-                <a
-                  href={data.ctaLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="group inline-flex w-full items-center justify-center gap-2 py-3 rounded-full bg-warm text-on-warm font-bitacora text-sm hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgb(from_var(--color-warm)_r_g_b_/_0.5)] transition-all"
-                >
-                  {t(data.ctaText.es, data.ctaText.en)}
-                  <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
-                </a>
-              )}
+              <a
+                href={data.ctaLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group inline-flex w-full items-center justify-center gap-2 py-3 rounded-full bg-warm text-on-warm font-bitacora text-sm hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgb(from_var(--color-warm)_r_g_b_/_0.5)] transition-all"
+              >
+                {t(data.ctaText.es, data.ctaText.en)}
+                <span class="transition-transform group-hover:translate-x-1" aria-hidden="true">→</span>
+              </a>
             </div>
           </GlassPanel>
         )}

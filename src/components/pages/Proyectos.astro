@@ -32,7 +32,7 @@ const projects = sortProjects(await getCollection('projects'));
     readLessLabel={t(ui?.data.read_less) ?? (locale === 'en' ? 'read less' : 'leer menos')}
   />
 
-  <CelestialLine />
+  <CelestialLine class="mt-4 mb-8 md:mt-6 md:mb-12" />
 
   <!-- Producciones -->
   {projects.length > 0 && (

@@ -7,7 +7,7 @@ import GlassPanel from '../GlassPanel.astro';
 import TeamCard from '../TeamCard.astro';
 import { em } from '../../lib/emphasis';
 import { sortTeam } from '../../lib/sortTeam';
-import { productionsPath } from '../../lib/routes';
+import { productionsPath, alternatePath } from '../../lib/routes';
 
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'institucional');
@@ -157,7 +157,7 @@ const team = sortTeam(await getCollection('team'));
       </p>
       <div class="flex flex-col sm:flex-row justify-center gap-4">
         <a
-          href={`/${locale === 'en' ? 'en/' : ''}contacto`}
+          href={alternatePath('/contacto', locale)}
           class="group inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-warm text-on-warm font-bitacora text-sm hover:-translate-y-0.5 hover:shadow-[0_8px_24px_-8px_rgb(from_var(--color-warm)_r_g_b_/_0.5)] transition-all"
         >
           {t(d?.cta_button_contact) ?? (locale === 'en' ? 'Contact us' : 'Contactanos')}

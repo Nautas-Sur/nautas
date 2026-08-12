@@ -7,7 +7,7 @@ import GlassPanel from '../GlassPanel.astro';
 import YouTubeEmbed from '../YouTubeEmbed.astro';
 import EpisodeList from '../EpisodeList.astro';
 import { em, strip } from '../../lib/emphasis';
-import { productionPath } from '../../lib/routes';
+import { productionPath, alternatePath } from '../../lib/routes';
 
 const { slug } = Astro.params;
 const locale = Astro.currentLocale || 'es';
@@ -77,7 +77,7 @@ const embedVideoId = data.featuredVideoId || (!data.playlistId ? data.episodes?.
   <!-- Hero -->
   <section class="max-w-[1440px] mx-auto px-6 md:px-12 pt-hero pb-16">
     <a
-      href={`/${locale === 'en' ? 'en/' : ''}archivo`}
+      href={alternatePath('/archivo', locale)}
       class="group inline-flex items-center gap-2 font-bitacora italic text-warm/70 hover:text-warm text-sm mb-8 transition-colors"
     >
       <span class="transition-transform group-hover:-translate-x-1" aria-hidden="true">←</span>

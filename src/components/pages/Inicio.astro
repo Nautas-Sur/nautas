@@ -9,7 +9,7 @@ import ReadMore from '../ReadMore.astro';
 import { getProjectCover } from '../../lib/projectCover';
 import { sortProjects } from '../../lib/sortProjects';
 import { em } from '../../lib/emphasis';
-import { productionsPath, productionPath } from '../../lib/routes';
+import { productionsPath, productionPath, alternatePath } from '../../lib/routes';
 
 const locale = Astro.currentLocale || 'es';
 const page = await getEntry('pages', 'inicio');
@@ -66,7 +66,7 @@ const pillars = [
         <span class="transition-transform group-hover:translate-x-1">→</span>
       </a>
       <a
-        href={`/${locale === 'en' ? 'en/' : ''}institucional`}
+        href={alternatePath('/institucional', locale)}
         class="group inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border border-warm/40 text-warm font-bitacora text-sm hover:border-warm hover:bg-warm/[0.06] hover:-translate-y-0.5 transition-all"
       >
         {t(d?.hero_cta_secondary)}

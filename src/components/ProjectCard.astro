@@ -79,10 +79,10 @@ const taglineHtml = em(tagline) ?? '';
         )}
 
         <div class="flex items-center gap-3 mt-2 font-bitacora text-[11px] text-on-surface/40">
-          {episodeCount && (
-            <span>// {episodeCount} {t('episodios', 'episodes')}</span>
+          {episodeCount > 0 && (
+            <span>// {`${episodeCount} ${t('episodios', 'episodes')}`}</span>
           )}
-          {episodeCount && year && <span class="text-on-surface/20">·</span>}
+          {episodeCount > 0 && year && <span class="text-on-surface/20">·</span>}
           {year && <span>{year}</span>}
           <span class="ml-auto text-warm group-hover:translate-x-1 transition-transform" aria-hidden="true">
             →
@@ -131,10 +131,10 @@ const taglineHtml = em(tagline) ?? '';
         )}
 
         <div class="flex items-center gap-2 pt-3 font-bitacora text-[11px] text-on-surface/40 border-t border-on-surface/[0.08] mt-3">
-          {episodeCount && status === 'completed' && (
-            <span>// {episodeCount} {t('episodios', 'episodes')}</span>
+          {episodeCount > 0 && (
+            <span>// {`${episodeCount} ${t('episodios', 'episodes')}`}</span>
           )}
-          {episodeCount && year && status === 'completed' && (
+          {episodeCount > 0 && year && (
             <span class="text-on-surface/20">·</span>
           )}
           {year && <span>{year}</span>}

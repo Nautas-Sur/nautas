@@ -41,15 +41,14 @@ export default defineConfig({
     }),
   ],
 
+  // Sin `fallback`, a propósito: una página sin su par en inglés tiene que
+  // dar 404, no servir contenido en español bajo una URL /en.
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
     routing: {
       prefixDefaultLocale: false,
       redirectToDefaultLocale: false,
-    },
-    fallback: {
-      en: 'es',
     },
   },
 

@@ -259,7 +259,7 @@ export default config({
           en: fields.text({ label: 'Inglés' }),
         }, {
           label: 'Cierre — texto del botón secundario',
-          description: 'El botón con borde que lleva a la página de Proyectos.',
+          description: 'El botón con borde que lleva a la página de Producciones.',
         }),
         // --- SEO y metadatos ---
         title: fields.object({
@@ -273,7 +273,7 @@ export default config({
       },
     }),
     proyectos: singleton({
-      label: 'Página: Proyectos',
+      label: 'Página: Producciones',
       path: 'src/content/pages/proyectos',
       format: { data: 'yaml' },
       schema: {
@@ -513,7 +513,7 @@ export default config({
           en: fields.text({ label: 'Inglés' }),
         }, {
           label: 'Episodios — separador debajo del adelanto',
-          description: 'Aparece entre el adelanto y la lista de episodios, sólo en proyectos que tienen adelanto. Se muestra en minúscula y precedido por //.',
+          description: 'Aparece entre el adelanto y la lista de episodios, sólo en producciones que tienen adelanto. Se muestra en minúscula y precedido por //.',
         }),
         episode_item_label: fields.object({
           es: fields.text({ label: 'Español' }),
@@ -534,19 +534,19 @@ export default config({
   },
   collections: {
     projects: collection({
-      label: 'Proyectos',
+      label: 'Producciones',
       slugField: 'title',
       path: 'src/content/projects/*',
       format: { data: 'yaml' },
       schema: {
-        title: fields.slug({ name: { label: 'Título', description: 'Este texto genera la dirección (URL) del proyecto. Evitá cambiarlo en un proyecto ya publicado: rompe los links que ya existen.' } }),
+        title: fields.slug({ name: { label: 'Título', description: 'Este texto genera la dirección (URL) de la producción. Evitá cambiarlo en una producción ya publicada: rompe los links que ya existen.' } }),
         order: fields.integer({
           label: 'Orden',
-          description: 'Número más alto = aparece primero en la grilla. Se recomienda numerar de 10 en 10 (10, 20, 30...) para poder insertar un proyecto en el medio más adelante sin tener que renumerar todo. Un proyecto nuevo nace en 100, arriba de todos, hasta que lo reacomodes. Si dos proyectos quedan con el mismo número, se ordenan alfabéticamente por título entre ellos.',
+          description: 'Número más alto = aparece primero en la grilla. Se recomienda numerar de 10 en 10 (10, 20, 30...) para poder insertar una producción en el medio más adelante sin tener que renumerar todo. Una producción nueva nace en 100, arriba de todas, hasta que la reacomodes. Si dos producciones quedan con el mismo número, se ordenan alfabéticamente por título entre ellas.',
           defaultValue: 100,
           validation: { isRequired: true },
         }),
-        kind: fields.text({ label: 'Tipo', description: 'Categoría del proyecto que se muestra en la tarjeta. Ej: Serie Documental, Podcast, Programa Educativo.', validation: { isRequired: true } }),
+        kind: fields.text({ label: 'Tipo', description: 'Categoría de la producción que se muestra en la tarjeta. No es una lista cerrada: hoy incluye, entre otras, Serie Documental, Podcast, Programa Educativo, Programa de Salud y Programa de Educación Ambiental. Podés escribir un valor nuevo si ninguno de los existentes encaja, pero antes de eso conviene revisar las producciones ya cargadas y reusar el mismo texto: "Documental" y "documental" son dos categorías distintas para el sitio, no una sola con mayúscula distinta.', validation: { isRequired: true } }),
         pillar: fields.select({
           label: 'Pilar',
           options: [
@@ -564,12 +564,12 @@ export default config({
           ],
           defaultValue: 'in_development',
         }),
-        featured: fields.checkbox({ label: 'Destacado', defaultValue: false, description: 'Si está tildado, el proyecto aparece en la sección "Producción Destacada" del inicio, sin importar su estado (completado o en desarrollo). Si hay varios tildados, se muestra el que tenga el número de Orden más alto.' }),
+        featured: fields.checkbox({ label: 'Destacado', defaultValue: false, description: 'Si está tildado, la producción aparece en la sección "Producción Destacada" del inicio, sin importar su estado (completado o en desarrollo). Si hay varios tildados, se muestra el que tenga el número de Orden más alto.' }),
         year: fields.text({ label: 'Año', description: 'Ej: 2024, o un rango: 2023–2024.' }),
         tagline: fields.object({
           es: fields.text({ label: 'Español', validation: { isRequired: true }, description: ASTERISK_HINT }),
           en: fields.text({ label: 'Inglés', validation: { isRequired: true }, description: ASTERISK_HINT }),
-        }, { label: 'Frase / Lema', description: 'Frase corta que resume el proyecto. Aparece debajo del título.' }),
+        }, { label: 'Frase / Lema', description: 'Frase corta que resume la producción. Aparece debajo del título.' }),
         description: fields.object({
           es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
           en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true }, description: ASTERISK_HINT }),
@@ -582,7 +582,7 @@ export default config({
         }),
         heroAlt: fields.text({ label: 'Texto alternativo de la portada', description: 'Descripción corta de lo que se ve en la imagen. La leen los lectores de pantalla (personas no videntes) y aparece si la imagen no carga. Ej: "Mujer mayor caminando por un bosque de niebla".' }),
         playlistId: fields.text({ label: 'ID de playlist YouTube', description: 'Se obtiene de la URL de la playlist en YouTube: es la parte que aparece después de "list=". Ejemplo: en youtube.com/playlist?list=PLabc123, el ID es PLabc123.' }),
-        featuredVideoId: fields.text({ label: 'ID de video destacado (trailer)', description: 'ID del video del trailer o adelanto. Se obtiene de la URL del video en YouTube: la parte después de "v=" (o después de "youtu.be/"). Ejemplo: en youtube.com/watch?v=abc123, el ID es abc123. Dejar vacío si el proyecto no tiene trailer.' }),
+        featuredVideoId: fields.text({ label: 'ID de video destacado (trailer)', description: 'ID del video del trailer o adelanto. Se obtiene de la URL del video en YouTube: la parte después de "v=" (o después de "youtu.be/"). Ejemplo: en youtube.com/watch?v=abc123, el ID es abc123. Dejar vacío si la producción no tiene trailer.' }),
         episodes: fields.array(
           fields.object({
             number: fields.integer({ label: 'Número', validation: { isRequired: true } }),
@@ -656,7 +656,7 @@ export default config({
         ),
         voices: fields.array(
           fields.text({ label: 'Voz', validation: { isRequired: true } }),
-          { label: 'Voces', itemLabel: (props) => props.value || 'Voz', description: 'Nombres de los protagonistas o entrevistados del proyecto. Aparecen como etiquetas en la página del proyecto. Sumá uno por cada persona (por ejemplo, los 12 entrevistados de Voces de la Tierra).' }
+          { label: 'Voces', itemLabel: (props) => props.value || 'Voz', description: 'Nombres de los protagonistas o entrevistados de la producción. Aparecen como etiquetas en la página de la producción. Sumá uno por cada persona (por ejemplo, los 12 entrevistados de Voces de la Tierra).' }
         ),
         ctaText: fields.object({
           es: fields.text({ label: 'Español', validation: { isRequired: true } }),

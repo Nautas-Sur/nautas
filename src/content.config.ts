@@ -132,12 +132,13 @@ const teamCollection = defineCollection({
 const uiCollection = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/ui' }),
   schema: z.object({
-    // === NAVEGACIÓN (Header y Footer) ===
-    nav_inicio: bi.optional(),
-    nav_institucional: bi.optional(),
-    nav_producciones: bi.optional(),
-    nav_contacto: bi.optional(),
-    nav_archivo: bi.optional(),
+    // === NAVEGACIÓN (Header y Footer) === — requeridos: alimentan el menú
+    // del sitio entero, no son cosméticos como el resto de los campos de ui.
+    nav_inicio: bi,
+    nav_institucional: bi,
+    nav_producciones: bi,
+    nav_contacto: bi,
+    nav_archivo: bi,
     // === DETALLE DE PROYECTO ===
     back_to_archive: bi.optional(),
     voices_eyebrow: bi.optional(),

@@ -220,10 +220,6 @@
   box-shadow: 0 0 40px 6px rgb(163 204 233 / 0.06);
 }
 
-@utility warm-glow {
-  box-shadow: 0 0 40px 6px rgb(212 165 116 / 0.08);
-}
-
 @utility ghost-border {
   border-bottom: 1px solid rgb(142 145 150 / 0.3);
 }
@@ -235,35 +231,4 @@
 @utility divider-gradient {
   height: 1px;
   background: linear-gradient(90deg, transparent 0%, var(--color-outline-variant) 50%, transparent 100%);
-}
-
-/* Cielo estrellado sutil que cubre todo el fondo */
-@utility starfield-bg {
-  background-image:
-    radial-gradient(1px 1px at 23% 17%, var(--color-on-surface) 50%, transparent),
-    radial-gradient(1px 1px at 67% 73%, var(--color-on-surface) 50%, transparent),
-    radial-gradient(1.5px 1.5px at 84% 31%, var(--color-primary) 50%, transparent),
-    radial-gradient(1px 1px at 12% 89%, var(--color-on-surface) 50%, transparent),
-    radial-gradient(0.5px 0.5px at 91% 12%, var(--color-on-surface-variant) 50%, transparent),
-    radial-gradient(1px 1px at 45% 55%, var(--color-on-surface) 50%, transparent),
-    radial-gradient(1px 1px at 8% 41%, var(--color-warm) 50%, transparent),
-    radial-gradient(0.5px 0.5px at 76% 88%, var(--color-on-surface) 50%, transparent);
-  opacity: 0.5;
-}
-
-/* Estilo de "anotación de bitácora" para uso textual */
-@utility bitacora {
-  font-family: var(--font-bitacora);
-  font-style: italic;
-  letter-spacing: 0.02em;
-  color: var(--color-warm);
-}
-
-/* Metadatos técnicos (sin itálica, con tracking abierto) */
-@utility bitacora-meta {
-  font-family: var(--font-bitacora);
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--color-warm);
 }

@@ -14,11 +14,11 @@ const { currentPath, locale, esPath, enPath } = Astro.props;
 const ui = await getEntry('ui', 'textos');
 
 const navLinks = [
-  { es: ui?.data.nav_inicio?.es ?? 'Inicio', en: ui?.data.nav_inicio?.en ?? 'Home', href: '/' },
-  { es: ui?.data.nav_institucional?.es ?? 'Institucional', en: ui?.data.nav_institucional?.en ?? 'About', href: '/institucional' },
-  { es: ui?.data.nav_producciones?.es ?? 'Producciones', en: ui?.data.nav_producciones?.en ?? 'Productions', href: productionsPath('es'), enHref: productionsPath('en') },
-  { es: ui?.data.nav_contacto?.es ?? 'Contacto', en: ui?.data.nav_contacto?.en ?? 'Contact', href: '/contacto' },
-  { es: ui?.data.nav_archivo?.es ?? 'Archivo', en: ui?.data.nav_archivo?.en ?? 'Archive', href: '/archivo' },
+  { es: ui?.data.nav_inicio?.es, en: ui?.data.nav_inicio?.en, href: '/' },
+  { es: ui?.data.nav_institucional?.es, en: ui?.data.nav_institucional?.en, href: '/institucional' },
+  { es: ui?.data.nav_producciones?.es, en: ui?.data.nav_producciones?.en, href: productionsPath('es'), enHref: productionsPath('en') },
+  { es: ui?.data.nav_contacto?.es, en: ui?.data.nav_contacto?.en, href: '/contacto' },
+  { es: ui?.data.nav_archivo?.es, en: ui?.data.nav_archivo?.en, href: '/archivo' },
 ];
 
 const resolveHref = (link: (typeof navLinks)[number]) =>

@@ -132,6 +132,12 @@ const teamCollection = defineCollection({
 const uiCollection = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/ui' }),
   schema: z.object({
+    // === NAVEGACIÓN (Header y Footer) ===
+    nav_inicio: bi.optional(),
+    nav_institucional: bi.optional(),
+    nav_producciones: bi.optional(),
+    nav_contacto: bi.optional(),
+    nav_archivo: bi.optional(),
     // === DETALLE DE PROYECTO ===
     back_to_archive: bi.optional(),
     voices_eyebrow: bi.optional(),

@@ -409,6 +409,41 @@ export default config({
       path: 'src/content/ui/textos',
       format: { data: 'yaml' },
       schema: {
+        nav_inicio: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, {
+          label: 'Navegación — Inicio',
+          description: 'Aparece en el menú de arriba y en el pie de página, en todas las páginas del sitio.',
+        }),
+        nav_institucional: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, {
+          label: 'Navegación — Institucional',
+          description: 'Aparece en el menú de arriba y en el pie de página, en todas las páginas del sitio.',
+        }),
+        nav_producciones: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, {
+          label: 'Navegación — Producciones',
+          description: 'Aparece en el menú de arriba y en el pie de página, en todas las páginas del sitio.',
+        }),
+        nav_contacto: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, {
+          label: 'Navegación — Contacto',
+          description: 'Aparece en el menú de arriba, en todas las páginas del sitio. No aparece en el pie de página (decisión intencional: el pie no repite el link de Contacto).',
+        }),
+        nav_archivo: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, {
+          label: 'Navegación — Archivo',
+          description: 'Aparece en el menú de arriba y en el pie de página, en todas las páginas del sitio.',
+        }),
         back_to_archive: fields.object({
           es: fields.text({ label: 'Español' }),
           en: fields.text({ label: 'Inglés' }),

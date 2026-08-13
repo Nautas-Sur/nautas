@@ -1,4 +1,5 @@
 ---
+import { getEntry } from 'astro:content';
 import { productionsPath, alternatePath } from '../lib/routes';
 
 interface Props {
@@ -16,11 +17,13 @@ const socialLinks = [
   { name: 'Linktree', href: 'https://linktr.ee/nautas', icon: 'linktree' },
 ];
 
+const ui = await getEntry('ui', 'textos');
+
 const navLinks = [
-  { es: 'Inicio', en: 'Home', href: '/' },
-  { es: 'Institucional', en: 'About', href: '/institucional' },
-  { es: 'Producciones', en: 'Productions', href: productionsPath('es'), enHref: productionsPath('en') },
-  { es: 'Archivo', en: 'Archive', href: '/archivo' },
+  { es: ui?.data.nav_inicio?.es ?? 'Inicio', en: ui?.data.nav_inicio?.en ?? 'Home', href: '/' },
+  { es: ui?.data.nav_institucional?.es ?? 'Institucional', en: ui?.data.nav_institucional?.en ?? 'About', href: '/institucional' },
+  { es: ui?.data.nav_producciones?.es ?? 'Producciones', en: ui?.data.nav_producciones?.en ?? 'Productions', href: productionsPath('es'), enHref: productionsPath('en') },
+  { es: ui?.data.nav_archivo?.es ?? 'Archivo', en: ui?.data.nav_archivo?.en ?? 'Archive', href: '/archivo' },
 ];
 
 const resolveHref = (link: (typeof navLinks)[number]) =>

@@ -1,3 +1,18 @@
+nav_inicio:
+  es: Inicio
+  en: Home
+nav_institucional:
+  es: Institucional
+  en: About
+nav_producciones:
+  es: Producciones
+  en: Productions
+nav_contacto:
+  es: Contacto
+  en: Contact
+nav_archivo:
+  es: Archivo
+  en: Archive
 back_to_archive:
   es: volver al archivo
   en: back to archive

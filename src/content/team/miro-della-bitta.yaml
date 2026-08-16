@@ -3,7 +3,16 @@ role:
   es: Vocal
   en: Associate
 bio:
-  es: Programador, Músico y Astrólogo.
-  en: Programmer, Musician and Astrologer.
+  es: >-
+    Miro Della Bitta es programador, músico y astrólogo, con una profunda
+    dedicación al estudio de las matemáticas en sus múltiples formas. Su mirada
+    integra pensamiento lógico, programación, música y exploración de los
+    vínculos entre matemática, conocimiento y las distintas formas de comprender
+    la realidad.
+  en: >-
+    Miro Della Bitta is a programmer, musician, and astrologer, deeply dedicated
+    to the study of mathematics in its many forms. His approach integrates
+    logical thinking, programming, music, and the exploration of the links
+    between mathematics, knowledge, and different ways of understanding reality.
 order: 15
 photo: /images/team/miro-della-bitta/photo.jpg

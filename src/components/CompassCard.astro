@@ -1,0 +1,66 @@
+---
+export interface Props {
+  name: string;
+  presentation?: string;
+  image?: string;
+  imageAlt?: string;
+  link: string;
+  locale?: string;
+}
+
+const {
+  name,
+  presentation,
+  image,
+  imageAlt = '',
+  link,
+  locale = 'es',
+} = Astro.props;
+
+const t = (es: string, en: string) => (locale === 'en' ? en : es);
+---
+
+<a
+  href={link}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="group block transition-all duration-300 hover:-translate-y-1"
+>
+  <div class="aspect-video overflow-hidden rounded-xl mb-5 relative bg-surface-container-low border border-transparent group-hover:border-warm/20 transition-all duration-500">
+    {image ? (
+      <img
+        src={image}
+        alt={imageAlt}
+        class="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 opacity-75 group-hover:opacity-100"
+        loading="lazy"
+      />
+    ) : (
+      <div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-surface-container-low to-surface-container-lowest">
+        <span class="font-headline text-warm/20 text-7xl leading-none" aria-hidden="true">▷</span>
+      </div>
+    )}
+
+    <div
+      class="absolute inset-0 bg-gradient-to-t from-warm/[0.08] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+      aria-hidden="true"
+    ></div>
+  </div>
+
+  <div class="space-y-2">
+    <h3 class="font-headline text-2xl md:text-[1.625rem] leading-tight text-on-surface group-hover:text-warm transition-colors">
+      {name}
+    </h3>
+
+    {presentation && (
+      <p class="font-body text-sm text-on-surface-variant leading-relaxed line-clamp-2 pt-1">
+        {presentation}
+      </p>
+    )}
+
+    <div class="flex items-center gap-2 pt-3 font-bitacora text-[11px] text-on-surface/40 border-t border-on-surface/[0.08] mt-3">
+      <span class="ml-auto text-warm group-hover:translate-x-1 transition-transform" aria-hidden="true">
+        {t('visitar', 'visit')} →
+      </span>
+    </div>
+  </div>
+</a>

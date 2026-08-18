@@ -326,6 +326,31 @@ export default config({
         }, { label: 'SEO — Descripción para buscadores' }),
       },
     }),
+    brujula: singleton({
+      label: 'Página: Brújula',
+      path: 'src/content/pages/brujula',
+      format: { data: 'yaml' },
+      schema: {
+        // --- Portada ---
+        hero_title: fields.object({
+          es: fields.text({ label: 'Español', description: ASTERISK_HINT }),
+          en: fields.text({ label: 'Inglés', description: ASTERISK_HINT }),
+        }, { label: 'Portada — Título principal' }),
+        hero_subtitle: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, description: ASTERISK_HINT }),
+          en: fields.text({ label: 'Inglés', multiline: true, description: ASTERISK_HINT }),
+        }, { label: 'Portada — Texto de presentación' }),
+        // --- SEO y metadatos ---
+        title: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Título para buscadores' }),
+        description: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+          en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true }, description: SEO_HINT }),
+        }, { label: 'SEO — Descripción para buscadores' }),
+      },
+    }),
     contacto: singleton({
       label: 'Página: Contacto',
       path: 'src/content/pages/contacto',
@@ -696,6 +721,37 @@ export default config({
         photoAlt: fields.text({
           label: 'Texto alternativo de la foto',
           description: 'Descripción corta de lo que se ve en la foto. La leen los lectores de pantalla (personas no videntes) y aparece si la foto no carga. Ej: "Mujer sonriendo, retrato de estudio". Si se deja vacío, se usa el nombre de la persona.',
+        }),
+      },
+    }),
+    compass: collection({
+      label: 'Brújula',
+      slugField: 'name',
+      path: 'src/content/compass/*',
+      format: { data: 'yaml' },
+      schema: {
+        name: fields.slug({ name: { label: 'Nombre' } }),
+        presentation: fields.object({
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
+        }, { label: 'Presentación' }),
+        image: fields.image({
+          label: 'Imagen',
+          description: '16:9 recomendado (formato no forzado por el panel) · JPG, menos de 500 KB',
+          directory: 'public/images/compass',
+          publicPath: '/images/compass/',
+        }),
+        imageAlt: fields.text({ label: 'Texto alternativo de la imagen', description: 'Descripción corta de lo que se ve en la imagen. La leen los lectores de pantalla (personas no videntes) y aparece si la imagen no carga.' }),
+        link: fields.text({
+          label: 'Link',
+          description: 'URL completa hacia el sitio externo, incluyendo https://.',
+          validation: { isRequired: true },
+        }),
+        order: fields.integer({
+          label: 'Orden',
+          description: 'Número más alto = aparece primero en la grilla. Se recomienda numerar de 10 en 10 (10, 20, 30...) para poder insertar una ficha en el medio más adelante sin tener que renumerar todo. Una ficha nueva nace en 100, arriba de todas, hasta que la reacomodes. Si dos fichas quedan con el mismo número, se ordenan alfabéticamente por nombre entre ellas.',
+          defaultValue: 100,
+          validation: { isRequired: true },
         }),
       },
     }),

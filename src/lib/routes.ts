@@ -6,8 +6,13 @@ export function productionPath(locale: string, id: string): string {
   return `${productionsPath(locale)}${id}/`;
 }
 
+export function compassPath(locale: string): string {
+  return locale === 'en' ? '/en/compass/' : '/brujula/';
+}
+
 const SEGMENTS_ES_TO_EN: Record<string, string> = {
   producciones: 'productions',
+  brujula: 'compass',
 };
 
 const SEGMENTS_EN_TO_ES: Record<string, string> = Object.fromEntries(

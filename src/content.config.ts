@@ -129,6 +129,18 @@ const teamCollection = defineCollection({
   }),
 });
 
+const compassCollection = defineCollection({
+  loader: glob({ pattern: '**/*.yaml', base: './src/content/compass' }),
+  schema: z.object({
+    name: z.string(),
+    presentation: i18nString,
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
+    link: z.string(),
+    order: z.number().default(100),
+  }),
+});
+
 const uiCollection = defineCollection({
   loader: glob({ pattern: '**/*.yaml', base: './src/content/ui' }),
   schema: z.object({
@@ -166,5 +178,6 @@ export const collections = {
   pages: pagesCollection,
   projects: projectsCollection,
   team: teamCollection,
+  compass: compassCollection,
   ui: uiCollection,
 };

@@ -1,6 +1,6 @@
 ---
 import { getEntry } from 'astro:content';
-import { productionsPath, alternatePath } from '../lib/routes';
+import { productionsPath, compassPath, alternatePath } from '../lib/routes';
 
 interface Props {
   locale: string;
@@ -23,6 +23,7 @@ const navLinks = [
   { es: ui?.data.nav_inicio?.es, en: ui?.data.nav_inicio?.en, href: '/' },
   { es: ui?.data.nav_institucional?.es, en: ui?.data.nav_institucional?.en, href: '/institucional' },
   { es: ui?.data.nav_producciones?.es, en: ui?.data.nav_producciones?.en, href: productionsPath('es'), enHref: productionsPath('en') },
+  { es: ui?.data.nav_brujula?.es, en: ui?.data.nav_brujula?.en, href: compassPath('es'), enHref: compassPath('en') },
   { es: ui?.data.nav_archivo?.es, en: ui?.data.nav_archivo?.en, href: '/archivo' },
 ];
 

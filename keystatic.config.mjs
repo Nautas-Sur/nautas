@@ -455,6 +455,13 @@ export default config({
           label: 'Navegación — Producciones',
           description: 'Aparece en el menú de arriba y en el pie de página, en todas las páginas del sitio.',
         }),
+        nav_brujula: fields.object({
+          es: fields.text({ label: 'Español', validation: { isRequired: true } }),
+          en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),
+        }, {
+          label: 'Navegación — Brújula',
+          description: 'Aparece en el menú de arriba y en el pie de página, en todas las páginas del sitio.',
+        }),
         nav_contacto: fields.object({
           es: fields.text({ label: 'Español', validation: { isRequired: true } }),
           en: fields.text({ label: 'Inglés', validation: { isRequired: true } }),

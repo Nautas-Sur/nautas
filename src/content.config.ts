@@ -149,6 +149,7 @@ const uiCollection = defineCollection({
     nav_inicio: bi,
     nav_institucional: bi,
     nav_producciones: bi,
+    nav_brujula: bi,
     nav_contacto: bi,
     nav_archivo: bi,
     // === DETALLE DE PROYECTO ===

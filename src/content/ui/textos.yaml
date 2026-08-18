@@ -7,6 +7,9 @@ nav_institucional:
 nav_producciones:
   es: Producciones
   en: Productions
+nav_brujula:
+  es: Brújula
+  en: Compass
 nav_contacto:
   es: Contacto
   en: Contact

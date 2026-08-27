@@ -739,9 +739,9 @@ export default config({
       schema: {
         name: fields.slug({ name: { label: 'Nombre' } }),
         presentation: fields.object({
-          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true } }),
-          en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true } }),
-        }, { label: 'Presentación' }),
+          es: fields.text({ label: 'Español', multiline: true, validation: { isRequired: true, length: { min: 600, max: 1000 } } }),
+          en: fields.text({ label: 'Inglés', multiline: true, validation: { isRequired: true, length: { min: 600, max: 1000 } } }),
+        }, { label: 'Presentación', description: 'Se muestra completo en la tarjeta, sin recorte. Entre 600 y 1000 caracteres.' }),
         image: fields.image({
           label: 'Imagen',
           description: '16:9 recomendado (formato no forzado por el panel) · JPG, menos de 500 KB',
